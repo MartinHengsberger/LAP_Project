@@ -1,0 +1,54 @@
+<Xcpt>
+  <Time>24.03.2017 11:38:22</Time>
+  <Exception>
+    <Source>EntityFramework</Source>
+    <Message>An error occurred while updating the entries. See the inner exception for details.</Message>
+    <Stack>   bei System.Data.Entity.Internal.InternalContext.SaveChanges()
+   bei System.Data.Entity.Internal.LazyInternalContext.SaveChanges()
+   bei System.Data.Entity.DbContext.SaveChanges()
+   bei CardGame.DAL.Logic.AuthManager.Register(tblperson regUser) in C:\Users\Martin Hengsberger\Documents\GitHub\CardGame\CardGame\CardGame.DAL\Logic\AuthManager.cs:Zeile 33.</Stack>
+    <InnerException>
+      <Source>EntityFramework</Source>
+      <Message>An error occurred while updating the entries. See the inner exception for details.</Message>
+      <Stack>   bei System.Data.Entity.Core.Mapping.Update.Internal.UpdateTranslator.Update()
+   bei System.Data.Entity.Core.EntityClient.Internal.EntityAdapter.&lt;Update&gt;b__2(UpdateTranslator ut)
+   bei System.Data.Entity.Core.EntityClient.Internal.EntityAdapter.Update[T](T noChangesResult, Func`2 updateFunction)
+   bei System.Data.Entity.Core.EntityClient.Internal.EntityAdapter.Update()
+   bei System.Data.Entity.Core.Objects.ObjectContext.&lt;SaveChangesToStore&gt;b__35()
+   bei System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
+   bei System.Data.Entity.Core.Objects.ObjectContext.SaveChangesToStore(SaveOptions options, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction)
+   bei System.Data.Entity.Core.Objects.ObjectContext.&lt;&gt;c__DisplayClass2a.&lt;SaveChangesInternal&gt;b__27()
+   bei System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   bei System.Data.Entity.Core.Objects.ObjectContext.SaveChangesInternal(SaveOptions options, Boolean executeInExistingTransaction)
+   bei System.Data.Entity.Core.Objects.ObjectContext.SaveChanges(SaveOptions options)
+   bei System.Data.Entity.Internal.InternalContext.SaveChanges()</Stack>
+    </InnerException>
+  </Exception>
+</Xcpt>
+<Xcpt>
+  <Time>24.03.2017 11:43:52</Time>
+  <Exception>
+    <Source>EntityFramework</Source>
+    <Message>An error occurred while updating the entries. See the inner exception for details.</Message>
+    <Stack>   bei System.Data.Entity.Internal.InternalContext.SaveChanges()
+   bei System.Data.Entity.Internal.LazyInternalContext.SaveChanges()
+   bei System.Data.Entity.DbContext.SaveChanges()
+   bei CardGame.DAL.Logic.AuthManager.Register(tblperson regUser) in C:\Users\Martin Hengsberger\Documents\GitHub\CardGame\CardGame\CardGame.DAL\Logic\AuthManager.cs:Zeile 33.</Stack>
+    <InnerException>
+      <Source>EntityFramework</Source>
+      <Message>An error occurred while updating the entries. See the inner exception for details.</Message>
+      <Stack>   bei System.Data.Entity.Core.Mapping.Update.Internal.UpdateTranslator.Update()
+   bei System.Data.Entity.Core.EntityClient.Internal.EntityAdapter.&lt;Update&gt;b__2(UpdateTranslator ut)
+   bei System.Data.Entity.Core.EntityClient.Internal.EntityAdapter.Update[T](T noChangesResult, Func`2 updateFunction)
+   bei System.Data.Entity.Core.EntityClient.Internal.EntityAdapter.Update()
+   bei System.Data.Entity.Core.Objects.ObjectContext.&lt;SaveChangesToStore&gt;b__35()
+   bei System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
+   bei System.Data.Entity.Core.Objects.ObjectContext.SaveChangesToStore(SaveOptions options, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction)
+   bei System.Data.Entity.Core.Objects.ObjectContext.&lt;&gt;c__DisplayClass2a.&lt;SaveChangesInternal&gt;b__27()
+   bei System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   bei System.Data.Entity.Core.Objects.ObjectContext.SaveChangesInternal(SaveOptions options, Boolean executeInExistingTransaction)
+   bei System.Data.Entity.Core.Objects.ObjectContext.SaveChanges(SaveOptions options)
+   bei System.Data.Entity.Internal.InternalContext.SaveChanges()</Stack>
+    </InnerException>
+  </Exception>
+</Xcpt>

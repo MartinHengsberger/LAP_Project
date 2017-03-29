@@ -1,0 +1,63 @@
+﻿@model IEnumerable<CardGame.Web.Models.User>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(u => u.ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(u => u.Firstname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(u => u.Lastname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(u => u.Role)
+        </th>
+        <th>
+            @Html.DisplayNameFor(u => u.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(u => u.Password)
+        </th>
+        <th>
+            @Html.DisplayNameFor(u => u.Salt)
+        </th>
+
+    </tr>
+    @foreach (var user in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(u => user.ID)
+            </td>
+            <td>
+                @Html.DisplayFor(u => user.Firstname)
+            </td>
+            <td>
+                @Html.DisplayFor(u => user.Lastname)
+            </td>
+            <td>
+                @Html.DisplayFor(u => user.Role)
+            </td>
+            <td>
+                @Html.DisplayFor(u => user.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(u => user.Password)
+            </td>
+            <td>
+                @Html.DisplayFor(u => user.Salt)
+            </td>
+
+
+        </tr>
+    }
+
+</table>

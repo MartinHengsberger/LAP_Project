@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c54403c21ed948c2a1865d77bb087ea7" Name="Diagram1">
+        <EntityTypeShape EntityType="ClonestoneFSModel.tblcard" Width="1.5" PointX="7" PointY="0.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClonestoneFSModel.tblclass" Width="1.5" PointX="5" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClonestoneFSModel.tblcollection" Width="1.5" PointX="2.875" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClonestoneFSModel.tbldeck" Width="1.5" PointX="0.625" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClonestoneFSModel.tbldeckcard" Width="1.5" PointX="5" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClonestoneFSModel.tblorder" Width="1.5" PointX="2.875" PointY="0.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClonestoneFSModel.tblpack" Width="1.5" PointX="5" PointY="0.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClonestoneFSModel.tblperson" Width="1.5" PointX="0.75" PointY="0.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClonestoneFSModel.tbltype" Width="1.5" PointX="7" PointY="6" IsExpanded="true" />
+        <AssociationConnector Association="ClonestoneFSModel.FK__tblcard__fkclass__2D27B809" ManuallyRouted="false" />
+        <AssociationConnector Association="ClonestoneFSModel.FK__tblcard__fktype__2C3393D0" ManuallyRouted="false" />
+        <AssociationConnector Association="ClonestoneFSModel.FK__tbldeckca__fkcar__31EC6D26" ManuallyRouted="false" />
+        <AssociationConnector Association="ClonestoneFSModel.FK__tblcollec__fkdec__10566F31" ManuallyRouted="false" />
+        <AssociationConnector Association="ClonestoneFSModel.FK__tblcollec__fkord__0F624AF8" ManuallyRouted="false" />
+        <AssociationConnector Association="ClonestoneFSModel.FK__tblcollec__fkper__0E6E26BF" ManuallyRouted="false" />
+        <AssociationConnector Association="ClonestoneFSModel.FK__tbldeck__fkperso__1DE57479" ManuallyRouted="false" />
+        <AssociationConnector Association="ClonestoneFSModel.FK__tbldeckca__fkdec__30F848ED" ManuallyRouted="false" />
+        <AssociationConnector Association="ClonestoneFSModel.FK__tblorder__fkpack__0B91BA14" ManuallyRouted="false" />
+        <AssociationConnector Association="ClonestoneFSModel.FK__tblorder__fkpers__0A9D95DB" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

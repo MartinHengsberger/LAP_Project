@@ -1,0 +1,42 @@
+﻿@model IEnumerable<CardGame.Web.Models.Card>
+
+@{
+    ViewBag.Title = "View";
+}
+
+<h2>Overview</h2>
+
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(c => c.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(c => c.Type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(c => c.Mana)
+        </th>
+        <th>
+            Details
+        </th>
+    </tr>
+    @foreach (var card in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(c => card.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(c => card.Type)
+            </td>
+            <td>
+                @Html.DisplayFor(c => card.Mana)
+            </td>
+            <td>
+                @Html.ActionLink("Details", "Details", new { id = card.ID })
+            </td>
+        </tr>
+    }
+
+</table>

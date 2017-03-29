@@ -1,0 +1,25 @@
+﻿@model CardGame.Web.Models.Statistic
+
+@{
+    ViewBag.Title = "Statistics";
+}
+
+<h2>Game Statistics</h2>
+
+@Html.LabelFor(s => s.NumUsers)
+@Html.DisplayFor(s => s.NumUsers)
+
+<br />
+
+@Html.LabelFor(s => s.NumCards)
+@Html.DisplayFor(s => s.NumCards)
+<br />
+
+@Html.LabelFor(s => s.NumDecks)
+@Html.DisplayFor(s => s.NumDecks)
+<br />
+
+@Html.LabelFor(s => s.CreationTime)
+@Html.DisplayFor(s => s.CreationTime)
+
+

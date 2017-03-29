@@ -1,0 +1,120 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Clonestone</title>
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
+    <link href="~/Content/StyleSheet.css" rel="stylesheet" />
+
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Clonestone", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav" style="float:right">
+                   
+                    <!---------- Links die für GUEST sichtbar sind ---------->
+                    @if (User.Identity.Name == "")
+                    {
+                        <li>@Html.ActionLink("Login", "Login", "Account")</li>
+                        <li>@Html.ActionLink("Registration", "Register", "Account")</li>
+                    }
+                    
+                    <!---------- Links die für USER sichtbar sind ---------->
+                    @if (User.Identity.Name != "") //if (User.IsInRole("user") TESTEN!
+                    {
+                        <li>@Html.ActionLink("Logout", "Logout", "Account")</li>
+                        <li>@Html.ActionLink("Shop", "Index", "Shop")</li>
+                        @*<li>@Html.ActionLink("Statistic", "Statistics", "Home")</li>
+                        <li>@Html.ActionLink("Cards", "Overview", "Card")</li>
+                        <li>@Html.ActionLink("Users", "Index", "User")</li>*@
+                        <li>@Html.ActionLink(@CardGame.DAL.Logic.UserManager.GetUserByUserEmail(User.Identity.Name).gamertag.ToString(), "Index", "User")</li>
+                        <li>@Html.ActionLink("Gold: " + @CardGame.DAL.Logic.UserManager.GetUserByUserEmail(User.Identity.Name).currencybalance.ToString(), "Index", "User")</li>
+                    }
+
+                    <!---------- Links die für ADMIN sichtbar sind ---------->
+                    @if (User.IsInRole("admin"))
+                    {
+                        <li>@Html.ActionLink("Logout", "Logout", "Account")</li>
+                        <li>@Html.ActionLink("Users", "Index", "User")</li>
+                    }                    
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+
+        <footer>
+            @{ string style = @ViewBag.position == "Home" ? "height:22em" : null; }
+            <div class="navbar-fixed-bottom visible-lg visible-md visible-sm" id="Rundherum" style="@style">
+
+                <!---------- Footer Kartenhand ---------->
+                <div class="row" id="cardhand">
+                    <div class="embed-responsive" id="links2">
+                        <div class="cardhand_text">
+                            <a href="~/img/AGB.pdf">Imprint</a>
+                        </div>
+                    </div>
+                    <div class="embed-responsive" id="links">
+                        <div class="cardhand_text">
+                            @Html.ActionLink("Login", "Login", "Account")
+                        </div>
+                    </div>
+                    <div class="embed-responsive" id="mitte">
+                        <div class="cardhand_text">
+                            @{  if (User.Identity.Name == "")
+                                {
+                                    @Html.ActionLink("Shop", "Login", "Account")
+                                }
+                                else
+                                {
+                                    @Html.ActionLink("Shop", "Index", "Shop")
+                                }
+                            }
+                        </div>
+                    </div>
+                    <div class="embed-responsive" id="rechts">
+                        <div class="cardhand_text">
+                            @Html.ActionLink("Register", "Register", "Account")
+                        </div>
+                    </div>
+                    <div class="embed-responsive" id="rechts2">
+                        <div class="cardhand_text">
+                            <a href="~/img/Disclaimer.pdf">Disclaimer</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="navbar-fixed-bottom center visible-lg visible-md visible-sm" id="Deckel">
+                    <div class="navbar-collapse collapse">
+                        <div class="footer-nav">
+                            <p>&copy; @DateTime.Now.Year - Martin Hengsberger</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+</body>
+</html>

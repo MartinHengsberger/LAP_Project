@@ -1,0 +1,83 @@
+﻿@model CardGame.Web.Models.User
+@{
+    ViewBag.Title = "Register";
+}
+
+<div class="jumbotron">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h1>Register</h1>
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(u => u.Firstname, htmlAttributes: new { @class = "control-label col-md-3" })
+                <div class="col-md-7">
+                    @Html.EditorFor(u => u.Firstname, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(u => u.Firstname, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(u => u.Lastname, htmlAttributes: new { @class = "control-label col-md-3" })
+                <div class="col-md-7">
+                    @Html.EditorFor(u => u.Lastname, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(u => u.Lastname, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(u => u.Gamertag, htmlAttributes: new { @class = "control-label col-md-3" })
+                <div class="col-md-7">
+                    @Html.EditorFor(u => u.Gamertag, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(u => u.Gamertag, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(u => u.Email, htmlAttributes: new { @class = "control-label col-md-3" })
+                <div class="col-md-7">
+                    @Html.EditorFor(u => u.Email, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(u => u.Email, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-3" for="confirmEmail">Confirm Email</label>
+                <div class="col-md-7">
+                    @Html.EditorFor(u => u.EmailValidation, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(u => u.EmailValidation, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(u => u.Password, htmlAttributes: new { @class = "control-label col-md-3" })
+                <div class="col-md-7">
+                    @Html.EditorFor(u => u.Password, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(u => u.Password, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-3" for="confirmPassword">Confirm Password</label>
+                <div class="col-md-7">
+                    @Html.EditorFor(u => u.PasswordValidation, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(u => u.PasswordValidation, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-3 col-md-7">
+                    <input type="submit" value="Registration" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+
+    <div>
+        <h4>@Html.ActionLink("Home", "Index", "Home")</h4>
+    </div>
+
+</div>

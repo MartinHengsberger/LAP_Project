@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ClonestoneFSModelStoreContainer" CdmEntityContainer="ClonestoneFSEntities">
+    <EntitySetMapping Name="tblcard">
+      <EntityTypeMapping TypeName="ClonestoneFSModel.tblcard">
+        <MappingFragment StoreEntitySet="tblcard">
+          <ScalarProperty Name="idcard" ColumnName="idcard" />
+          <ScalarProperty Name="cardname" ColumnName="cardname" />
+          <ScalarProperty Name="mana" ColumnName="mana" />
+          <ScalarProperty Name="life" ColumnName="life" />
+          <ScalarProperty Name="attack" ColumnName="attack" />
+          <ScalarProperty Name="flavor" ColumnName="flavor" />
+          <ScalarProperty Name="fktype" ColumnName="fktype" />
+          <ScalarProperty Name="fkclass" ColumnName="fkclass" />
+          <ScalarProperty Name="pic" ColumnName="pic" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblclass">
+      <EntityTypeMapping TypeName="ClonestoneFSModel.tblclass">
+        <MappingFragment StoreEntitySet="tblclass">
+          <ScalarProperty Name="idclass" ColumnName="idclass" />
+          <ScalarProperty Name="class" ColumnName="class" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblcollection">
+      <EntityTypeMapping TypeName="ClonestoneFSModel.tblcollection">
+        <MappingFragment StoreEntitySet="tblcollection">
+          <ScalarProperty Name="idcollection" ColumnName="idcollection" />
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
+          <ScalarProperty Name="fkperson" ColumnName="fkperson" />
+          <ScalarProperty Name="fkorder" ColumnName="fkorder" />
+          <ScalarProperty Name="fkdeckcard" ColumnName="fkdeckcard" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbldeck">
+      <EntityTypeMapping TypeName="ClonestoneFSModel.tbldeck">
+        <MappingFragment StoreEntitySet="tbldeck">
+          <ScalarProperty Name="iddeck" ColumnName="iddeck" />
+          <ScalarProperty Name="deckname" ColumnName="deckname" />
+          <ScalarProperty Name="fkperson" ColumnName="fkperson" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbldeckcard">
+      <EntityTypeMapping TypeName="ClonestoneFSModel.tbldeckcard">
+        <MappingFragment StoreEntitySet="tbldeckcard">
+          <ScalarProperty Name="iddeckcard" ColumnName="iddeckcard" />
+          <ScalarProperty Name="fkdeck" ColumnName="fkdeck" />
+          <ScalarProperty Name="fkcard" ColumnName="fkcard" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblorder">
+      <EntityTypeMapping TypeName="ClonestoneFSModel.tblorder">
+        <MappingFragment StoreEntitySet="tblorder">
+          <ScalarProperty Name="idorder" ColumnName="idorder" />
+          <ScalarProperty Name="orderdate" ColumnName="orderdate" />
+          <ScalarProperty Name="fkperson" ColumnName="fkperson" />
+          <ScalarProperty Name="fkpack" ColumnName="fkpack" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblpack">
+      <EntityTypeMapping TypeName="ClonestoneFSModel.tblpack">
+        <MappingFragment StoreEntitySet="tblpack">
+          <ScalarProperty Name="idpack" ColumnName="idpack" />
+          <ScalarProperty Name="packname" ColumnName="packname" />
+          <ScalarProperty Name="packprice" ColumnName="packprice" />
+          <ScalarProperty Name="cardquantity" ColumnName="cardquantity" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblperson">
+      <EntityTypeMapping TypeName="ClonestoneFSModel.tblperson">
+        <MappingFragment StoreEntitySet="tblperson">
+          <ScalarProperty Name="idperson" ColumnName="idperson" />
+          <ScalarProperty Name="firstname" ColumnName="firstname" />
+          <ScalarProperty Name="lastname" ColumnName="lastname" />
+          <ScalarProperty Name="gamertag" ColumnName="gamertag" />
+          <ScalarProperty Name="currencybalance" ColumnName="currencybalance" />
+          <ScalarProperty Name="isactive" ColumnName="isactive" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="salt" ColumnName="salt" />
+          <ScalarProperty Name="userrole" ColumnName="userrole" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbltype">
+      <EntityTypeMapping TypeName="ClonestoneFSModel.tbltype">
+        <MappingFragment StoreEntitySet="tbltype">
+          <ScalarProperty Name="idtype" ColumnName="idtype" />
+          <ScalarProperty Name="typename" ColumnName="typename" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

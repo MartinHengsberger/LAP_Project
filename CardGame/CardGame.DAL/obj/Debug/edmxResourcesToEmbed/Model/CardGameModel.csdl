@@ -1,0 +1,281 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ClonestoneFSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="tblcard">
+    <Key>
+      <PropertyRef Name="idcard" />
+    </Key>
+    <Property Name="idcard" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="cardname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="mana" Type="Byte" Nullable="false" />
+    <Property Name="life" Type="Int16" Nullable="false" />
+    <Property Name="attack" Type="Int16" Nullable="false" />
+    <Property Name="flavor" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="fktype" Type="Int32" Nullable="false" />
+    <Property Name="fkclass" Type="Int32" />
+    <Property Name="pic" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <NavigationProperty Name="tblclass" Relationship="Self.FK__tblcard__fkclass__2D27B809" FromRole="tblcard" ToRole="tblclass" />
+    <NavigationProperty Name="tbltype" Relationship="Self.FK__tblcard__fktype__2C3393D0" FromRole="tblcard" ToRole="tbltype" />
+    <NavigationProperty Name="tbldeckcard" Relationship="Self.FK__tbldeckca__fkcar__31EC6D26" FromRole="tblcard" ToRole="tbldeckcard" />
+  </EntityType>
+  <EntityType Name="tblclass">
+    <Key>
+      <PropertyRef Name="idclass" />
+    </Key>
+    <Property Name="idclass" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="class" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="tblcard" Relationship="Self.FK__tblcard__fkclass__2D27B809" FromRole="tblclass" ToRole="tblcard" />
+  </EntityType>
+  <EntityType Name="tblcollection">
+    <Key>
+      <PropertyRef Name="idcollection" />
+    </Key>
+    <Property Name="idcollection" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="quantity" Type="Int32" />
+    <Property Name="fkperson" Type="Int32" />
+    <Property Name="fkorder" Type="Int32" />
+    <Property Name="fkdeckcard" Type="Int32" />
+    <NavigationProperty Name="tbldeckcard" Relationship="Self.FK__tblcollec__fkdec__10566F31" FromRole="tblcollection" ToRole="tbldeckcard" />
+    <NavigationProperty Name="tblorder" Relationship="Self.FK__tblcollec__fkord__0F624AF8" FromRole="tblcollection" ToRole="tblorder" />
+    <NavigationProperty Name="tblperson" Relationship="Self.FK__tblcollec__fkper__0E6E26BF" FromRole="tblcollection" ToRole="tblperson" />
+  </EntityType>
+  <EntityType Name="tbldeck">
+    <Key>
+      <PropertyRef Name="iddeck" />
+    </Key>
+    <Property Name="iddeck" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="deckname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="fkperson" Type="Int32" />
+    <NavigationProperty Name="tblperson" Relationship="Self.FK__tbldeck__fkperso__1DE57479" FromRole="tbldeck" ToRole="tblperson" />
+    <NavigationProperty Name="tbldeckcard" Relationship="Self.FK__tbldeckca__fkdec__30F848ED" FromRole="tbldeck" ToRole="tbldeckcard" />
+  </EntityType>
+  <EntityType Name="tbldeckcard">
+    <Key>
+      <PropertyRef Name="iddeckcard" />
+    </Key>
+    <Property Name="iddeckcard" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fkdeck" Type="Int32" Nullable="false" />
+    <Property Name="fkcard" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tblcard" Relationship="Self.FK__tbldeckca__fkcar__31EC6D26" FromRole="tbldeckcard" ToRole="tblcard" />
+    <NavigationProperty Name="tblcollection" Relationship="Self.FK__tblcollec__fkdec__10566F31" FromRole="tbldeckcard" ToRole="tblcollection" />
+    <NavigationProperty Name="tbldeck" Relationship="Self.FK__tbldeckca__fkdec__30F848ED" FromRole="tbldeckcard" ToRole="tbldeck" />
+  </EntityType>
+  <EntityType Name="tblorder">
+    <Key>
+      <PropertyRef Name="idorder" />
+    </Key>
+    <Property Name="idorder" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="orderdate" Type="DateTime" Precision="3" />
+    <Property Name="fkperson" Type="Int32" />
+    <Property Name="fkpack" Type="Int32" />
+    <NavigationProperty Name="tblcollection" Relationship="Self.FK__tblcollec__fkord__0F624AF8" FromRole="tblorder" ToRole="tblcollection" />
+    <NavigationProperty Name="tblpack" Relationship="Self.FK__tblorder__fkpack__0B91BA14" FromRole="tblorder" ToRole="tblpack" />
+    <NavigationProperty Name="tblperson" Relationship="Self.FK__tblorder__fkpers__0A9D95DB" FromRole="tblorder" ToRole="tblperson" />
+  </EntityType>
+  <EntityType Name="tblpack">
+    <Key>
+      <PropertyRef Name="idpack" />
+    </Key>
+    <Property Name="idpack" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="packname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="packprice" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="cardquantity" Type="Int32" />
+    <NavigationProperty Name="tblorder" Relationship="Self.FK__tblorder__fkpack__0B91BA14" FromRole="tblpack" ToRole="tblorder" />
+  </EntityType>
+  <EntityType Name="tblperson">
+    <Key>
+      <PropertyRef Name="idperson" />
+    </Key>
+    <Property Name="idperson" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="firstname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="lastname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="gamertag" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="currencybalance" Type="Int32" />
+    <Property Name="isactive" Type="Boolean" />
+    <Property Name="email" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="password" Type="String" MaxLength="128" FixedLength="true" Unicode="false" />
+    <Property Name="salt" Type="String" MaxLength="128" FixedLength="true" Unicode="false" />
+    <Property Name="userrole" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="tblcollection" Relationship="Self.FK__tblcollec__fkper__0E6E26BF" FromRole="tblperson" ToRole="tblcollection" />
+    <NavigationProperty Name="tbldeck" Relationship="Self.FK__tbldeck__fkperso__1DE57479" FromRole="tblperson" ToRole="tbldeck" />
+    <NavigationProperty Name="tblorder" Relationship="Self.FK__tblorder__fkpers__0A9D95DB" FromRole="tblperson" ToRole="tblorder" />
+  </EntityType>
+  <EntityType Name="tbltype">
+    <Key>
+      <PropertyRef Name="idtype" />
+    </Key>
+    <Property Name="idtype" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="typename" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="tblcard" Relationship="Self.FK__tblcard__fktype__2C3393D0" FromRole="tbltype" ToRole="tblcard" />
+  </EntityType>
+  <Association Name="FK__tblcard__fkclass__2D27B809">
+    <End Role="tblclass" Type="Self.tblclass" Multiplicity="0..1" />
+    <End Role="tblcard" Type="Self.tblcard" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblclass">
+        <PropertyRef Name="idclass" />
+      </Principal>
+      <Dependent Role="tblcard">
+        <PropertyRef Name="fkclass" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblcard__fktype__2C3393D0">
+    <End Role="tbltype" Type="Self.tbltype" Multiplicity="1" />
+    <End Role="tblcard" Type="Self.tblcard" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbltype">
+        <PropertyRef Name="idtype" />
+      </Principal>
+      <Dependent Role="tblcard">
+        <PropertyRef Name="fktype" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbldeckca__fkcar__31EC6D26">
+    <End Role="tblcard" Type="Self.tblcard" Multiplicity="1" />
+    <End Role="tbldeckcard" Type="Self.tbldeckcard" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblcard">
+        <PropertyRef Name="idcard" />
+      </Principal>
+      <Dependent Role="tbldeckcard">
+        <PropertyRef Name="fkcard" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblcollec__fkdec__10566F31">
+    <End Role="tbldeckcard" Type="Self.tbldeckcard" Multiplicity="0..1" />
+    <End Role="tblcollection" Type="Self.tblcollection" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbldeckcard">
+        <PropertyRef Name="iddeckcard" />
+      </Principal>
+      <Dependent Role="tblcollection">
+        <PropertyRef Name="fkdeckcard" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblcollec__fkord__0F624AF8">
+    <End Role="tblorder" Type="Self.tblorder" Multiplicity="0..1" />
+    <End Role="tblcollection" Type="Self.tblcollection" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblorder">
+        <PropertyRef Name="idorder" />
+      </Principal>
+      <Dependent Role="tblcollection">
+        <PropertyRef Name="fkorder" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblcollec__fkper__0E6E26BF">
+    <End Role="tblperson" Type="Self.tblperson" Multiplicity="0..1" />
+    <End Role="tblcollection" Type="Self.tblcollection" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblperson">
+        <PropertyRef Name="idperson" />
+      </Principal>
+      <Dependent Role="tblcollection">
+        <PropertyRef Name="fkperson" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbldeck__fkperso__1DE57479">
+    <End Role="tblperson" Type="Self.tblperson" Multiplicity="0..1" />
+    <End Role="tbldeck" Type="Self.tbldeck" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblperson">
+        <PropertyRef Name="idperson" />
+      </Principal>
+      <Dependent Role="tbldeck">
+        <PropertyRef Name="fkperson" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbldeckca__fkdec__30F848ED">
+    <End Role="tbldeck" Type="Self.tbldeck" Multiplicity="1" />
+    <End Role="tbldeckcard" Type="Self.tbldeckcard" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbldeck">
+        <PropertyRef Name="iddeck" />
+      </Principal>
+      <Dependent Role="tbldeckcard">
+        <PropertyRef Name="fkdeck" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblorder__fkpack__0B91BA14">
+    <End Role="tblpack" Type="Self.tblpack" Multiplicity="0..1" />
+    <End Role="tblorder" Type="Self.tblorder" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblpack">
+        <PropertyRef Name="idpack" />
+      </Principal>
+      <Dependent Role="tblorder">
+        <PropertyRef Name="fkpack" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblorder__fkpers__0A9D95DB">
+    <End Role="tblperson" Type="Self.tblperson" Multiplicity="0..1" />
+    <End Role="tblorder" Type="Self.tblorder" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblperson">
+        <PropertyRef Name="idperson" />
+      </Principal>
+      <Dependent Role="tblorder">
+        <PropertyRef Name="fkperson" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ClonestoneFSEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tblcard" EntityType="Self.tblcard" />
+    <EntitySet Name="tblclass" EntityType="Self.tblclass" />
+    <EntitySet Name="tblcollection" EntityType="Self.tblcollection" />
+    <EntitySet Name="tbldeck" EntityType="Self.tbldeck" />
+    <EntitySet Name="tbldeckcard" EntityType="Self.tbldeckcard" />
+    <EntitySet Name="tblorder" EntityType="Self.tblorder" />
+    <EntitySet Name="tblpack" EntityType="Self.tblpack" />
+    <EntitySet Name="tblperson" EntityType="Self.tblperson" />
+    <EntitySet Name="tbltype" EntityType="Self.tbltype" />
+    <AssociationSet Name="FK__tblcard__fkclass__2D27B809" Association="Self.FK__tblcard__fkclass__2D27B809">
+      <End Role="tblclass" EntitySet="tblclass" />
+      <End Role="tblcard" EntitySet="tblcard" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblcard__fktype__2C3393D0" Association="Self.FK__tblcard__fktype__2C3393D0">
+      <End Role="tbltype" EntitySet="tbltype" />
+      <End Role="tblcard" EntitySet="tblcard" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbldeckca__fkcar__31EC6D26" Association="Self.FK__tbldeckca__fkcar__31EC6D26">
+      <End Role="tblcard" EntitySet="tblcard" />
+      <End Role="tbldeckcard" EntitySet="tbldeckcard" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblcollec__fkdec__10566F31" Association="Self.FK__tblcollec__fkdec__10566F31">
+      <End Role="tbldeckcard" EntitySet="tbldeckcard" />
+      <End Role="tblcollection" EntitySet="tblcollection" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblcollec__fkord__0F624AF8" Association="Self.FK__tblcollec__fkord__0F624AF8">
+      <End Role="tblorder" EntitySet="tblorder" />
+      <End Role="tblcollection" EntitySet="tblcollection" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblcollec__fkper__0E6E26BF" Association="Self.FK__tblcollec__fkper__0E6E26BF">
+      <End Role="tblperson" EntitySet="tblperson" />
+      <End Role="tblcollection" EntitySet="tblcollection" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbldeck__fkperso__1DE57479" Association="Self.FK__tbldeck__fkperso__1DE57479">
+      <End Role="tblperson" EntitySet="tblperson" />
+      <End Role="tbldeck" EntitySet="tbldeck" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbldeckca__fkdec__30F848ED" Association="Self.FK__tbldeckca__fkdec__30F848ED">
+      <End Role="tbldeck" EntitySet="tbldeck" />
+      <End Role="tbldeckcard" EntitySet="tbldeckcard" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblorder__fkpack__0B91BA14" Association="Self.FK__tblorder__fkpack__0B91BA14">
+      <End Role="tblpack" EntitySet="tblpack" />
+      <End Role="tblorder" EntitySet="tblorder" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblorder__fkpers__0A9D95DB" Association="Self.FK__tblorder__fkpers__0A9D95DB">
+      <End Role="tblperson" EntitySet="tblperson" />
+      <End Role="tblorder" EntitySet="tblorder" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

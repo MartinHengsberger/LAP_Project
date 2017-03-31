@@ -28,6 +28,7 @@ namespace CardGame.Web.Controllers
                     pack.Cardquantity = 0;
                 else
                     pack.Cardquantity = (int)p.cardquantity;
+                pack.Url = pack.Url + p.picturename;
 
                 PackList.Add(pack);
             }

@@ -80,6 +80,7 @@
     <Property Name="packprice" Type="Decimal" Precision="18" Scale="0" />
     <Property Name="cardquantity" Type="Int32" />
     <NavigationProperty Name="tblorder" Relationship="Self.FK__tblorder__fkpack__0B91BA14" FromRole="tblpack" ToRole="tblorder" />
+    <Property Name="picturename" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="tblperson">
     <Key>

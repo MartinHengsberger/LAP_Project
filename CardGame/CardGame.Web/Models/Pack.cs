@@ -14,13 +14,7 @@ namespace CardGame.Web.Models
 
         public Pack()
         {
-            Url = "~/img/";
-        }
-
-
-        public void dfgh()
-        {
-            Url = Url + "picturename";
+            Url = "/img/";
         }
     }
 }

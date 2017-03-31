@@ -34,3 +34,15 @@ J:\LAP\LAP_Projekt\CardGame\CardGame\CardGame.DAL\bin\Debug\EntityFramework.SqlS
 J:\LAP\LAP_Projekt\CardGame\CardGame\CardGame.DAL\obj\Debug\CardGame.DAL.csprojResolveAssemblyReference.cache
 J:\LAP\LAP_Projekt\CardGame\CardGame\CardGame.DAL\obj\Debug\CardGame.DAL.dll
 J:\LAP\LAP_Projekt\CardGame\CardGame\CardGame.DAL\obj\Debug\CardGame.DAL.pdb
+C:\Users\Martin Hengsberger\Documents\GitHub\LAP_Project\CardGame\CardGame.DAL\bin\Debug\CardGame.DAL.dll.config
+C:\Users\Martin Hengsberger\Documents\GitHub\LAP_Project\CardGame\CardGame.DAL\bin\Debug\CardGame.DAL.dll
+C:\Users\Martin Hengsberger\Documents\GitHub\LAP_Project\CardGame\CardGame.DAL\bin\Debug\CardGame.DAL.pdb
+C:\Users\Martin Hengsberger\Documents\GitHub\LAP_Project\CardGame\CardGame.DAL\bin\Debug\CardGame.Log.dll
+C:\Users\Martin Hengsberger\Documents\GitHub\LAP_Project\CardGame\CardGame.DAL\bin\Debug\EntityFramework.dll
+C:\Users\Martin Hengsberger\Documents\GitHub\LAP_Project\CardGame\CardGame.DAL\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Martin Hengsberger\Documents\GitHub\LAP_Project\CardGame\CardGame.DAL\bin\Debug\CardGame.Log.pdb
+C:\Users\Martin Hengsberger\Documents\GitHub\LAP_Project\CardGame\CardGame.DAL\bin\Debug\EntityFramework.xml
+C:\Users\Martin Hengsberger\Documents\GitHub\LAP_Project\CardGame\CardGame.DAL\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Martin Hengsberger\Documents\GitHub\LAP_Project\CardGame\CardGame.DAL\obj\Debug\CardGame.DAL.csprojResolveAssemblyReference.cache
+C:\Users\Martin Hengsberger\Documents\GitHub\LAP_Project\CardGame\CardGame.DAL\obj\Debug\CardGame.DAL.dll
+C:\Users\Martin Hengsberger\Documents\GitHub\LAP_Project\CardGame\CardGame.DAL\obj\Debug\CardGame.DAL.pdb

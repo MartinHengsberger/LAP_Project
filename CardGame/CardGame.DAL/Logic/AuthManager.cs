@@ -29,6 +29,7 @@ namespace CardGame.DAL.Logic
                     regUser.password = hashedAndSaltedPassword;
                     regUser.salt = salt;
                     
+                    //TODO - Decks Speichern
 
                     db.tblperson.Add(regUser);
                     db.SaveChanges();

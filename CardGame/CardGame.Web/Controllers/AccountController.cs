@@ -23,28 +23,37 @@ namespace CardGame.Web.Controllers
         [HttpPost]
         public ActionResult Login(User login)
         {
-            bool hasAccess = AuthManager.AuthUser(login.Email, login.Password);
-            login.Role = UserManager.GetRoleByUserEmail(login.Email);
-
-            if (hasAccess)
+            try
             {
-                var authTicket = new FormsAuthenticationTicket(
-                                1,                              //Ticketversion
-                                login.Email,                    //Useridentifizierung
-                                DateTime.Now,                   //Zeitpunkt der Erstellung
-                                DateTime.Now.AddMinutes(20),    //Gültigkeitsdauer
-                                true,                           //Persistentes Ticket über Session hinaus
-                                login.Role                      //Userrolle(n)
-                                );
+                bool hasAccess = AuthManager.AuthUser(login.Email, login.Password);
+                login.Role = UserManager.GetRoleByUserEmail(login.Email);
 
-                string encryptedTicket = FormsAuthentication.Encrypt(authTicket);
+                if (hasAccess)
+                {
+                    var authTicket = new FormsAuthenticationTicket(
+                                    1,                              //Ticketversion
+                                    login.Email,                    //Useridentifizierung
+                                    DateTime.Now,                   //Zeitpunkt der Erstellung
+                                    DateTime.Now.AddMinutes(20),    //Gültigkeitsdauer
+                                    true,                           //Persistentes Ticket über Session hinaus
+                                    login.Role                      //Userrolle(n)
+                                    );
 
-                var authCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket);
+                    string encryptedTicket = FormsAuthentication.Encrypt(authTicket);
 
-                System.Web.HttpContext.Current.Response.Cookies.Add(authCookie);
+                    var authCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket);
+
+                    System.Web.HttpContext.Current.Response.Cookies.Add(authCookie);
+                }
+
+                return RedirectToAction("Index", "Home");
             }
-
-            return RedirectToAction("Index", "Home");
+            catch (Exception)
+            {
+                TempData["confLogin"] = "Username or Password wrong!";
+                return RedirectToAction("Login", "Account");
+            }
+           
         }
 
         [Authorize(Roles = "user,admin")]
@@ -73,8 +82,12 @@ namespace CardGame.Web.Controllers
             dbUser.salt = regUser.Salt;
             dbUser.userrole = "user";
             dbUser.currencybalance = 1000;
+            dbUser.isactive = true;
+
 
             AuthManager.Register(dbUser);
+
+            
 
             return RedirectToAction("Login");
         }

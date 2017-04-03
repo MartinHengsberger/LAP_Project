@@ -80,7 +80,6 @@ namespace CardGame.DAL.Logic
             }
             catch (Exception e)
             {
-
                 throw;
             }
         }

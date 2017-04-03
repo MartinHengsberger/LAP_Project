@@ -13,6 +13,7 @@ namespace CardGame.Web.Controllers
     public class ShopController : Controller
     {
         // GET: Shop
+        [HttpGet]
         [Authorize(Roles = "user,admin")]
         public ActionResult Index()
         {
@@ -22,18 +23,30 @@ namespace CardGame.Web.Controllers
             foreach (var p in dbPacklist)
             {
                 Pack pack = new Pack();
+                pack.IdPack = p.idpack;
                 pack.Packname = p.packname;
                 pack.Packprice = (double)p.packprice;
-                if (p.cardquantity == null)
-                    pack.Cardquantity = 0;
-                else
-                    pack.Cardquantity = (int)p.cardquantity;
+                pack.Cardquantity = (int)p.cardquantity;
                 pack.Url = pack.Url + p.picturename;
 
                 PackList.Add(pack);
             }
 
             return View(PackList);
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "user,admin")]
+        public ActionResult Index(Pack packID)
+        {
+            //TODO - Daten richtig bekommen 
+
+            int userID = 11; //Falsch -.-
+            packID.IdPack = 1; //FALSCH -.-
+
+            ShopManager.ExecuteOrder(userID, packID.IdPack);
+
+            return RedirectToAction("Index");
         }
     }
 }

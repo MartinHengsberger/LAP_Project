@@ -26,7 +26,7 @@ namespace CardGame.DAL.Model
         public string firstname { get; set; }
         public string lastname { get; set; }
         public string gamertag { get; set; }
-        public Nullable<int> currencybalance { get; set; }
+        public int currencybalance { get; set; }
         public Nullable<bool> isactive { get; set; }
         public string email { get; set; }
         public string password { get; set; }

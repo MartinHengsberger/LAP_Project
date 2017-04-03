@@ -56,6 +56,7 @@
     <EntitySetMapping Name="tblpack">
       <EntityTypeMapping TypeName="itin21_ClonestoneFSModel.tblpack">
         <MappingFragment StoreEntitySet="tblpack">
+          <ScalarProperty Name="goldquantity" ColumnName="goldquantity" />
           <ScalarProperty Name="idpack" ColumnName="idpack" />
           <ScalarProperty Name="packname" ColumnName="packname" />
           <ScalarProperty Name="packprice" ColumnName="packprice" />

@@ -20,5 +20,98 @@ namespace CardGame.DAL.Logic
             return ReturnList;
         }
 
+        public static void ExecuteOrder(int personID, int packID)
+        {          
+            using (var db = new ClonestoneFSEntities())
+            {
+                tblorder order = new tblorder();
+                tblcollection col = new tblcollection();
+                Random r = new Random();
+
+                order.fkpack = packID;
+                order.fkperson = personID;
+                order.orderdate = DateTime.Now;
+                db.tblorder.Add(order);
+                db.SaveChanges();
+
+                int orderID = (from p in db.tblorder
+                                orderby p.idorder descending
+                                select p.idorder).FirstOrDefault();
+
+                int cardq = (from q in db.tblpack
+                             where q.idpack == packID
+                             select q.cardquantity).FirstOrDefault();
+
+
+                #region Kartenpacks
+                if (cardq != 0)
+                {
+                    try
+                    {
+                        var updatePerson = (from p in db.tblperson
+                                            where p.idperson == personID
+                                            select p);
+
+                        var packValue = (from v in db.tblpack
+                                         where v.idpack == packID
+                                         select v.packprice).FirstOrDefault();
+
+                        foreach (var value in updatePerson)
+                        {
+                            value.currencybalance -= (int)packValue;
+                        }
+                        db.SaveChanges();
+                    }
+                    catch (Exception)
+                    {
+                        //TODO - Behandlung negativ currency !!
+                        throw;
+                    }
+                   
+
+
+                    for (int i = 0; i < cardq; i++)
+                    {
+                        int rng = r.Next(1, 700);
+                        var card = (from c in db.tblcard
+                                    where c.idcard == rng
+                                    select c).FirstOrDefault();
+
+                        if (card != null)
+                        {
+                            col.fkperson = personID;
+                            col.fkorder = orderID;
+                            col.fkcard = card.idcard;
+
+                            db.tblcollection.Add(col);
+                            db.SaveChanges();
+                        }
+                        else
+                        {
+                            i = i - 1;
+                        }
+                    }
+                }
+                #endregion
+
+                #region Goldpacks
+                else
+                {
+                    tblperson person = new tblperson();
+                    var updatePerson = (from p in db.tblperson
+                                        where p.idperson == personID
+                                        select p);
+
+                    var goldValue = (from g in db.tblpack
+                                     where g.idpack == packID
+                                     select g.goldquantity).FirstOrDefault();
+
+                    person.currencybalance += goldValue;
+                    db.SaveChanges();
+                }
+                #endregion
+            }
+        }
+
     }
 }

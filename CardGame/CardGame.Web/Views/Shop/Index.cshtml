@@ -5,6 +5,9 @@
 
 
 <div class="jumbotron" style="margin-bottom:200px">
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
     <h1>Cardshop</h1>
     <div class="row" style="margin-bottom:50px; padding-bottom:50px">
         @* i=3 nur Cardpacks / i=6 + Goldpacks*@
@@ -18,18 +21,23 @@
                 { <span>€</span> }
                 else
                 { <span>Gold</span> }
-                <input type="button" value="Buy" />
+                <input type="submit" value="Buy" />
             </div>
-        }
+            }
         
     </div>
+}
 </div>
 
+
 <div class="jumbotron" style="margin-bottom:200px;padding-left:10px;padding-right:10px; min-height:600px">
+
     <h1>Cardshop</h1>
     @for (int i = 0; i < 6; i++)
     {
+
         <div class="row col-md-4 col-sm-6 col-xs-12" style="margin-top:37px">
+
             <div class="col-md-8 vcenter" style="margin-top:26px">
                 <div class="container" style="font-size:16px; margin-left:50px">
                     <div class="row">
@@ -44,7 +52,7 @@
                         
                     </div>
                     <div class="row">
-                        <input type="button" value="Buy" />
+                        <input type="submit" value="Buy" />
                     </div>
                 </div>
             </div>

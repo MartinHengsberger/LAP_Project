@@ -62,8 +62,9 @@
     <Property Name="idpack" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="packname" Type="varchar" MaxLength="50" />
     <Property Name="packprice" Type="decimal" Precision="18" Scale="0" />
-    <Property Name="cardquantity" Type="int" />
+    <Property Name="cardquantity" Type="int" Nullable="false" />
     <Property Name="picturename" Type="varchar" MaxLength="50" />
+    <Property Name="goldquantity" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="tblperson">
     <Key>
@@ -73,7 +74,7 @@
     <Property Name="firstname" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="lastname" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="gamertag" Type="varchar" MaxLength="50" />
-    <Property Name="currencybalance" Type="int" />
+    <Property Name="currencybalance" Type="int" Nullable="false" />
     <Property Name="isactive" Type="bit" />
     <Property Name="email" Type="varchar" MaxLength="150" />
     <Property Name="password" Type="char" MaxLength="128" />

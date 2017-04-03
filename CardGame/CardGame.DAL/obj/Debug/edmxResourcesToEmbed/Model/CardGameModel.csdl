@@ -67,9 +67,10 @@
     <Property Name="idpack" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="packname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="packprice" Type="Decimal" Precision="18" Scale="0" />
-    <Property Name="cardquantity" Type="Int32" />
+    <Property Name="cardquantity" Type="Int32" Nullable="false" />
     <Property Name="picturename" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="tblorder" Relationship="Self.FK__tblorder__fkpack__0B91BA14" FromRole="tblpack" ToRole="tblorder" />
+    <Property Name="goldquantity" Type="Int32" Nullable="false" />
   </EntityType>
   <EntityType Name="tblperson">
     <Key>
@@ -79,7 +80,7 @@
     <Property Name="firstname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="lastname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="gamertag" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="currencybalance" Type="Int32" />
+    <Property Name="currencybalance" Type="Int32" Nullable="false" />
     <Property Name="isactive" Type="Boolean" />
     <Property Name="email" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
     <Property Name="password" Type="String" MaxLength="128" FixedLength="true" Unicode="false" />

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="itin21_ClonestoneFSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="itin21_ClonestoneFSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="tblcard">
           <Key>
             <PropertyRef Name="idcard" />
@@ -67,8 +67,9 @@
           <Property Name="idpack" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="packname" Type="varchar" MaxLength="50" />
           <Property Name="packprice" Type="decimal" Precision="18" Scale="0" />
-          <Property Name="cardquantity" Type="int" />
+          <Property Name="cardquantity" Type="int" Nullable="false" />
           <Property Name="picturename" Type="varchar" MaxLength="50" />
+          <Property Name="goldquantity" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="tblperson">
           <Key>
@@ -78,7 +79,7 @@
           <Property Name="firstname" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="lastname" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="gamertag" Type="varchar" MaxLength="50" />
-          <Property Name="currencybalance" Type="int" />
+          <Property Name="currencybalance" Type="int" Nullable="false" />
           <Property Name="isactive" Type="bit" />
           <Property Name="email" Type="varchar" MaxLength="150" />
           <Property Name="password" Type="char" MaxLength="128" />
@@ -263,8 +264,7 @@
             <End Role="tblorder" EntitySet="tblorder" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="itin21_ClonestoneFSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -335,9 +335,10 @@
           <Property Name="idpack" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="packname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="packprice" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="cardquantity" Type="Int32" />
+          <Property Name="cardquantity" Type="Int32" Nullable="false" />
           <Property Name="picturename" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="tblorder" Relationship="Self.FK__tblorder__fkpack__0B91BA14" FromRole="tblpack" ToRole="tblorder" />
+          <Property Name="goldquantity" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="tblperson">
           <Key>
@@ -347,7 +348,7 @@
           <Property Name="firstname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="lastname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="gamertag" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="currencybalance" Type="Int32" />
+          <Property Name="currencybalance" Type="Int32" Nullable="false" />
           <Property Name="isactive" Type="Boolean" />
           <Property Name="email" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
           <Property Name="password" Type="String" MaxLength="128" FixedLength="true" Unicode="false" />
@@ -572,6 +573,7 @@
           <EntitySetMapping Name="tblpack">
             <EntityTypeMapping TypeName="itin21_ClonestoneFSModel.tblpack">
               <MappingFragment StoreEntitySet="tblpack">
+                <ScalarProperty Name="goldquantity" ColumnName="goldquantity" />
                 <ScalarProperty Name="idpack" ColumnName="idpack" />
                 <ScalarProperty Name="packname" ColumnName="packname" />
                 <ScalarProperty Name="packprice" ColumnName="packprice" />

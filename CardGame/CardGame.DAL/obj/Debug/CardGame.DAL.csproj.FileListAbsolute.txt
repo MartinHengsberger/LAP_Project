@@ -46,3 +46,15 @@ C:\Users\Martin Hengsberger\Documents\GitHub\LAP_Project\CardGame\CardGame.DAL\b
 C:\Users\Martin Hengsberger\Documents\GitHub\LAP_Project\CardGame\CardGame.DAL\obj\Debug\CardGame.DAL.csprojResolveAssemblyReference.cache
 C:\Users\Martin Hengsberger\Documents\GitHub\LAP_Project\CardGame\CardGame.DAL\obj\Debug\CardGame.DAL.dll
 C:\Users\Martin Hengsberger\Documents\GitHub\LAP_Project\CardGame\CardGame.DAL\obj\Debug\CardGame.DAL.pdb
+C:\Users\Omega Ultima\Documents\GitHub\LAP_Project\CardGame\CardGame.DAL\bin\Debug\CardGame.DAL.dll.config
+C:\Users\Omega Ultima\Documents\GitHub\LAP_Project\CardGame\CardGame.DAL\bin\Debug\CardGame.DAL.dll
+C:\Users\Omega Ultima\Documents\GitHub\LAP_Project\CardGame\CardGame.DAL\bin\Debug\CardGame.DAL.pdb
+C:\Users\Omega Ultima\Documents\GitHub\LAP_Project\CardGame\CardGame.DAL\bin\Debug\CardGame.Log.dll
+C:\Users\Omega Ultima\Documents\GitHub\LAP_Project\CardGame\CardGame.DAL\bin\Debug\EntityFramework.dll
+C:\Users\Omega Ultima\Documents\GitHub\LAP_Project\CardGame\CardGame.DAL\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Omega Ultima\Documents\GitHub\LAP_Project\CardGame\CardGame.DAL\bin\Debug\CardGame.Log.pdb
+C:\Users\Omega Ultima\Documents\GitHub\LAP_Project\CardGame\CardGame.DAL\bin\Debug\EntityFramework.xml
+C:\Users\Omega Ultima\Documents\GitHub\LAP_Project\CardGame\CardGame.DAL\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Omega Ultima\Documents\GitHub\LAP_Project\CardGame\CardGame.DAL\obj\Debug\CardGame.DAL.csprojResolveAssemblyReference.cache
+C:\Users\Omega Ultima\Documents\GitHub\LAP_Project\CardGame\CardGame.DAL\obj\Debug\CardGame.DAL.dll
+C:\Users\Omega Ultima\Documents\GitHub\LAP_Project\CardGame\CardGame.DAL\obj\Debug\CardGame.DAL.pdb

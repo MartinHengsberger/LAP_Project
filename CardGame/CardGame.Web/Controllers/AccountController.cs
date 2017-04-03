@@ -87,8 +87,8 @@ namespace CardGame.Web.Controllers
 
             AuthManager.Register(dbUser);
 
-            
 
+            TempData["confRegister"] = "Registration complete!";
             return RedirectToAction("Login");
         }
     }

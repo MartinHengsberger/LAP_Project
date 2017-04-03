@@ -106,7 +106,10 @@ namespace CardGame.DAL.Logic
                                      where g.idpack == packID
                                      select g.goldquantity).FirstOrDefault();
 
-                    person.currencybalance += goldValue;
+                    foreach (var value in updatePerson)
+                    {
+                        value.currencybalance += (int)goldValue;
+                    }
                     db.SaveChanges();
                 }
                 #endregion

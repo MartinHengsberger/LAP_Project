@@ -21,6 +21,7 @@ namespace CardGame.Web.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public ActionResult Login(User login)
         {
             try
@@ -64,12 +65,14 @@ namespace CardGame.Web.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public ActionResult Register()
         {
             return View();
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public ActionResult Register(User regUser)
         {
             var dbUser = new tblperson();

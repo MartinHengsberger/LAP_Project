@@ -35,15 +35,12 @@
                     }
                     
                     <!---------- Links die für USER sichtbar sind ---------->
-                    @if (User.Identity.Name != "") //if (User.IsInRole("user") TESTEN!
+                    @if (User.IsInRole("user"))
                     {
                         <li>@Html.ActionLink("Logout", "Logout", "Account")</li>
                         <li>@Html.ActionLink("Shop", "Index", "Shop")</li>
-                        @*<li>@Html.ActionLink("Statistic", "Statistics", "Home")</li>
-                        <li>@Html.ActionLink("Cards", "Overview", "Card")</li>
-                        <li>@Html.ActionLink("Users", "Index", "User")</li>*@
-                        <li>@Html.ActionLink(@CardGame.DAL.Logic.UserManager.GetUserByUserEmail(User.Identity.Name).gamertag.ToString(), "Index", "User")</li>
-                        <li>@Html.ActionLink("Gold: " + @CardGame.DAL.Logic.UserManager.GetUserByUserEmail(User.Identity.Name).currencybalance.ToString(), "Index", "User")</li>
+                        <li>@Html.ActionLink(@CardGame.DAL.Logic.UserManager.GetUserByUserEmail(User.Identity.Name).gamertag.ToString(), "Decks", "Deckbuilder")</li>
+                        <li>@Html.ActionLink("Gold: " + @CardGame.DAL.Logic.UserManager.GetUserByUserEmail(User.Identity.Name).currencybalance.ToString(), "Index", "Shop")</li>
                     }
 
                     <!---------- Links die für ADMIN sichtbar sind ---------->
@@ -51,6 +48,8 @@
                     {
                         <li>@Html.ActionLink("Logout", "Logout", "Account")</li>
                         <li>@Html.ActionLink("Users", "Index", "User")</li>
+                        <li>@Html.ActionLink("Statistic", "Statistics", "Home")</li>
+                        <li>@Html.ActionLink("Cards", "Overview", "Card")</li>
                     }                    
                 </ul>
             </div>
@@ -72,18 +71,30 @@
                     </div>
                     <div class="embed-responsive" id="links">
                         <div class="cardhand_text">
-                            @Html.ActionLink("Login", "Login", "Account")
+                            @{  if (User.Identity.Name == "")
+                                {
+                                    @Html.ActionLink("Login", "Login", "Account")
+                                }
+                                else
+                                {
+                                    @Html.ActionLink("Logout", "Logout", "Account")
+                                }
+                            }
                         </div>
                     </div>
                     <div class="embed-responsive" id="mitte">
                         <div class="cardhand_text">
-                            @{  if (User.Identity.Name == "")
+                            @{  if (User.IsInRole("admin"))
                                 {
-                                    @Html.ActionLink("Shop", "Login", "Account")
+                                    @Html.ActionLink("Users", "Index", "User")
                                 }
-                                else
+                                if (User.IsInRole("user"))
                                 {
                                     @Html.ActionLink("Shop", "Index", "Shop")
+                                }
+                                if (User.Identity.Name == "")
+                                {
+                                    @Html.ActionLink("Shop", "Login", "Account")
                                 }
                             }
                         </div>

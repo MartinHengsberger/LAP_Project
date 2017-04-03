@@ -25,7 +25,7 @@ namespace CardGame.Web.Controllers
             return View();
         }
 
-        [Authorize(Roles = "user,admin")]
+        [Authorize(Roles = "admin")]
         public ActionResult Statistics()
         {
             Statistic s = new Statistic();

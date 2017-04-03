@@ -84,9 +84,6 @@
     <Compile Include="Model\tbldeck.cs">
       <DependentUpon>CardGameModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\tbldeckcard.cs">
-      <DependentUpon>CardGameModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Model\tblorder.cs">
       <DependentUpon>CardGameModel.tt</DependentUpon>
     </Compile>

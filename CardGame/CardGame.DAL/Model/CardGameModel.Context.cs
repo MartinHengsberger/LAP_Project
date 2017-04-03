@@ -29,7 +29,6 @@ namespace CardGame.DAL.Model
         public virtual DbSet<tblclass> tblclass { get; set; }
         public virtual DbSet<tblcollection> tblcollection { get; set; }
         public virtual DbSet<tbldeck> tbldeck { get; set; }
-        public virtual DbSet<tbldeckcard> tbldeckcard { get; set; }
         public virtual DbSet<tblorder> tblorder { get; set; }
         public virtual DbSet<tblpack> tblpack { get; set; }
         public virtual DbSet<tblperson> tblperson { get; set; }

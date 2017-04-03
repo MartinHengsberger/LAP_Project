@@ -17,7 +17,7 @@ namespace CardGame.DAL.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public tblcard()
         {
-            this.tbldeckcard = new HashSet<tbldeckcard>();
+            this.tblcollection = new HashSet<tblcollection>();
         }
     
         public int idcard { get; set; }
@@ -33,6 +33,6 @@ namespace CardGame.DAL.Model
         public virtual tblclass tblclass { get; set; }
         public virtual tbltype tbltype { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbldeckcard> tbldeckcard { get; set; }
+        public virtual ICollection<tblcollection> tblcollection { get; set; }
     }
 }

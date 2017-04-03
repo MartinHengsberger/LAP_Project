@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="ClonestoneFSModelStoreContainer" CdmEntityContainer="ClonestoneFSEntities">
+  <EntityContainerMapping StorageEntityContainer="itin21_ClonestoneFSModelStoreContainer" CdmEntityContainer="ClonestoneFSEntities">
     <EntitySetMapping Name="tblcard">
-      <EntityTypeMapping TypeName="ClonestoneFSModel.tblcard">
+      <EntityTypeMapping TypeName="itin21_ClonestoneFSModel.tblcard">
         <MappingFragment StoreEntitySet="tblcard">
           <ScalarProperty Name="idcard" ColumnName="idcard" />
           <ScalarProperty Name="cardname" ColumnName="cardname" />
@@ -17,7 +17,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="tblclass">
-      <EntityTypeMapping TypeName="ClonestoneFSModel.tblclass">
+      <EntityTypeMapping TypeName="itin21_ClonestoneFSModel.tblclass">
         <MappingFragment StoreEntitySet="tblclass">
           <ScalarProperty Name="idclass" ColumnName="idclass" />
           <ScalarProperty Name="class" ColumnName="class" />
@@ -25,18 +25,17 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="tblcollection">
-      <EntityTypeMapping TypeName="ClonestoneFSModel.tblcollection">
+      <EntityTypeMapping TypeName="itin21_ClonestoneFSModel.tblcollection">
         <MappingFragment StoreEntitySet="tblcollection">
-          <ScalarProperty Name="idcollection" ColumnName="idcollection" />
-          <ScalarProperty Name="quantity" ColumnName="quantity" />
+          <ScalarProperty Name="idcollectioncard" ColumnName="idcollectioncard" />
           <ScalarProperty Name="fkperson" ColumnName="fkperson" />
           <ScalarProperty Name="fkorder" ColumnName="fkorder" />
-          <ScalarProperty Name="fkdeckcard" ColumnName="fkdeckcard" />
+          <ScalarProperty Name="fkcard" ColumnName="fkcard" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="tbldeck">
-      <EntityTypeMapping TypeName="ClonestoneFSModel.tbldeck">
+      <EntityTypeMapping TypeName="itin21_ClonestoneFSModel.tbldeck">
         <MappingFragment StoreEntitySet="tbldeck">
           <ScalarProperty Name="iddeck" ColumnName="iddeck" />
           <ScalarProperty Name="deckname" ColumnName="deckname" />
@@ -44,17 +43,8 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="tbldeckcard">
-      <EntityTypeMapping TypeName="ClonestoneFSModel.tbldeckcard">
-        <MappingFragment StoreEntitySet="tbldeckcard">
-          <ScalarProperty Name="iddeckcard" ColumnName="iddeckcard" />
-          <ScalarProperty Name="fkdeck" ColumnName="fkdeck" />
-          <ScalarProperty Name="fkcard" ColumnName="fkcard" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="tblorder">
-      <EntityTypeMapping TypeName="ClonestoneFSModel.tblorder">
+      <EntityTypeMapping TypeName="itin21_ClonestoneFSModel.tblorder">
         <MappingFragment StoreEntitySet="tblorder">
           <ScalarProperty Name="idorder" ColumnName="idorder" />
           <ScalarProperty Name="orderdate" ColumnName="orderdate" />
@@ -64,18 +54,18 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="tblpack">
-      <EntityTypeMapping TypeName="ClonestoneFSModel.tblpack">
+      <EntityTypeMapping TypeName="itin21_ClonestoneFSModel.tblpack">
         <MappingFragment StoreEntitySet="tblpack">
-          <ScalarProperty Name="picturename" ColumnName="picturename" />
           <ScalarProperty Name="idpack" ColumnName="idpack" />
           <ScalarProperty Name="packname" ColumnName="packname" />
           <ScalarProperty Name="packprice" ColumnName="packprice" />
           <ScalarProperty Name="cardquantity" ColumnName="cardquantity" />
+          <ScalarProperty Name="picturename" ColumnName="picturename" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="tblperson">
-      <EntityTypeMapping TypeName="ClonestoneFSModel.tblperson">
+      <EntityTypeMapping TypeName="itin21_ClonestoneFSModel.tblperson">
         <MappingFragment StoreEntitySet="tblperson">
           <ScalarProperty Name="idperson" ColumnName="idperson" />
           <ScalarProperty Name="firstname" ColumnName="firstname" />
@@ -91,12 +81,20 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="tbltype">
-      <EntityTypeMapping TypeName="ClonestoneFSModel.tbltype">
+      <EntityTypeMapping TypeName="itin21_ClonestoneFSModel.tbltype">
         <MappingFragment StoreEntitySet="tbltype">
           <ScalarProperty Name="idtype" ColumnName="idtype" />
           <ScalarProperty Name="typename" ColumnName="typename" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <AssociationSetMapping Name="tbldeckcollection" TypeName="itin21_ClonestoneFSModel.tbldeckcollection" StoreEntitySet="tbldeckcollection">
+      <EndProperty Name="tblcollection">
+        <ScalarProperty Name="idcollectioncard" ColumnName="fkcollectioncard" />
+      </EndProperty>
+      <EndProperty Name="tbldeck">
+        <ScalarProperty Name="iddeck" ColumnName="fkdeck" />
+      </EndProperty>
+    </AssociationSetMapping>
   </EntityContainerMapping>
 </Mapping>

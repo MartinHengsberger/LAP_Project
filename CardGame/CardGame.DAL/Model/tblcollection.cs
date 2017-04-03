@@ -14,14 +14,21 @@ namespace CardGame.DAL.Model
     
     public partial class tblcollection
     {
-        public int idcollection { get; set; }
-        public Nullable<int> quantity { get; set; }
-        public Nullable<int> fkperson { get; set; }
-        public Nullable<int> fkorder { get; set; }
-        public Nullable<int> fkdeckcard { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public tblcollection()
+        {
+            this.tbldeck = new HashSet<tbldeck>();
+        }
     
-        public virtual tbldeckcard tbldeckcard { get; set; }
+        public int idcollectioncard { get; set; }
+        public int fkperson { get; set; }
+        public int fkorder { get; set; }
+        public int fkcard { get; set; }
+    
+        public virtual tblcard tblcard { get; set; }
         public virtual tblorder tblorder { get; set; }
         public virtual tblperson tblperson { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbldeck> tbldeck { get; set; }
     }
 }

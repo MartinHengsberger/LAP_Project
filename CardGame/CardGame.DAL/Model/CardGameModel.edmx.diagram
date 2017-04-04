@@ -22,6 +22,7 @@
         <AssociationConnector Association="itin21_ClonestoneFSModel.FK__tblorder__fkpack__0B91BA14" ManuallyRouted="false" />
         <AssociationConnector Association="itin21_ClonestoneFSModel.FK__tblorder__fkpers__0A9D95DB" ManuallyRouted="false" />
         <AssociationConnector Association="itin21_ClonestoneFSModel.tbldeckcollection" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="itin21_ClonestoneFSModel.vCollectionCards" Width="1.5" PointX="7.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -97,5 +97,19 @@
         <ScalarProperty Name="iddeck" ColumnName="fkdeck" />
       </EndProperty>
     </AssociationSetMapping>
+    <EntitySetMapping Name="vCollectionCards">
+      <EntityTypeMapping TypeName="itin21_ClonestoneFSModel.vCollectionCards">
+        <MappingFragment StoreEntitySet="vCollectionCards">
+          <ScalarProperty Name="pic" ColumnName="pic" />
+          <ScalarProperty Name="life" ColumnName="life" />
+          <ScalarProperty Name="attack" ColumnName="attack" />
+          <ScalarProperty Name="mana" ColumnName="mana" />
+          <ScalarProperty Name="cardname" ColumnName="cardname" />
+          <ScalarProperty Name="fkperson" ColumnName="fkperson" />
+          <ScalarProperty Name="idcard" ColumnName="idcard" />
+          <ScalarProperty Name="number" ColumnName="number" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

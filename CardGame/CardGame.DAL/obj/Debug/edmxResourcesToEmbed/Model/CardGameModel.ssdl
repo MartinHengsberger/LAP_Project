@@ -88,6 +88,26 @@
     <Property Name="idtype" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="typename" Type="varchar" MaxLength="50" Nullable="false" />
   </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'itin21_ClonestoneFS.dbo.vCollectionCards' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vCollectionCards">
+    <Key>
+      <PropertyRef Name="idcard" />
+      <PropertyRef Name="fkperson" />
+      <PropertyRef Name="cardname" />
+      <PropertyRef Name="mana" />
+      <PropertyRef Name="attack" />
+      <PropertyRef Name="life" />
+    </Key>
+    <Property Name="number" Type="int" />
+    <Property Name="idcard" Type="int" Nullable="false" />
+    <Property Name="fkperson" Type="int" Nullable="false" />
+    <Property Name="cardname" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="mana" Type="tinyint" Nullable="false" />
+    <Property Name="attack" Type="smallint" Nullable="false" />
+    <Property Name="life" Type="smallint" Nullable="false" />
+    <Property Name="pic" Type="varbinary(max)" />
+  </EntityType>
   <Association Name="FK__deckcolle__fkcol__2EDAF651">
     <End Role="tblcollection" Type="Self.tblcollection" Multiplicity="1" />
     <End Role="tbldeckcollection" Type="Self.tbldeckcollection" Multiplicity="*" />
@@ -218,6 +238,18 @@
     <EntitySet Name="tblpack" EntityType="Self.tblpack" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tblperson" EntityType="Self.tblperson" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbltype" EntityType="Self.tbltype" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="vCollectionCards" EntityType="Self.vCollectionCards" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vCollectionCards].[number] AS [number], 
+    [vCollectionCards].[idcard] AS [idcard], 
+    [vCollectionCards].[fkperson] AS [fkperson], 
+    [vCollectionCards].[cardname] AS [cardname], 
+    [vCollectionCards].[mana] AS [mana], 
+    [vCollectionCards].[attack] AS [attack], 
+    [vCollectionCards].[life] AS [life], 
+    [vCollectionCards].[pic] AS [pic]
+    FROM [dbo].[vCollectionCards] AS [vCollectionCards]</DefiningQuery>
+    </EntitySet>
     <AssociationSet Name="FK__deckcolle__fkcol__2EDAF651" Association="Self.FK__deckcolle__fkcol__2EDAF651">
       <End Role="tblcollection" EntitySet="tblcollection" />
       <End Role="tbldeckcollection" EntitySet="tbldeckcollection" />

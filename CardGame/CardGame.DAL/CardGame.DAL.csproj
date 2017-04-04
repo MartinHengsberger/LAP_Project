@@ -54,6 +54,7 @@
     <Compile Include="Logic\AuthManager.cs" />
     <Compile Include="Logic\CardManager.cs" />
     <Compile Include="Logic\DBInfoManager.cs" />
+    <Compile Include="Logic\DeckManager.cs" />
     <Compile Include="Logic\Helper.cs" />
     <Compile Include="Logic\ShopManager.cs" />
     <Compile Include="Logic\UserManager.cs" />
@@ -94,6 +95,9 @@
       <DependentUpon>CardGameModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\tbltype.cs">
+      <DependentUpon>CardGameModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\vCollectionCards.cs">
       <DependentUpon>CardGameModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />

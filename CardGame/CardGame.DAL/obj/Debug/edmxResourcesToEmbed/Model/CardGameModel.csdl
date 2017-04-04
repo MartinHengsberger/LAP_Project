@@ -243,5 +243,24 @@
       <End Role="tblcollection" EntitySet="tblcollection" />
       <End Role="tbldeck" EntitySet="tbldeck" />
     </AssociationSet>
+    <EntitySet Name="vCollectionCards" EntityType="itin21_ClonestoneFSModel.vCollectionCards" />
   </EntityContainer>
+  <EntityType Name="vCollectionCards">
+    <Key>
+      <PropertyRef Name="idcard" />
+      <PropertyRef Name="fkperson" />
+      <PropertyRef Name="cardname" />
+      <PropertyRef Name="mana" />
+      <PropertyRef Name="attack" />
+      <PropertyRef Name="life" />
+    </Key>
+    <Property Name="number" Type="Int32" />
+    <Property Name="idcard" Type="Int32" Nullable="false" />
+    <Property Name="fkperson" Type="Int32" Nullable="false" />
+    <Property Name="cardname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="mana" Type="Byte" Nullable="false" />
+    <Property Name="attack" Type="Int16" Nullable="false" />
+    <Property Name="life" Type="Int16" Nullable="false" />
+    <Property Name="pic" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
 </Schema>

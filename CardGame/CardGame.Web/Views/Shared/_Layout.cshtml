@@ -39,7 +39,7 @@
                     {
                         <li>@Html.ActionLink("Logout", "Logout", "Account")</li>
                         <li>@Html.ActionLink("Shop", "Index", "Shop")</li>
-                        <li>@Html.ActionLink(@CardGame.DAL.Logic.UserManager.GetUserByUserEmail(User.Identity.Name).gamertag.ToString(), "Decks", "Deckbuilder")</li>
+                        <li>@Html.ActionLink(@CardGame.DAL.Logic.UserManager.GetUserByUserEmail(User.Identity.Name).gamertag.ToString(), "Decks", "Deck")</li>
                         <li style="margin-left:20px">@Html.ActionLink(@CardGame.DAL.Logic.UserManager.GetUserByUserEmail(User.Identity.Name).currencybalance.ToString(), "Index", "Shop")</li>
                         <li><img src="/img/gold.png" style="height:20px; margin-top:10px; margin-left:-8px" /></li>
                     }
@@ -102,7 +102,19 @@
                     </div>
                     <div class="embed-responsive" id="rechts">
                         <div class="cardhand_text">
-                            @Html.ActionLink("Register", "Register", "Account")
+                           @{  if (User.IsInRole("user"))
+                               {
+                                @Html.ActionLink("Decks", "Decks", "Deck")
+                               }
+                               if (User.Identity.Name == "")
+                               {
+                                @Html.ActionLink("Register", "Register", "Account")
+                               }
+                               if (User.IsInRole("admin"))
+                               {
+                                @Html.ActionLink("PH", "PH", "PH")
+                               }
+                            }
                         </div>
                     </div>
                     <div class="embed-responsive" id="rechts2">

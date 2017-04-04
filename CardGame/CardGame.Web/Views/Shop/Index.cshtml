@@ -66,11 +66,11 @@
         {
             using (Html.BeginForm())
             {
-            <div class="row col-md-4 col-sm-6 col-xs-12" style="margin-top:37px; margin-left:10px">
+            <div class="row col-md-4 col-sm-6 col-xs-12" style="margin-top:37px; margin-left:10px; margin-bottom:15px">
 
-                <div class="col-md-8 vcenter" style="margin-top:26px">
+                <div class="col-md-8 vcenter" style="margin-top:26px; text-align:center; margin-left: -5px">
                     <div class="container" style="font-size:16px; margin-left:50px">
-                        <div class="row">
+                        <div class="row" style="margin-top:-10px">
                             @Model.ToList()[i].Packname
                         </div>
                         <div class="row">
@@ -92,7 +92,7 @@
                             <!--Hidden Field zur Übergabe der PackID + Preis -->
                             <input type="hidden" name="IdPack" value="@Model.ToList()[i].IdPack" />
                             <input type="hidden" name="Packprice" value="@Model.ToList()[i].Packprice" />
-                            <input type="submit" value="Buy" />
+                            <input type="submit" value="Buy" style="padding-top:10px; width:160px; color:black; font-weight:bold"/>
                         </div>
                     </div>
                 </div>

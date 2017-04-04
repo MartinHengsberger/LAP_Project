@@ -46,6 +46,7 @@ namespace CardGame.DAL.Logic
                 #region Kartenpacks
                 if (cardq != 0)
                 {
+                    //TODO - TRY/CATCH richtig stellen.
                     try
                     {
                         var updatePerson = (from p in db.tblperson
@@ -62,10 +63,9 @@ namespace CardGame.DAL.Logic
                         }
                         db.SaveChanges();
                     }
-                    catch (Exception)
+                    catch (Exception e)
                     {
-                        //TODO - Behandlung negativ currency !!
-                        throw;
+                        Log.Writer.LogError(e);
                     }
                    
 

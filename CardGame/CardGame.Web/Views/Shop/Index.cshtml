@@ -44,19 +44,41 @@
 <!-- #endregion -->
 
 <div class="jumbotron" style="margin-bottom:200px">
-    @using (Html.BeginForm())
-    {
+   
         @Html.AntiForgeryToken()
         <h1>Cardshop</h1>
 
-        for (int i = 0; i < 6; i++)
+        <h2 style="color: red">
+            @if (TempData["orderAbort"] != null)
+            {
+                @TempData["orderAbort"];
+            }
+        </h2>
+        <h2 style="color: green">
+            @if (TempData["orderComplete"] != null)
+            {
+            @TempData["orderComplete"];
+            }
+        </h2>
+
+    <!-- i bis inc 3 Kartenpackete, 4 bis inc 6 Goldpakete-->
+        @for (int i = 0; i < 6; i++)
         {
-            <div class="row col-md-4 col-sm-6 col-xs-12" style="margin-top:37px">
+            using (Html.BeginForm())
+            {
+            <div class="row col-md-4 col-sm-6 col-xs-12" style="margin-top:37px; margin-left:10px">
 
                 <div class="col-md-8 vcenter" style="margin-top:26px">
                     <div class="container" style="font-size:16px; margin-left:50px">
                         <div class="row">
                             @Model.ToList()[i].Packname
+                        </div>
+                        <div class="row">
+                            
+                            @if (Model.ToList()[i].Cardquantity != 0)
+                            { <span>you get @Model.ToList()[i].Cardquantity cards</span> }
+                            else
+                            { <span>you get @Model.ToList()[i].Goldquantity gold</span> }
                         </div>
                         <div class="row" style="font-size:24px; margin-top:10px">
                             @Model.ToList()[i].Packprice
@@ -67,6 +89,9 @@
 
                         </div>
                         <div class="row">
+                            <!--Hidden Field zur Übergabe der PackID + Preis -->
+                            <input type="hidden" name="IdPack" value="@Model.ToList()[i].IdPack" />
+                            <input type="hidden" name="Packprice" value="@Model.ToList()[i].Packprice" />
                             <input type="submit" value="Buy" />
                         </div>
                     </div>
@@ -75,12 +100,11 @@
                     <img src=@Model.ToList()[i].Url style="max-height:200px; min-height:150px; min-width:150px" class="img-responsive" />
                 </div>
             </div>
-        }
+                }
+            }
         <div>
             <h4 style="text-align:left;margin-top:400px">@Html.ActionLink("Home", "Index", "Home")</h4>
         </div>
-
-    }
 </div>
 
 

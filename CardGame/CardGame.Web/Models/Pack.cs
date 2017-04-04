@@ -11,6 +11,7 @@ namespace CardGame.Web.Models
         public string Packname { get; set; }
         public double Packprice { get; set; }
         public int Cardquantity { get; set; }
+        public int Goldquantity { get; set; }
         public string Url { get; set; }
 
         public Pack()

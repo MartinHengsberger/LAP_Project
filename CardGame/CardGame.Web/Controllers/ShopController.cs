@@ -27,6 +27,7 @@ namespace CardGame.Web.Controllers
                 pack.Packname = p.packname;
                 pack.Packprice = (double)p.packprice;
                 pack.Cardquantity = (int)p.cardquantity;
+                pack.Goldquantity = p.goldquantity;
                 pack.Url = pack.Url + p.picturename;
 
                 PackList.Add(pack);
@@ -37,16 +38,27 @@ namespace CardGame.Web.Controllers
 
         [HttpPost]
         [Authorize(Roles = "user,admin")]
-        public ActionResult Index(Pack packID)
+        public ActionResult Index(Pack pack)
         {
-            //TODO - Daten richtig bekommen 
+            int currencyDifference = UserManager.GetUserByUserEmail(User.Identity.Name).currencybalance - (int)pack.Packprice;
 
-            int userID = 11; //Falsch -.-
-            packID.IdPack = 1; //FALSCH -.-
+            if (currencyDifference >= 0)
+            {
+                int userID = UserManager.GetUserByUserEmail(User.Identity.Name).idperson;
+                var pid = pack.IdPack;
 
-            ShopManager.ExecuteOrder(userID, packID.IdPack);
+                ShopManager.ExecuteOrder(userID, pid);
+                TempData["orderComplete"] = "purchase complete!";
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                TempData["orderAbort"] = "not enough currency!";
+                return RedirectToAction("Index");
+            }
+            
 
-            return RedirectToAction("Index");
+            
         }
     }
 }

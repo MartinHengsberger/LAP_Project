@@ -186,6 +186,7 @@
     <Content Include="img\cp_small.png" />
     <Content Include="img\CS_Logo.png" />
     <Content Include="img\foo.png" />
+    <Content Include="img\gold.png" />
     <Content Include="img\gold_large.png" />
     <Content Include="img\gold_medium.png" />
     <Content Include="img\gold_small.png" />

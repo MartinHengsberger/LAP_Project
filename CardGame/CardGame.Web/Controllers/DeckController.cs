@@ -39,7 +39,7 @@ namespace CardGame.Web.Controllers
 
         [HttpGet]
         [Authorize(Roles = "user")]
-        public ActionResult Deckbuilder(int ALUserID, int ALDeckID)
+        public ActionResult Deckbuilder(int ALUserID, int ALDeckID, string ALDeckname)
         {
             List<CardCollection> CollectionCardList = new List<CardCollection>();
             var dbUserDeckList = DeckManager.GetAllCollectionCards(ALUserID);
@@ -58,6 +58,8 @@ namespace CardGame.Web.Controllers
 
                 CollectionCardList.Add(card);
             }
+
+            ViewBag.Deckname = ALDeckname;
 
             return View(CollectionCardList);
 

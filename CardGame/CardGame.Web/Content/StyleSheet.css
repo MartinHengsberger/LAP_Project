@@ -159,7 +159,7 @@ li {
 .vcenter{
     display: inline-block;
     vertical-align:middle;
-    float:none;
+    float:right;
     margin-top:15px
 }
 .text-danger {
@@ -174,10 +174,18 @@ li {
     position:relative;
     
 }
-.galleryImg:hover{
+
+/*.galleryImg:hover{
     position:relative;
     transform: scale(3);
     transition:ease-in all 0.3s;
+}*/
+
+.galleryImg:hover {
+    position: relative;
+    transform: scale(1.5);
+    transition: ease-in all 0.3s;
+    z-index: 400;
 }
 
 .navbar-inverse .navbar-brand, .navbar-inverse .navbar-nav > li > a {
@@ -202,12 +210,7 @@ h2 {
     font-size:16px;
 }
 
-.galleryImg:hover {
-    position: relative;
-    transform: scale(2.1);
-    transition: ease-in all 0.3s;
-    z-index: 400;
-}
+
 
 tr.erster {
     color:gold !important;

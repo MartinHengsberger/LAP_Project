@@ -26,8 +26,7 @@
                             <!--Hidden Field zur Übergabe der DeckID + UserID -->
                             <input type="hidden" name="IdDeck" value="@Model.ToList()[i].IdDeck" />
                             <input type="hidden" name="IdUser" value="@Model.ToList()[i].IdUser" />
-                            <input type="submit" value="Build" style="padding-top:10px; width:160px; color:black; font-weight:bold" />
-                            @Html.ActionLink("Deckbuilder", "Deckbuilder", new { ALUserID = Model.ToList()[i].IdUser, ALDeckID = Model.ToList()[i].IdDeck},null);
+                            @Html.ActionLink("Deckbuilder", "Deckbuilder", new { ALUserID = Model.ToList()[i].IdUser, ALDeckID = Model.ToList()[i].IdDeck, ALDeckname = Model.ToList()[i].Deckname },null);
                         </div>
                     </div>
                 </div>

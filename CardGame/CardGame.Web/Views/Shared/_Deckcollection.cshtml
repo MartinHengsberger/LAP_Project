@@ -2,7 +2,7 @@
 
 <div class="jumbotron" style="margin-right:10px; margin-left:20px; padding-left:20px; padding-right:20px; padding-top:10px; padding-bottom:10px; margin-top:5px !important; margin-bottom:200px">
 
-    <h4>Deck : @ViewBag.Deckname <button style="float:right; height:30px;margin-top: -10px;padding: 8px;color: black;">Save Deck</button> </h4>
+    <h4>Deck : @ViewBag.Deckname <span style="margin-left:300px">@ViewBag.Deckcount / 30 max Cards</span> <button style="float:right; height:30px;margin-top: -10px;padding: 8px;color: black;">Save Deck</button> </h4>
 
 
     <div style="height:350px; overflow-y: scroll;overflow-x:hidden; border:2px solid black; padding-right:30px; padding-left:35px">
@@ -11,17 +11,16 @@
             @foreach (var item in Model)
             {
             <!--<div class="col-md-1 vcenter" style="margin-top:16px">-->
-                <div class="col-md-2 vcenter" style="margin-top:16px">
+                <div class="col-md-2 vcenter" style="margin-top:16px; float:left">
                     <div class="container" style="font-size:12px; text-align:center">
 
                         <div class="row" style="margin-left:-20px;margin-right:-20px;margin-bottom:10px">
-                            count: @Html.DisplayFor(c => item.Number)
-
                             @{
                                 var base64 = Convert.ToBase64String(item.pic);
                                 var imgSrc = String.Format("data:image/png;base64,{0}", base64);
                             }
-                            <img class="galleryImg img-responsive" src="@imgSrc" />
+                                <img class="galleryImg img-responsive" src="@imgSrc" />
+
                         </div>
                     </div>
                 </div>

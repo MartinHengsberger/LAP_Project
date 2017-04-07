@@ -73,7 +73,7 @@ namespace CardGame.Web.Controllers
             foreach (var c in dbDeckCardList)
             {
                 CardCollection card = new CardCollection();
-                card.IdCard = c.tblcard.idcard;
+                card.IdCard = c.fkcard;
                 card.IdUser = c.fkperson;
                 //card.Number = (int)c.number;
                 card.Cardname = c.tblcard.cardname;
@@ -86,6 +86,7 @@ namespace CardGame.Web.Controllers
                 DeckCardList.Add(card);
             }
 
+            ViewBag.Deckcount = DeckCardList.Count();
             ViewBag.Deckname = ALDeckname;
 
             return PartialView(DeckCardList);

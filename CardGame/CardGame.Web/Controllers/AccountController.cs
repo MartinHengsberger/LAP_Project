@@ -47,10 +47,16 @@ namespace CardGame.Web.Controllers
                     System.Web.HttpContext.Current.Response.Cookies.Add(authCookie);
                 }
 
+                //Toastr Test
+                //TempData["ConfirmMessage"] = "Test Test Test";
+                
                 return RedirectToAction("Index", "Home");
             }
             catch (Exception)
             {
+                //Toastr Test
+                //TempData["ErrorMessage"] = "FEHLER!";
+
                 TempData["confLogin"] = "Username or Password wrong!";
                 return RedirectToAction("Login", "Account");
             }

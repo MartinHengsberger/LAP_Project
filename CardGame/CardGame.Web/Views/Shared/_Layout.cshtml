@@ -135,10 +135,49 @@
 
     </div>
 
+   
+
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+    
+    <!-- #region JAVASCRIPT - Toastr Script -->
+
+    <script type="text/javascript">
+        toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "positionClass": "toast-top-right",
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "3000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
+        $(document).ready(function () {
+
+            @if (TempData["ErrorMessage"] != null)
+            {
+                <text>
+            toastr.error("", "@TempData["ErrorMessage"]");
+            </text>
+            }
+
+            @if (TempData["ConfirmMessage"] != null)
+            {
+                <text>
+            toastr.success("", "@TempData["ConfirmMessage"]");
+            </text>
+            }
+
+            });
+    </script>
+
+    <!-- #endregion -->
 
 </body>
 </html>

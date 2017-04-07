@@ -32,17 +32,19 @@
     </div>
 </div>
 
+@Html.Action("_Deckcollection")
 
-<div class="jumbotron" style="margin-right:10px; margin-left:20px; padding-left:20px; padding-right:20px; padding-top:10px; padding-bottom:10px; margin-top:5px !important; margin-bottom:200px">
 
-    <h4>Deck : @ViewBag.Deckname </h4>
+@*<div class="jumbotron" style="margin-right:10px; margin-left:20px; padding-left:20px; padding-right:20px; padding-top:10px; padding-bottom:10px; margin-top:5px !important; margin-bottom:200px">
+
+    <h4>Deck : @ViewBag.Deckname <button style="float:right; height:30px;margin-top: -10px;padding: 8px;color: black;">Save Deck</button> </h4>
+    
 
     <div style="height:350px; overflow-y: scroll;overflow-x:hidden; border:2px solid black; padding-right:30px; padding-left:35px">
         <div class="row" style="margin-top:37px; padding-bottom:40px">
 
             @foreach (var item in Model)
             {
-            <!--<div class="col-md-1 vcenter" style="margin-top:16px">-->
                 <div class="col-md-2 vcenter" style="margin-top:16px">
                     <div class="container" style="font-size:12px; text-align:center">
 
@@ -61,7 +63,7 @@
 
         </div>
     </div>
-</div>
+</div>*@
 
 
 

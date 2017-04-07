@@ -59,10 +59,36 @@ namespace CardGame.Web.Controllers
                 CollectionCardList.Add(card);
             }
 
-            ViewBag.Deckname = ALDeckname;
-
             return View(CollectionCardList);
 
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "user")]
+        public ActionResult _Deckcollection(int ALUserID, int ALDeckID, string ALDeckname)
+        {
+            List<CardCollection> DeckCardList = new List<CardCollection>();
+            var dbDeckCardList = DeckManager.GetAllDeckCards(ALDeckID);
+
+            foreach (var c in dbDeckCardList)
+            {
+                CardCollection card = new CardCollection();
+                card.IdCard = c.tblcard.idcard;
+                card.IdUser = c.fkperson;
+                //card.Number = (int)c.number;
+                card.Cardname = c.tblcard.cardname;
+                card.Attack = c.tblcard.attack;
+                card.Mana = c.tblcard.mana;
+                card.Life = c.tblcard.life;
+                card.pic = c.tblcard.pic;
+
+                //Abfrage ob schon vorhanden ...
+                DeckCardList.Add(card);
+            }
+
+            ViewBag.Deckname = ALDeckname;
+
+            return PartialView(DeckCardList);
         }
     }
 }

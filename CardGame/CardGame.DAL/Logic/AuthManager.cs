@@ -32,7 +32,7 @@ namespace CardGame.DAL.Logic
                     db.tblperson.Add(regUser);
                     db.SaveChanges();
 
-                    //TODO - Decks Speichern
+                    //Decks Speichern
                     tbldeck deck = new tbldeck();
                     deck.deckname = "Mage";
                     deck.fkperson = regUser.idperson;

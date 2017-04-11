@@ -42,7 +42,6 @@ namespace CardGame.DAL.Logic
                              where q.idpack == packID
                              select q.cardquantity).FirstOrDefault();
 
-
                 #region Kartenpacks
                 if (cardq != 0)
                 {

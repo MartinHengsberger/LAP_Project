@@ -42,22 +42,45 @@ namespace CardGame.Web.Controllers
         public ActionResult Deckbuilder(int ALUserID, int ALDeckID, string ALDeckname)
         {
             List<CardCollection> CollectionCardList = new List<CardCollection>();
-            var dbUserDeckList = DeckManager.GetAllCollectionCards(ALUserID);
+            var dbUserCardList = DeckManager.GetAllCollectionCards(ALUserID);
 
-            foreach (var c in dbUserDeckList)
+            foreach (var c in dbUserCardList)
             {
-                CardCollection card  = new CardCollection();
-                card.IdCard = c.idcard;
-                card.IdUser = c.fkperson;
-                card.Number = (int)c.number;
-                card.Cardname = c.cardname;
-                card.Attack = c.attack;
-                card.Mana = c.mana;
-                card.Life = c.life;
-                card.pic = c.pic;
+                //Wenn kein Index vorhanden ist -> index = -1
+                int index = CollectionCardList.FindIndex(i => i.IdCard == c.idcard);
+        
+                if (index >= 0)
+                { CollectionCardList[index].Number += 1; }
+                else
+                {
+                    CardCollection card = new CardCollection();
+                    card.IdCard = c.idcard;
+                    card.IdUser = c.fkperson;
+                    card.IdCollectioncard = c.idcollectioncard;
+                    card.IdOrder = c.fkorder;
+                    card.Number = 1;
+                    card.Cardname = c.cardname;
+                    card.Attack = c.attack;
+                    card.Mana = c.mana;
+                    card.Life = c.life;
+                    card.pic = c.pic;
 
-                CollectionCardList.Add(card);
+                    CollectionCardList.Add(card);
+                }            
             }
+
+            //TODO - Werte für dropdown ======================================================
+            var manadd = new SelectList(
+                dbUserCardList.Select(r => r.mana).Distinct().ToList());
+                ViewBag.Mana = manadd;
+
+            var attackdd = new SelectList(
+                dbUserCardList.Select(r => r.attack).Distinct().ToList());
+                ViewBag.Attack = attackdd;
+
+            var lifedd = new SelectList(
+                dbUserCardList.Select(r => r.life).Distinct().ToList());
+            ViewBag.Attack = lifedd;
 
             return View(CollectionCardList);
 
@@ -75,12 +98,15 @@ namespace CardGame.Web.Controllers
                 CardCollection card = new CardCollection();
                 card.IdCard = c.fkcard;
                 card.IdUser = c.fkperson;
+                card.IdCollectioncard = c.idcollectioncard;
+                card.IdOrder = c.fkorder;
                 //card.Number = (int)c.number;
                 card.Cardname = c.tblcard.cardname;
                 card.Attack = c.tblcard.attack;
                 card.Mana = c.tblcard.mana;
                 card.Life = c.tblcard.life;
                 card.pic = c.tblcard.pic;
+                
 
                 //Abfrage ob schon vorhanden ...
                 DeckCardList.Add(card);

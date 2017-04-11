@@ -46,8 +46,8 @@ namespace CardGame.Web.Controllers
             {
                 int userID = UserManager.GetUserByUserEmail(User.Identity.Name).idperson;
                 var pid = pack.IdPack;
-
                 ShopManager.ExecuteOrder(userID, pid);
+
                 TempData["orderComplete"] = "purchase complete!";
                 return RedirectToAction("Index");
             }

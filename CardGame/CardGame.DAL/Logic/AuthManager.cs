@@ -28,10 +28,26 @@ namespace CardGame.DAL.Logic
 
                     regUser.password = hashedAndSaltedPassword;
                     regUser.salt = salt;
-                    
-                    //TODO - Decks Speichern
 
                     db.tblperson.Add(regUser);
+                    db.SaveChanges();
+
+                    //TODO - Decks Speichern
+                    tbldeck deck = new tbldeck();
+                    deck.deckname = "Mage";
+                    deck.fkperson = regUser.idperson;
+                    db.tbldeck.Add(deck);
+
+                    tbldeck deck1 = new tbldeck();
+                    deck1.deckname = "Hunter";
+                    deck1.fkperson = regUser.idperson;
+                    db.tbldeck.Add(deck1);
+
+                    tbldeck deck2 = new tbldeck();
+                    deck2.deckname = "Rogue";
+                    deck2.fkperson = regUser.idperson;
+                    db.tbldeck.Add(deck2);
+
                     db.SaveChanges();
                 }
             }

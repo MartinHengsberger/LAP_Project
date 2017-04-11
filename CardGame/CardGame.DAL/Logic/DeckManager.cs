@@ -56,7 +56,7 @@ namespace CardGame.DAL.Logic
             List<tblcollection> ReturnDeckCards = null;
             using (var db = new ClonestoneFSEntities())
             {
-                ReturnDeckCards = db.tblcollection.Include(y => y.tblcard).Where(d => d.tbldeck.Any(e => e.iddeck == DeckID)).ToList();  
+                ReturnDeckCards = db.tblcollection.Include(y => y.tblcard).Where(d => d.tbldeck.Any(e => e.iddeck == DeckID)).ToList();
             }
             return ReturnDeckCards;
         }

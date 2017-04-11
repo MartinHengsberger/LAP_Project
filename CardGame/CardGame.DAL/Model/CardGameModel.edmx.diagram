@@ -4,10 +4,10 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="046cbb633fe94d448b8d8142c4a82cf3" Name="Diagram1">
+      <Diagram DiagramId="046cbb633fe94d448b8d8142c4a82cf3" Name="Diagram1" ZoomLevel="85">
         <EntityTypeShape EntityType="itin21_ClonestoneFSModel.tblcard" Width="1.5" PointX="5.375" PointY="5.25" IsExpanded="true" />
         <EntityTypeShape EntityType="itin21_ClonestoneFSModel.tblclass" Width="1.5" PointX="5.375" PointY="3.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="itin21_ClonestoneFSModel.tblcollection" Width="1.5" PointX="2.625" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="itin21_ClonestoneFSModel.tblcollection" Width="1.5" PointX="2.75" PointY="3.5" IsExpanded="true" />
         <EntityTypeShape EntityType="itin21_ClonestoneFSModel.tbldeck" Width="1.5" PointX="0.5" PointY="4.5" IsExpanded="true" />
         <EntityTypeShape EntityType="itin21_ClonestoneFSModel.tblorder" Width="1.5" PointX="2.75" PointY="0.625" IsExpanded="true" />
         <EntityTypeShape EntityType="itin21_ClonestoneFSModel.tblpack" Width="1.5" PointX="5.375" PointY="0.75" IsExpanded="true" />

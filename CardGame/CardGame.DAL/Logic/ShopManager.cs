@@ -46,7 +46,7 @@ namespace CardGame.DAL.Logic
                 #region Kartenpacks
                 if (cardq != 0)
                 {
-                    //TODO - TRY/CATCH richtig stellen.
+                    // Update Person !
                     try
                     {
                         var updatePerson = (from p in db.tblperson
@@ -67,12 +67,11 @@ namespace CardGame.DAL.Logic
                     {
                         Log.Writer.LogError(e);
                     }
-                   
 
-
+                    // Insert Cards !
                     for (int i = 0; i < cardq; i++)
                     {
-                        int rng = r.Next(1, 700);
+                        int rng = r.Next(1, 698);
                         var card = (from c in db.tblcard
                                     where c.idcard == rng
                                     select c).FirstOrDefault();

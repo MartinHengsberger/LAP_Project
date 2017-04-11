@@ -253,14 +253,17 @@
       <PropertyRef Name="mana" />
       <PropertyRef Name="attack" />
       <PropertyRef Name="life" />
+      <PropertyRef Name="fkorder" />
+      <PropertyRef Name="idcollectioncard" />
     </Key>
-    <Property Name="number" Type="Int32" />
     <Property Name="idcard" Type="Int32" Nullable="false" />
     <Property Name="fkperson" Type="Int32" Nullable="false" />
     <Property Name="cardname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="mana" Type="Byte" Nullable="false" />
     <Property Name="attack" Type="Int16" Nullable="false" />
     <Property Name="life" Type="Int16" Nullable="false" />
+    <Property Name="fkorder" Type="Int32" Nullable="false" />
+    <Property Name="idcollectioncard" Type="Int32" Nullable="false" />
     <Property Name="pic" Type="Binary" MaxLength="Max" FixedLength="false" />
   </EntityType>
 </Schema>

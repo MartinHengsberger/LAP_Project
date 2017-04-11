@@ -14,13 +14,14 @@ namespace CardGame.DAL.Model
     
     public partial class vCollectionCards
     {
-        public Nullable<int> number { get; set; }
         public int idcard { get; set; }
         public int fkperson { get; set; }
         public string cardname { get; set; }
         public byte mana { get; set; }
         public short attack { get; set; }
         public short life { get; set; }
+        public int fkorder { get; set; }
+        public int idcollectioncard { get; set; }
         public byte[] pic { get; set; }
     }
 }

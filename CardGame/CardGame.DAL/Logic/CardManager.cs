@@ -72,5 +72,7 @@ namespace CardGame.DAL.Logic
 
             return card;
         }
+
+        
     }
 }

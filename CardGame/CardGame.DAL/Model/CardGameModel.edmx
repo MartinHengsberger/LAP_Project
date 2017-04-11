@@ -103,14 +103,17 @@ warning 6002: The table/view 'itin21_ClonestoneFS.dbo.vCollectionCards' does not
             <PropertyRef Name="mana" />
             <PropertyRef Name="attack" />
             <PropertyRef Name="life" />
+            <PropertyRef Name="fkorder" />
+            <PropertyRef Name="idcollectioncard" />
           </Key>
-          <Property Name="number" Type="int" />
           <Property Name="idcard" Type="int" Nullable="false" />
           <Property Name="fkperson" Type="int" Nullable="false" />
           <Property Name="cardname" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="mana" Type="tinyint" Nullable="false" />
           <Property Name="attack" Type="smallint" Nullable="false" />
           <Property Name="life" Type="smallint" Nullable="false" />
+          <Property Name="fkorder" Type="int" Nullable="false" />
+          <Property Name="idcollectioncard" Type="int" Nullable="false" />
           <Property Name="pic" Type="varbinary(max)" />
         </EntityType>
         <Association Name="FK__deckcolle__fkcol__2EDAF651">
@@ -245,13 +248,14 @@ warning 6002: The table/view 'itin21_ClonestoneFS.dbo.vCollectionCards' does not
           <EntitySet Name="tbltype" EntityType="Self.tbltype" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="vCollectionCards" EntityType="Self.vCollectionCards" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
-    [vCollectionCards].[number] AS [number], 
     [vCollectionCards].[idcard] AS [idcard], 
     [vCollectionCards].[fkperson] AS [fkperson], 
     [vCollectionCards].[cardname] AS [cardname], 
     [vCollectionCards].[mana] AS [mana], 
     [vCollectionCards].[attack] AS [attack], 
     [vCollectionCards].[life] AS [life], 
+    [vCollectionCards].[fkorder] AS [fkorder], 
+    [vCollectionCards].[idcollectioncard] AS [idcollectioncard], 
     [vCollectionCards].[pic] AS [pic]
     FROM [dbo].[vCollectionCards] AS [vCollectionCards]</DefiningQuery>
           </EntitySet>
@@ -553,14 +557,17 @@ warning 6002: The table/view 'itin21_ClonestoneFS.dbo.vCollectionCards' does not
             <PropertyRef Name="mana" />
             <PropertyRef Name="attack" />
             <PropertyRef Name="life" />
+            <PropertyRef Name="fkorder" />
+            <PropertyRef Name="idcollectioncard" />
           </Key>
-          <Property Name="number" Type="Int32" />
           <Property Name="idcard" Type="Int32" Nullable="false" />
           <Property Name="fkperson" Type="Int32" Nullable="false" />
           <Property Name="cardname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="mana" Type="Byte" Nullable="false" />
           <Property Name="attack" Type="Int16" Nullable="false" />
           <Property Name="life" Type="Int16" Nullable="false" />
+          <Property Name="fkorder" Type="Int32" Nullable="false" />
+          <Property Name="idcollectioncard" Type="Int32" Nullable="false" />
           <Property Name="pic" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
       </Schema>
@@ -669,13 +676,14 @@ warning 6002: The table/view 'itin21_ClonestoneFS.dbo.vCollectionCards' does not
             <EntityTypeMapping TypeName="itin21_ClonestoneFSModel.vCollectionCards">
               <MappingFragment StoreEntitySet="vCollectionCards">
                 <ScalarProperty Name="pic" ColumnName="pic" />
+                <ScalarProperty Name="idcollectioncard" ColumnName="idcollectioncard" />
+                <ScalarProperty Name="fkorder" ColumnName="fkorder" />
                 <ScalarProperty Name="life" ColumnName="life" />
                 <ScalarProperty Name="attack" ColumnName="attack" />
                 <ScalarProperty Name="mana" ColumnName="mana" />
                 <ScalarProperty Name="cardname" ColumnName="cardname" />
                 <ScalarProperty Name="fkperson" ColumnName="fkperson" />
                 <ScalarProperty Name="idcard" ColumnName="idcard" />
-                <ScalarProperty Name="number" ColumnName="number" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -10,12 +10,13 @@ namespace CardGame.Web.Models
         public int IdCard { get; set; }
         public int IdUser { get; set; }
         public int IdDeck { get; set; }
+        public int IdCollectioncard { get; set; }
+        public int IdOrder { get; set; }
         public int Number { get; set; }
         public string Cardname { get; set; }
         public int Mana { get; set; }
         public int Attack { get; set; }
         public int Life { get; set; }
         public byte[] pic { get; set; }
-
     }
 }

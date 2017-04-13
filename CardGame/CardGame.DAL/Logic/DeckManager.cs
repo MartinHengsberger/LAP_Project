@@ -61,5 +61,38 @@ namespace CardGame.DAL.Logic
             return ReturnDeckCards;
         }
 
+
+        public static void SaveDeckToDatabase(int deckcardId, int deckId)
+        {
+            tblcollection coll = new tblcollection();
+            tbldeck deck = new tbldeck();
+
+            using (var db = new ClonestoneFSEntities())
+            {
+
+                var deleteDeckCard = from dc in db.tblcollection
+                                     where dc.tbldeck.wasauchimmer == deckId
+                                     select dc;
+
+                foreach (var item in deleteDeckCard)
+                {
+                    db.wasauchimmer.DeleteOnSubmit(item);
+                    db.SubmitChanges();
+                }
+
+
+
+                coll.fkcard = 0;
+                coll.fkorder = 0;
+                coll.fkperson = 0;
+                coll.idcollectioncard = deckcardId;
+
+                deck.tblcollection.Add(coll);
+
+                db.SaveChanges();
+
+            }                
+        }
+
     }
 }

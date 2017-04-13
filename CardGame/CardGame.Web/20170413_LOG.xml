@@ -1,0 +1,24 @@
+<Info>
+  <Time>13.04.2017 08:09:51</Time>
+  <Info>Entered Pass = 123user!</Info>
+</Info>
+<Info>
+  <Time>13.04.2017 08:09:51</Time>
+  <Info>HashPass = 3A721B40218C387278EDCAC109CE77DF76455A24BDAAE2D36203CE11905699CBA8F652E795B17D75F7EEB89E3A02F078FB743A92622E4B875FACC3113DA06D1A</Info>
+</Info>
+<Info>
+  <Time>13.04.2017 12:49:38</Time>
+  <Info>Entered Pass = 123user!</Info>
+</Info>
+<Info>
+  <Time>13.04.2017 12:49:38</Time>
+  <Info>HashPass = 3A721B40218C387278EDCAC109CE77DF76455A24BDAAE2D36203CE11905699CBA8F652E795B17D75F7EEB89E3A02F078FB743A92622E4B875FACC3113DA06D1A</Info>
+</Info>
+<Xcpt>
+  <Time>13.04.2017 12:51:35</Time>
+  <Exception>
+    <Source>CardGame.DAL</Source>
+    <Message>UserDoesNotExists</Message>
+    <Stack>   bei CardGame.DAL.Logic.UserManager.GetUserByUserEmail(String email) in C:\Users\hengmart\Documents\GitHub\LAP_Project\CardGame\CardGame.DAL\Logic\UserManager.cs:Zeile 53.</Stack>
+  </Exception>
+</Xcpt>

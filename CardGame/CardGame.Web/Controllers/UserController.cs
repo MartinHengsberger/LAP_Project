@@ -39,5 +39,21 @@ namespace CardGame.Web.Controllers
             return View(UserList);
         }
 
+        [Authorize(Roles = "user")]
+        public ActionResult Profile()
+        {
+            var dbuser = UserManager.GetUserByUserEmail(User.Identity.Name);
+
+            User user = new User();
+            user.Firstname = dbuser.firstname;
+            user.Lastname = dbuser.lastname;
+            user.Gamertag = dbuser.gamertag;
+            
+            //TODO - Daten für Email und Passwort Änderungen 
+
+
+            return View(user);
+        }
+
     }
 }

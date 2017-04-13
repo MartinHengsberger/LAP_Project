@@ -1,17 +1,92 @@
 ﻿@model CardGame.Web.Models.User
 
+<div class="jumbotron">
+
+    <!---------------------------------- Profil bearbeiten ---------------------------------------------->
+    <h1> Profile - @Model.Gamertag </h1>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+    <!---------------------------------- Passwort ändern ---------------------------------------------->
+        <div class="form-horizontal">
+            <h4>change Password</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.ID)
+
+            <h2>
+                @if (TempData["pchange"] != null)
+                {
+                    @TempData["pchange"];
+                }
+            </h2>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-3" })
+                <div class="col-md-7">
+                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-3" for="confirmPassword">Confirm Password</label>
+                <div class="col-md-7">
+                    @Html.EditorFor(model => model.PasswordValidation, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.PasswordValidation, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-3 col-md-7">
+                    <input type="submit" value="change password" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
 
 
+        <!---------------------------------- Email ändern ---------------------------------------------->
+        <br /><br />
+        <div class="form-horizontal">
+            <h4>change Email</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.ID)
 
-<div class="jumbotron" style="margin-bottom:200px; padding-right:0px">
+            <h2>
+                @if (TempData["echange"] != null)
+                {
+                    @TempData["echange"];
+                }
+            </h2>
 
-    <h1> Profile Test</h1>
-    <div>
-        @Model.Firstname
-        @Model.Lastname
-    </div>
-    <div>
-        @Model.Gamertag
-    </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-3" })
+                <div class="col-md-7">
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                </div>
+            </div>
 
+            <div class="form-group">
+                <label class="control-label col-md-3" for="confirmEmail">Confirm Email</label>
+                <div class="col-md-7">
+                    @Html.EditorFor(model => model.EmailValidation, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.EmailValidation, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-3 col-md-7">
+                    <input type="submit" value="change emailadress" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+
+    }
 </div>
+
+<!---------------------------------- CARD COLLECTION ---------------------------------------------->
+
+@Html.Action("_Cardcollection")

@@ -70,15 +70,27 @@ namespace CardGame.DAL.Logic
             using (var db = new ClonestoneFSEntities())
             {
 
-                var deleteDeckCard = from dc in db.tblcollection
-                                     where dc.tbldeck.wasauchimmer == deckId
-                                     select dc;
+                var cocaItem = (from c in db.tblcollection
+                                where c.idcollectioncard == 12
+                                select c).FirstOrDefault();
 
-                foreach (var item in deleteDeckCard)
-                {
-                    db.wasauchimmer.DeleteOnSubmit(item);
-                    db.SubmitChanges();
-                }
+                var deckItem = (from d in db.tbldeck
+                                where d.iddeck == 1
+                                select d).FirstOrDefault();
+
+                cocaItem.tbldeck.Add(deckItem);
+
+                deckItem.tblcollection.Add(cocaItem);
+
+                //var deleteDeckCard = from dc in db.tblcollection
+                //                     where dc.tbldeck.wasauchimmer == deckId
+                //                     select dc;
+
+                //foreach (var item in deleteDeckCard)
+                //{
+                //    db.wasauchimmer.DeleteOnSubmit(item);
+                //    db.SubmitChanges();
+                //}
 
 
 
@@ -88,6 +100,7 @@ namespace CardGame.DAL.Logic
                 coll.idcollectioncard = deckcardId;
 
                 deck.tblcollection.Add(coll);
+                coll.tbldeck.Add(deck);
 
                 db.SaveChanges();
 

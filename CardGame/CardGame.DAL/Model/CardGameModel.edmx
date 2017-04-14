@@ -236,6 +236,9 @@ warning 6002: The table/view 'itin21_ClonestoneFS.dbo.vCollectionCards' does not
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="pClearDeckByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="DeckId" Type="int" Mode="In" />
+        </Function>
         <EntityContainer Name="itin21_ClonestoneFSModelStoreContainer">
           <EntitySet Name="tblcard" EntityType="Self.tblcard" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblclass" EntityType="Self.tblclass" Schema="dbo" store:Type="Tables" />
@@ -548,6 +551,9 @@ warning 6002: The table/view 'itin21_ClonestoneFS.dbo.vCollectionCards' does not
             <End Role="tbldeck" EntitySet="tbldeck" />
           </AssociationSet>
           <EntitySet Name="vCollectionCards" EntityType="itin21_ClonestoneFSModel.vCollectionCards" />
+          <FunctionImport Name="pClearDeckByID">
+            <Parameter Name="DeckId" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="vCollectionCards">
           <Key>
@@ -687,6 +693,7 @@ warning 6002: The table/view 'itin21_ClonestoneFS.dbo.vCollectionCards' does not
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="pClearDeckByID" FunctionName="itin21_ClonestoneFSModel.Store.pClearDeckByID" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

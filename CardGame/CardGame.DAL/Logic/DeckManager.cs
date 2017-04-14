@@ -33,11 +33,6 @@ namespace CardGame.DAL.Logic
             return ReturnDeckList;
         }
 
-        //public static List<> GetAllDeckCards(int UserID)
-        //{
-
-        //}
-
         public static List<vCollectionCards> GetAllCollectionCards(int UserID)
         {
            List<vCollectionCards> ReturnCollectionCards = null;
@@ -61,6 +56,27 @@ namespace CardGame.DAL.Logic
             return ReturnDeckCards;
         }
 
+        public static string GetDecknameById(int DeckID)
+        {
+            using (var db = new ClonestoneFSEntities())
+            {
+                var Deckname = (from d in db.tbldeck
+                                where d.iddeck == DeckID
+                                select d.deckname).FirstOrDefault().ToString();
+
+                return Deckname;
+            }
+        }
+
+        public static void DropDeck(int deckId)
+        {
+
+            using (var db = new ClonestoneFSEntities())
+            {
+                db.pClearDeckByID(deckId);
+                db.SaveChanges();
+            }
+        }
 
         public static void SaveDeckToDatabase(int deckcardId, int deckId)
         {
@@ -69,42 +85,18 @@ namespace CardGame.DAL.Logic
 
             using (var db = new ClonestoneFSEntities())
             {
-
                 var cocaItem = (from c in db.tblcollection
-                                where c.idcollectioncard == 12
+                                where c.idcollectioncard == deckcardId
                                 select c).FirstOrDefault();
 
                 var deckItem = (from d in db.tbldeck
-                                where d.iddeck == 1
+                                where d.iddeck == deckId
                                 select d).FirstOrDefault();
 
-                cocaItem.tbldeck.Add(deckItem);
-
                 deckItem.tblcollection.Add(cocaItem);
-
-                //var deleteDeckCard = from dc in db.tblcollection
-                //                     where dc.tbldeck.wasauchimmer == deckId
-                //                     select dc;
-
-                //foreach (var item in deleteDeckCard)
-                //{
-                //    db.wasauchimmer.DeleteOnSubmit(item);
-                //    db.SubmitChanges();
-                //}
-
-
-
-                coll.fkcard = 0;
-                coll.fkorder = 0;
-                coll.fkperson = 0;
-                coll.idcollectioncard = deckcardId;
-
-                deck.tblcollection.Add(coll);
-                coll.tbldeck.Add(deck);
-
                 db.SaveChanges();
 
-            }                
+            }
         }
 
     }

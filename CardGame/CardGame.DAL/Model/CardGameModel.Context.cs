@@ -12,6 +12,8 @@ namespace CardGame.DAL.Model
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class ClonestoneFSEntities : DbContext
     {
@@ -34,5 +36,14 @@ namespace CardGame.DAL.Model
         public virtual DbSet<tblperson> tblperson { get; set; }
         public virtual DbSet<tbltype> tbltype { get; set; }
         public virtual DbSet<vCollectionCards> vCollectionCards { get; set; }
+    
+        public virtual int pClearDeckByID(Nullable<int> deckId)
+        {
+            var deckIdParameter = deckId.HasValue ?
+                new ObjectParameter("DeckId", deckId) :
+                new ObjectParameter("DeckId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pClearDeckByID", deckIdParameter);
+        }
     }
 }

@@ -231,6 +231,9 @@ warning 6002: The table/view 'itin21_ClonestoneFS.dbo.vCollectionCards' does not
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Function Name="pClearDeckByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="DeckId" Type="int" Mode="In" />
+  </Function>
   <EntityContainer Name="itin21_ClonestoneFSModelStoreContainer">
     <EntitySet Name="tblcard" EntityType="Self.tblcard" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tblclass" EntityType="Self.tblclass" Schema="dbo" store:Type="Tables" />

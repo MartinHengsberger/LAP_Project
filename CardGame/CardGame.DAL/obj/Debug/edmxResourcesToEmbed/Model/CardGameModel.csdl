@@ -244,6 +244,9 @@
       <End Role="tbldeck" EntitySet="tbldeck" />
     </AssociationSet>
     <EntitySet Name="vCollectionCards" EntityType="itin21_ClonestoneFSModel.vCollectionCards" />
+    <FunctionImport Name="pClearDeckByID">
+      <Parameter Name="DeckId" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="vCollectionCards">
     <Key>

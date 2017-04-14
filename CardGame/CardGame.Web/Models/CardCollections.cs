@@ -7,6 +7,7 @@ namespace CardGame.Web.Models
 {
     public class CardCollections
     {
+        public string DeckName { get; set; }
         public int DeckID { get; set; }
         public List<CardCollection> coll { get; set; }
         public List<CardCollection> deck { get; set; }

@@ -112,5 +112,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="pClearDeckByID" FunctionName="itin21_ClonestoneFSModel.Store.pClearDeckByID" />
   </EntityContainerMapping>
 </Mapping>

@@ -9,6 +9,5 @@ C:\Users\Omega Ultima\Desktop\LAP_Projekt\CardGame\CardGame\CardGame.Log\obj\Deb
 C:\Users\Omega Ultima\Desktop\LAP_Projekt\CardGame\CardGame\CardGame.Log\obj\Debug\CardGame.Log.pdb
 C:\Users\Martin Hengsberger\Documents\GitHub\LAP_Project\CardGame\CardGame.Log\bin\Debug\CardGame.Log.dll
 C:\Users\Martin Hengsberger\Documents\GitHub\LAP_Project\CardGame\CardGame.Log\bin\Debug\CardGame.Log.pdb
-C:\Users\Martin Hengsberger\Documents\GitHub\LAP_Project\CardGame\CardGame.Log\obj\Debug\CardGame.Log.csprojResolveAssemblyReference.cache
 C:\Users\Martin Hengsberger\Documents\GitHub\LAP_Project\CardGame\CardGame.Log\obj\Debug\CardGame.Log.dll
 C:\Users\Martin Hengsberger\Documents\GitHub\LAP_Project\CardGame\CardGame.Log\obj\Debug\CardGame.Log.pdb

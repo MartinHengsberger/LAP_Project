@@ -33,24 +33,21 @@ namespace CardGame.Web.Controllers
             return View(DeckList);
         }
 
-
-
-
-
         [HttpGet]
         [Authorize(Roles = "user")]
-        public ActionResult Deckbuilder(int ALUserID, int ALDeckID, string ALDeckname)
+        public ActionResult Deckbuilder(int ALDeckID)
         {
-            List<CardCollection> CollectionCardList = new List<CardCollection>();
-            var dbUserCardList = DeckManager.GetAllCollectionCards(ALUserID);
+            #region Get Cards from Collection cardColl.coll
+            CardCollections cardColl = new CardCollections();
+            var dbUCardList = DeckManager.GetAllCollectionCards(UserManager.GetUserByUserEmail(User.Identity.Name).idperson);
 
-            foreach (var c in dbUserCardList)
+            foreach (var c in dbUCardList)
             {
                 //Wenn kein Index vorhanden ist -> index = -1
-                int index = CollectionCardList.FindIndex(i => i.IdCard == c.idcard);
-        
+                int index = cardColl.coll.FindIndex(i => i.IdCard == c.idcard);
+
                 if (index >= 0)
-                { CollectionCardList[index].Number += 1; }
+                { cardColl.coll[index].Number += 1; }
                 else
                 {
                     CardCollection card = new CardCollection();
@@ -65,57 +62,111 @@ namespace CardGame.Web.Controllers
                     card.Life = c.life;
                     card.pic = c.pic;
 
-                    CollectionCardList.Add(card);
-                }            
+                    cardColl.coll.Add(card); 
+                }
             }
+            #endregion
 
+            TempData["CardCollection"] = cardColl;
+            return View(cardColl.coll);
+
+            #region Werte für dropdownlist
             //TODO - Werte für dropdown ======================================================
-            var manadd = new SelectList(
-                dbUserCardList.Select(r => r.mana).Distinct().ToList());
-                ViewBag.Mana = manadd;
+            //var manadd = new SelectList(
+            //    dbUserCardList.Select(r => r.mana).Distinct().ToList());
+            //    ViewBag.Mana = manadd;
 
-            var attackdd = new SelectList(
-                dbUserCardList.Select(r => r.attack).Distinct().ToList());
-                ViewBag.Attack = attackdd;
+            //var attackdd = new SelectList(
+            //    dbUserCardList.Select(r => r.attack).Distinct().ToList());
+            //    ViewBag.Attack = attackdd;
 
-            var lifedd = new SelectList(
-                dbUserCardList.Select(r => r.life).Distinct().ToList());
-            ViewBag.Attack = lifedd;
+            //var lifedd = new SelectList(
+            //    dbUserCardList.Select(r => r.life).Distinct().ToList());
+            //ViewBag.Attack = lifedd; 
+            #endregion
 
-            return View(CollectionCardList);
+            //return View(CollectionCardList);
 
         }
 
         [HttpGet]
         [Authorize(Roles = "user")]
-        public ActionResult _Deckcollection(int ALUserID, int ALDeckID, string ALDeckname)
+        public ActionResult _Deckcollection(int ALDeckID, int? x)
         {
-            List<CardCollection> DeckCardList = new List<CardCollection>();
-            var dbDeckCardList = DeckManager.GetAllDeckCards(ALDeckID);
+            var completeColl = (CardCollections)TempData["CardCollection"];
 
-            foreach (var c in dbDeckCardList)
+            #region Get Cards from Deck cardColl.deck
+            CardCollections cardColl = new CardCollections();
+            var dbDCardList = DeckManager.GetAllDeckCards(ALDeckID);
+
+            foreach (var c in dbDCardList)
             {
-                CardCollection card = new CardCollection();
-                card.IdCard = c.fkcard;
-                card.IdUser = c.fkperson;
-                card.IdCollectioncard = c.idcollectioncard;
-                card.IdOrder = c.fkorder;
-                //card.Number = (int)c.number;
-                card.Cardname = c.tblcard.cardname;
-                card.Attack = c.tblcard.attack;
-                card.Mana = c.tblcard.mana;
-                card.Life = c.tblcard.life;
-                card.pic = c.tblcard.pic;
-                
+                int index = cardColl.deck.FindIndex(i => i.IdCard == c.fkcard);
+                if (index >= 0)
+                { cardColl.deck[index].Number += 1; }
+                else
+                {
+                    CardCollection card = new CardCollection();
+                    card.IdCard = c.fkcard;
+                    card.IdUser = c.fkperson;
+                    card.IdCollectioncard = c.idcollectioncard;
+                    card.IdOrder = c.fkorder;
+                    card.Number = 1;
+                    card.Cardname = c.tblcard.cardname;
+                    card.Attack = c.tblcard.attack;
+                    card.Mana = c.tblcard.mana;
+                    card.Life = c.tblcard.life;
+                    card.pic = c.tblcard.pic;
 
-                //Abfrage ob schon vorhanden ...
-                DeckCardList.Add(card);
+                    cardColl.deck.Add(card);
+                }
             }
+            #endregion
+            completeColl.DeckID = ALDeckID;
+            completeColl.deck = cardColl.deck;
 
-            ViewBag.Deckcount = DeckCardList.Count();
-            ViewBag.Deckname = ALDeckname;
-
-            return PartialView(DeckCardList);
+            ViewBag.Deckcount = cardColl.deck.Count();
+            //ViewBag.Deckname = ALDeckname;
+            TempData["CardCollection"] = completeColl;
+            return PartialView(cardColl.deck);
         }
+
+        [HttpPost]
+        //[ActionName("_Deckcollection")]
+        public ActionResult _Deckcollection(int idcard)
+        {
+            CardCollections cc = new CardCollections();
+            cc = (CardCollections)TempData["CardCollection"];
+
+            int index = cc.coll.FindIndex(i => i.IdCard == idcard);
+
+            CardCollection card = cc.coll[index];
+            cc.coll[index].Number -= 1;
+
+            cc.deck.Add(card);
+
+            TempData["CardCollection"] = cc;
+            return PartialView(cc.deck);
+        }
+
+        //[HttpPost]
+        //[ActionName("_Deckcollection")]
+        //public ActionResult RemoveCardFromDeck(int idcard)
+        //{
+        //    CardCollections cc = new CardCollections();
+        //    cc = (CardCollections)TempData["CardCollection"];
+
+        //    int index = cc.deck.FindIndex(i => i.IdCard == idcard);
+
+        //    CardCollection card = cc.deck[index];
+        //    cc.deck.Remove(card);
+
+        //    cc.coll[index].Number += 1;
+
+        //    TempData["CardCollection"] = cc;
+        //    return View("Deckbuilder", cc.coll);
+        //}
+
+
     }
 }

@@ -167,6 +167,7 @@
     </Compile>
     <Compile Include="Models\Card.cs" />
     <Compile Include="Models\CardCollection.cs" />
+    <Compile Include="Models\CardCollections.cs" />
     <Compile Include="Models\CardDeck.cs" />
     <Compile Include="Models\Deck.cs" />
     <Compile Include="Models\Pack.cs" />

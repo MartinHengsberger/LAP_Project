@@ -14,30 +14,17 @@ namespace CardGame.Web.Controllers
     public class UserController : Controller
     {
         // GET: User
-        [Authorize(Roles ="admin")]
+        [Authorize(Roles ="user")]
         public ActionResult Index()
         {
-            List<User> UserList = new List<User>();
+            var dbuser = UserManager.GetUserByUserEmail(User.Identity.Name);
 
-            var dbUserlist = UserManager.GetAllUser();
+            User user = new User();
+            user.Firstname = dbuser.firstname;
+            user.Lastname = dbuser.lastname;
+            user.Gamertag = dbuser.gamertag;
 
-            foreach (var c in dbUserlist)
-            {
-                User user = new User();
-                user.ID = c.idperson;
-                user.Firstname = c.firstname;
-                user.Lastname = c.lastname;
-                user.Gamertag = c.gamertag;
-                user.Email = c.email;
-                user.Role = c.userrole;
-                user.Password = c.password;
-                user.Salt = c.salt;
-
-
-                UserList.Add(user);
-            }
-
-            return View(UserList);
+            return View(user);
         }
 
         [Authorize(Roles = "user")]
@@ -83,18 +70,19 @@ namespace CardGame.Web.Controllers
 
         }
 
-        public ActionResult _Cardcollection()
+        public ActionResult Cardcollection()
         {
-            List<CardCollection> CollectionCardList = new List<CardCollection>();
-            var dbUserCardList = DeckManager.GetAllCollectionCards(UserManager.GetUserByUserEmail(User.Identity.Name).idperson);
+            CardCollections cardColl = new CardCollections();
 
-            foreach (var c in dbUserCardList)
+            #region Get Cards from Collection cardColl.coll
+            var dbUCardList = DeckManager.GetAllCollectionCards(UserManager.GetUserByUserEmail(User.Identity.Name).idperson);
+            foreach (var c in dbUCardList)
             {
                 //Wenn kein Index vorhanden ist -> index = -1
-                int index = CollectionCardList.FindIndex(i => i.IdCard == c.idcard);
+                int index = cardColl.coll.FindIndex(i => i.IdCard == c.idcard);
 
                 if (index >= 0)
-                { CollectionCardList[index].Number += 1; }
+                { cardColl.coll[index].Number += 1; }
                 else
                 {
                     CardCollection card = new CardCollection();
@@ -109,10 +97,14 @@ namespace CardGame.Web.Controllers
                     card.Life = c.life;
                     card.pic = c.pic;
 
-                    CollectionCardList.Add(card);
+                    cardColl.coll.Add(card);
                 }
             }
-            return PartialView(CollectionCardList);
+            #endregion
+
+            TempData["CardCollection"] = cardColl;
+
+            return View(cardColl);
         }
 
     }

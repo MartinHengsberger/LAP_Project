@@ -3,7 +3,7 @@
     ViewBag.Title = "Decks";
 }
 
-<div class="jumbotron" style="margin-bottom:200px; padding-right:0px">
+<div class="jumbotron" style="margin-bottom:180px; padding-right:0px">
 
     @Html.AntiForgeryToken()
     <h1>Decks</h1>
@@ -12,7 +12,7 @@
     {
         using (Html.BeginForm())
         {
-            <div class="row col-md-4 col-sm-6 col-xs-12" style="margin-left:15px" >
+            <div class="row col-md-4 col-sm-6 col-xs-12" style="margin-left:15px">
 
                 <div class="col-md-8" style="margin-top:26px; text-align:center; margin-left: -5px">
                     <div class="container" style="font-size:16px">
@@ -26,15 +26,20 @@
                             <!--Hidden Field zur Übergabe der DeckID + UserID -->
                             <input type="hidden" name="IdDeck" value="@Model.ToList()[i].IdDeck" />
                             <input type="hidden" name="IdUser" value="@Model.ToList()[i].IdUser" />
-                            @Html.ActionLink("Deckbuilder", "Deckbuilder", new { ALUserID = Model.ToList()[i].IdUser, ALDeckID = Model.ToList()[i].IdDeck, ALDeckname = Model.ToList()[i].Deckname },null);
+                            <span class="borderbutton">@Html.ActionLink("Deckbuilder", "Deckbuilder", new { ALUserID = Model.ToList()[i].IdUser, ALDeckID = Model.ToList()[i].IdDeck, ALDeckname = Model.ToList()[i].Deckname }, null)</span>
                         </div>
                     </div>
                 </div>
-                
+
             </div>
         }
     }
     <div>
-        <h4 style="text-align:left;margin-top:420px">@Html.ActionLink("Home", "Index", "Home")</h4>
+        <div style="margin-top:450px">
+            <h4 style="text-align:left">
+                <span class="borderbutton">@Html.ActionLink("Home", "Index", "Home")</span>
+                <span class="borderbutton">@Html.ActionLink("Back", "Index", "User")</span>
+            </h4>
+        </div>
     </div>
 </div>

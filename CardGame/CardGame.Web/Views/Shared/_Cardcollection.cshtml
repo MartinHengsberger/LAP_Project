@@ -1,13 +1,17 @@
-﻿@model IEnumerable<CardGame.Web.Models.CardCollection>
+﻿@model CardGame.Web.Models.CardCollections
 
 <div class="jumbotron" style="margin-top:10px !important">
 
     <h4>Card Collection</h4>
+    <div>
+        @Html.ActionLink("Mana", "_Cardcollection", new { sortOrder = ViewBag.ManaSortParm })
+        @Html.ActionLink("Life", "_Cardcollection", new { sortOrder = ViewBag.LifeSortParm })
+    </div>
 
     <div style="border:2px solid black; padding-right:30px; padding-left:35px">
         <div class="row" style="margin-top:37px; padding-bottom:40px">
 
-            @foreach (var item in Model)
+            @foreach (var item in Model.coll)
             {
             <!--<div class="col-md-1 vcenter" style="margin-top:16px">-->
                 <div class="col-md-2 vcenter" style="margin-top:16px">

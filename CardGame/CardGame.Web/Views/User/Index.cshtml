@@ -1,4 +1,4 @@
-﻿@model IEnumerable<CardGame.Web.Models.User>
+﻿@model CardGame.Web.Models.User
 
 @{
     ViewBag.Title = "Index";
@@ -6,58 +6,20 @@
 
 <h2>Index</h2>
 
-<table>
-    <tr>
-        <th>
-            @Html.DisplayNameFor(u => u.ID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(u => u.Firstname)
-        </th>
-        <th>
-            @Html.DisplayNameFor(u => u.Lastname)
-        </th>
-        <th>
-            @Html.DisplayNameFor(u => u.Role)
-        </th>
-        <th>
-            @Html.DisplayNameFor(u => u.Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(u => u.Password)
-        </th>
-        <th>
-            @Html.DisplayNameFor(u => u.Salt)
-        </th>
+<div class="jumbotron" style="margin-top:100px !important">
 
-    </tr>
-    @foreach (var user in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(u => user.ID)
-            </td>
-            <td>
-                @Html.DisplayFor(u => user.Firstname)
-            </td>
-            <td>
-                @Html.DisplayFor(u => user.Lastname)
-            </td>
-            <td>
-                @Html.DisplayFor(u => user.Role)
-            </td>
-            <td>
-                @Html.DisplayFor(u => user.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(u => user.Password)
-            </td>
-            <td>
-                @Html.DisplayFor(u => user.Salt)
-            </td>
+    <h1> Profile - @Model.Gamertag </h1>
+    
+    <h2 style="margin-top:50px">Hello! @Model.Firstname @Model.Lastname</h2>
+    <div>
+        <div class="container" style="font-size:24px; margin-top:50px">
+            <span class="borderbutton"> @Html.ActionLink("Profile changing", "Profile", "User")</span> - 
+            <span class="borderbutton"> @Html.ActionLink("Decks", "Decks", "Deck")</span> -
+            <span class="borderbutton"> @Html.ActionLink("Cardcollection", "Cardcollection", "User")</span>
+</div>
+    </div>
 
-
-        </tr>
-    }
-
-</table>
+    <div style="margin-top:70px">
+        <h4> <span class="borderbutton" style="text-align:left">@Html.ActionLink("Home", "Index", "Home")</span></h4>
+    </div>
+</div>

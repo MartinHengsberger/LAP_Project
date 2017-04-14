@@ -101,5 +101,26 @@ namespace CardGame.DAL.Logic
                 throw;
             }
         }
+
+        public static bool CheckIfEmailIsUnique(string email)
+        {
+            tblperson pers = new tblperson();
+
+            using (var db = new ClonestoneFSEntities())
+            {
+                pers = (from u in db.tblperson
+                        where u.email == email
+                        select u).FirstOrDefault();
+            }
+
+            if (pers == null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }    
+        }
     }
 }

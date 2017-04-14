@@ -3,47 +3,7 @@
     ViewBag.Title = "Index";
 }
 
-<!-- #region Shop ALT -->
-@*<div class="jumbotron" style="margin-bottom:200px;padding-left:10px;padding-right:10px; min-height:600px">
-
-    <h1>Cardshop</h1>
-    @for (int i = 0; i < 6; i++)
-    {
-
-        <div class="row col-md-4 col-sm-6 col-xs-12" style="margin-top:37px">
-
-            <div class="col-md-8 vcenter" style="margin-top:26px">
-                <div class="container" style="font-size:16px; margin-left:50px">
-                    <div class="row">
-                        @Model.ToList()[i].Packname
-                    </div>
-                    <div class="row" style="font-size:24px; margin-top:10px" >
-                        @Model.ToList()[i].Packprice 
-                        @if (Model.ToList()[i].Cardquantity == 0)
-                        { <span>€</span> }
-                        else
-                        { <span>Gold</span> }
-                        
-                    </div>
-                    <div class="row">
-                        <input type="submit" value="Buy" />
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4" style="position:relative">
-                <img src=@Model.ToList()[i].Url style="max-height:200px; min-height:150px; min-width:150px" class="img-responsive" />
-            </div>
-
-        </div>
-       }
-
-    <div>
-        <h4 style="text-align:left;margin-top:400px">@Html.ActionLink("Home", "Index", "Home")</h4>
-    </div>
-</div>*@
-<!-- #endregion -->
-
-<div class="jumbotron" style="margin-bottom:200px">
+<div class="jumbotron" style="margin-bottom:180px">
    
         @Html.AntiForgeryToken()
         <h1>Cardshop</h1>
@@ -102,8 +62,8 @@
             </div>
                 }
             }
-        <div>
-            <h4 style="text-align:left;margin-top:400px">@Html.ActionLink("Home", "Index", "Home")</h4>
+        <div style="margin-top:450px">
+            <h4><span class="borderbutton" >@Html.ActionLink("Home", "Index", "Home")</span></h4>
         </div>
 </div>
 

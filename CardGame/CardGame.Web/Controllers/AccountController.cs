@@ -83,22 +83,30 @@ namespace CardGame.Web.Controllers
         {
             var dbUser = new tblperson();
 
-            dbUser.firstname = regUser.Firstname;
-            dbUser.lastname = regUser.Lastname;
-            dbUser.gamertag = regUser.Gamertag;
-            dbUser.email = regUser.Email;
-            dbUser.password = regUser.Password;
-            dbUser.salt = regUser.Salt;
-            dbUser.userrole = "user";
-            dbUser.currencybalance = 1000;
-            dbUser.isactive = true;
+            if (AuthManager.CheckIfEmailIsUnique(regUser.Email))
+            {
+                dbUser.firstname = regUser.Firstname;
+                dbUser.lastname = regUser.Lastname;
+                dbUser.gamertag = regUser.Gamertag;
+                dbUser.email = regUser.Email;
+                dbUser.password = regUser.Password;
+                dbUser.salt = regUser.Salt;
+                dbUser.userrole = "user";
+                dbUser.currencybalance = 1000;
+                dbUser.isactive = true;
+
+                AuthManager.Register(dbUser);
 
 
-            AuthManager.Register(dbUser);
-
-
-            TempData["confRegister"] = "Registration complete!";
-            return RedirectToAction("Login");
+                TempData["confRegister"] = "Registration complete!";
+                return RedirectToAction("Login");
+            }
+            else
+            {
+                TempData["failRegister"] = "Emailadress is allready in use!";
+                return RedirectToAction("Register");
+            }
+            
         }
     }
 }

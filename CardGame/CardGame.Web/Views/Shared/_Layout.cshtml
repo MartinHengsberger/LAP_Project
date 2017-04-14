@@ -39,7 +39,7 @@
                     {
                         <li>@Html.ActionLink("Logout", "Logout", "Account")</li>
                         <li>@Html.ActionLink("Shop", "Index", "Shop")</li>
-                        <li>@Html.ActionLink(@CardGame.DAL.Logic.UserManager.GetUserByUserEmail(User.Identity.Name).gamertag.ToString(), "Profile", "User")</li>
+                        <li>@Html.ActionLink(@CardGame.DAL.Logic.UserManager.GetUserByUserEmail(User.Identity.Name).gamertag.ToString(), "Index", "User")</li>
                         <li style="margin-left:20px">@Html.ActionLink(@CardGame.DAL.Logic.UserManager.GetUserByUserEmail(User.Identity.Name).currencybalance.ToString(), "Index", "Shop")</li>
                         <li><img src="/img/gold.png" style="height:20px; margin-top:10px; margin-left:-8px" /></li>
                     }
@@ -66,60 +66,61 @@
                 <!---------- Footer Kartenhand ---------->
                 <div class="row" id="cardhand">
                     <div class="embed-responsive" id="links2">
-                        <div class="cardhand_text">
-                            <a href="~/img/AGB.pdf">Imprint</a>
+                        <div class="cardhand_text" style="padding-top:5px">
+                            <a class="handbutton" href="~/img/AGB.pdf">Imprint</a>
                         </div>
                     </div>
                     <div class="embed-responsive" id="links">
-                        <div class="cardhand_text">
+                        <div class="cardhand_text" style="padding-top:5px">
                             @{  if (User.Identity.Name == "")
                                 {
-                                    @Html.ActionLink("Login", "Login", "Account")
+                                   @Html.ActionLink("Login", "Login", "Account", null, new { @class = "handbutton" })
+
                                 }
                                 else
                                 {
-                                    @Html.ActionLink("Logout", "Logout", "Account")
+                                    @Html.ActionLink("Logout", "Logout", "Account", null, new { @class = "handbutton" })
                                 }
                             }
                         </div>
                     </div>
                     <div class="embed-responsive" id="mitte">
-                        <div class="cardhand_text">
+                        <div class="cardhand_text"style="padding-top:5px">
                             @{  if (User.IsInRole("admin"))
                                 {
-                                    @Html.ActionLink("Users", "Index", "User")
+                                    @Html.ActionLink("Users", "Index", "User", null, new { @class = "handbutton" })
                                 }
                                 if (User.IsInRole("user"))
                                 {
-                                    @Html.ActionLink("Shop", "Index", "Shop")
+                                    @Html.ActionLink("Shop", "Index", "Shop", null, new { @class = "handbutton" })
                                 }
                                 if (User.Identity.Name == "")
                                 {
-                                    @Html.ActionLink("Shop", "Login", "Account")
+                                    @Html.ActionLink("Shop", "Login", "Account", null, new { @class = "handbutton" })
                                 }
                             }
                         </div>
                     </div>
                     <div class="embed-responsive" id="rechts">
-                        <div class="cardhand_text">
+                        <div class="cardhand_text" style="padding-top:5px">
                            @{  if (User.IsInRole("user"))
                                {
-                                @Html.ActionLink("Decks", "Decks", "Deck")
+                                @Html.ActionLink("Decks", "Decks", "Deck", null, new { @class = "handbutton" })
                                }
                                if (User.Identity.Name == "")
                                {
-                                @Html.ActionLink("Register", "Register", "Account")
+                                @Html.ActionLink("Register", "Register", "Account", null, new { @class = "handbutton" })
                                }
                                if (User.IsInRole("admin"))
                                {
-                                @Html.ActionLink("PH", "PH", "PH")
+                                @Html.ActionLink("PH", "PH", "PH", null, new { @class = "handbutton" })
                                }
                             }
                         </div>
                     </div>
                     <div class="embed-responsive" id="rechts2">
-                        <div class="cardhand_text">
-                            <a href="~/img/Disclaimer.pdf">Disclaimer</a>
+                        <div class="cardhand_text" style="padding-top:5px">
+                            <a class="handbutton" href="~/img/Disclaimer.pdf">Disclaimer</a>
                         </div>
                     </div>
                 </div>

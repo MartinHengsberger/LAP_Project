@@ -104,22 +104,6 @@ namespace CardGame.Web.Controllers
 
             return View(cardColl);
 
-            #region Werte für dropdownlist
-            //TODO - Werte für dropdown ======================================================
-            //var manadd = new SelectList(
-            //    dbUserCardList.Select(r => r.mana).Distinct().ToList());
-            //    ViewBag.Mana = manadd;
-
-            //var attackdd = new SelectList(
-            //    dbUserCardList.Select(r => r.attack).Distinct().ToList());
-            //    ViewBag.Attack = attackdd;
-
-            //var lifedd = new SelectList(
-            //    dbUserCardList.Select(r => r.life).Distinct().ToList());
-            //ViewBag.Attack = lifedd; 
-            #endregion
-
-
         }
 
         [HttpPost]
@@ -139,7 +123,7 @@ namespace CardGame.Web.Controllers
             }
             else
             {
-                TempData["notEnoughCards"] = $"You do not have a {cc.coll[index].Cardname} card anymore";
+                TempData["notEnoughCards"] = $"You do not have a '{cc.coll[index].Cardname}' card anymore";
             }
 
             ViewBag.Deckcount = cc.deck.Count();
@@ -148,6 +132,11 @@ namespace CardGame.Web.Controllers
 
         }
 
+        /// <summary>
+        /// Entfernen einer Karte aus dem temporären Deck
+        /// </summary>
+        /// <param name="idcard"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult RemoveCardFromDeck(int idcard)
         {
@@ -166,15 +155,22 @@ namespace CardGame.Web.Controllers
             return View("Deckbuilder", cc);
         }
 
+        /// <summary>
+        /// Gewählte Karten des Users im zugehöhrigen Deck Speichern
+        /// </summary>
+        /// <returns></returns>
         public ActionResult SaveDeckToDb()
         {
             CardCollections cc = new CardCollections();
             cc = (CardCollections)TempData["CardCollection"];
 
+            //Methode um tblDeckcollection zu leeren
             DeckManager.DropDeck(cc.DeckID);
+
 
             foreach (var item in cc.deck)
             {
+                //Methode um tblDeckcllection neu zu befüllen
                 DeckManager.SaveDeckToDatabase(item.IdCollectioncard, cc.DeckID);
             }
 

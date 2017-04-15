@@ -8,6 +8,9 @@ using CardGame.DAL.Model;
 using CardGame.Log;
 using CardGame.Web.Models;
 using System.Net;
+using System.Drawing;
+using System.IO;
+using System.Text;
 
 namespace CardGame.Web.Controllers
 {
@@ -70,13 +73,18 @@ namespace CardGame.Web.Controllers
 
         }
 
-        public ActionResult Cardcollection()
+        public ActionResult Cardcollection(int page = 1, string sort = "cardname", string sortdir = "asc", string search = "")
         {
-            CardCollections cardColl = new CardCollections();
+            int pageSize = 10;
+            int totalRecord = 0;
+            if (page < 1) page = 1;
+            int skip = (page * pageSize) - pageSize;
+            var data = DeckManager.GetAllCollectionCardsProfile(UserManager.GetUserByUserEmail(User.Identity.Name).idperson, search, sort, sortdir, skip, pageSize, out totalRecord);
+            ViewBag.TotalRows = totalRecord;
+            ViewBag.search = search;
 
-            #region Get Cards from Collection cardColl.coll
-            var dbUCardList = DeckManager.GetAllCollectionCards(UserManager.GetUserByUserEmail(User.Identity.Name).idperson);
-            foreach (var c in dbUCardList)
+            CardCollections cardColl = new CardCollections();
+            foreach (var c in data)
             {
                 //Wenn kein Index vorhanden ist -> index = -1
                 int index = cardColl.coll.FindIndex(i => i.IdCard == c.idcard);
@@ -100,11 +108,10 @@ namespace CardGame.Web.Controllers
                     cardColl.coll.Add(card);
                 }
             }
-            #endregion
 
             TempData["CardCollection"] = cardColl;
-
             return View(cardColl);
+
         }
 
     }

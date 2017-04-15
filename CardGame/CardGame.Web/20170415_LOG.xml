@@ -1,0 +1,16 @@
+<Xcpt>
+  <Time>15.04.2017 23:06:25</Time>
+  <Exception>
+    <Source>CardGame.DAL</Source>
+    <Message>UserDoesNotExists</Message>
+    <Stack>   bei CardGame.DAL.Logic.UserManager.GetUserByUserEmail(String email) in C:\Users\Omega Ultima\Documents\GitHub\LAP_Project\CardGame\CardGame.DAL\Logic\UserManager.cs:Zeile 53.</Stack>
+  </Exception>
+</Xcpt>
+<Info>
+  <Time>15.04.2017 23:07:01</Time>
+  <Info>Entered Pass = 123user!</Info>
+</Info>
+<Info>
+  <Time>15.04.2017 23:07:01</Time>
+  <Info>HashPass = 3A721B40218C387278EDCAC109CE77DF76455A24BDAAE2D36203CE11905699CBA8F652E795B17D75F7EEB89E3A02F078FB743A92622E4B875FACC3113DA06D1A</Info>
+</Info>

@@ -1,6 +1,12 @@
 ﻿@model CardGame.Web.Models.CardCollections
 
-<div class="jumbotron" style="margin-top:100px !important; margin-bottom:200px">
+@{ 
+    var grid = new WebGrid(canPage: true, rowsPerPage: 10);
+    grid.Bind(source: Model.coll, rowCount: ViewBag.TotalRows, autoSortAndPage: false);
+
+}
+
+@*<div class="jumbotron" style="margin-top:100px !important; margin-bottom:200px">
     <h4>Card Collection <span class="borderbutton" style="float:right; margin-top:-20px">@Html.ActionLink("Back", "Index", "User")</span></h4>
 
     <div class="container" style="font-size:12px; text-align:center; border:2px solid white;">
@@ -10,7 +16,8 @@
                 if (i > 0 && i % 6 == 0)
                 {
                     @:</div><div class="row">
-                    }
+                }
+
                 <div class="col-md-2" style="margin-top:16px">
                     count: @Html.DisplayFor(c => Model.coll[i].Number)
                     @{
@@ -22,4 +29,70 @@
                         }
         </div>
     </div>
+</div>*@
+
+
+<div class="jumbotron" style="margin-top:100px !important; margin-bottom:200px">
+    <h4>Card Collection</h4>
+
+    <div class="container">
+        <nav class="navbar, navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a href="#" class="navbar-brand">Search</a>
+                </div>
+                <div class="collapse navbar-collapse">
+                    @using (Html.BeginForm("Cardcollection", "User", FormMethod.Get, new {@class="navbar-form navbar-left" }))
+                    {
+                        <div class="form-group">
+                            <input type="text" name="search" value="@ViewBag.search" class="form-control" placeholder="search" />
+                        </div>
+                        <div>
+                            <input type="submit" name="submit" value="Search" class="btn btn-success" />
+                        </div>
+                    }
+                </div>
+            </div>
+        </nav>
+        <div>
+          @grid.Table(
+          tableStyle: "table table-responsive table-bordered",
+          columns: grid.Columns(
+          grid.Column(columnName: "pic", header: "Picture"),
+          grid.Column(columnName: "cardname", header: "Cardname"),
+          grid.Column(columnName: "mana", header: "Mana"),
+          grid.Column(columnName: "life", header: "Life"),
+          grid.Column(columnName: "attack", header: "Attack"),
+          grid.Column(columnName: "number", header: "Count")
+          )
+     )
+
+            <div class="row">
+                <div class="col-sm-6">
+                   @grid.PagerList(mode: WebGridPagerModes.All, paginationStyle:"pagination pagination-small pagination-right")
+                </div>              
+            </div>
+
+            @Html.Hidden("dir", grid.SortDirection)
+            @Html.Hidden("col", grid.SortColumn)
+
+        </div>
+    </div>
 </div>
+
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script>
+        $(function () {
+            try {
+                var dir = $('#dir').val();
+                var col = $('#col').val();
+                var header = $("th a[href*=" + col + "]");
+                if (dir == "Ascending") {
+                    header.text(header.text() + "  ▲")
+                }
+                if (dir == "Descending") {
+                    header.text(header.text() + "  ▼")
+                }
+            } catch (e) { }
+        })
+</script>

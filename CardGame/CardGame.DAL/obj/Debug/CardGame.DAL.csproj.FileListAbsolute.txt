@@ -70,3 +70,4 @@ C:\Users\hengmart\Documents\GitHub\LAP_Project\CardGame\CardGame.DAL\bin\Debug\E
 C:\Users\hengmart\Documents\GitHub\LAP_Project\CardGame\CardGame.DAL\obj\Debug\CardGame.DAL.csprojResolveAssemblyReference.cache
 C:\Users\hengmart\Documents\GitHub\LAP_Project\CardGame\CardGame.DAL\obj\Debug\CardGame.DAL.dll
 C:\Users\hengmart\Documents\GitHub\LAP_Project\CardGame\CardGame.DAL\obj\Debug\CardGame.DAL.pdb
+C:\Users\Omega Ultima\Documents\GitHub\LAP_Project\CardGame\CardGame.DAL\bin\Debug\System.Linq.Dynamic.dll

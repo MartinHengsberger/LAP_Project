@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using CardGame.DAL.Model;
 using CardGame.Log;
 using System.Data.Entity;
+using System.Linq.Dynamic;
+using System.IO;
 
 namespace CardGame.DAL.Logic
 {
@@ -31,6 +33,30 @@ namespace CardGame.DAL.Logic
                               select d).ToList();
             }
             return ReturnDeckList;
+        }
+
+        public static List<vCollectionCards> GetAllCollectionCardsProfile(int UserID, string search, string sort, string sortdir, int skip, int pageSize, out int totalRecords)
+        {
+            using (ClonestoneFSEntities db = new ClonestoneFSEntities())
+            {
+                var collCard = (from c in db.vCollectionCards
+                                where c.fkperson == UserID &&
+                                      (c.cardname.Contains(search) ||
+                                         c.mana.ToString().Contains(search) ||
+                                         c.life.ToString().Contains(search) ||
+                                         c.attack.ToString().Contains(search))
+                                select c);
+
+
+                totalRecords = collCard.Count();
+                collCard = collCard.OrderBy(sort + " " + sortdir);
+                if (pageSize > 0)
+                {
+                    collCard = collCard.Skip(skip).Take(pageSize);
+                }
+
+                return collCard.ToList();
+            }
         }
 
         public static List<vCollectionCards> GetAllCollectionCards(int UserID)

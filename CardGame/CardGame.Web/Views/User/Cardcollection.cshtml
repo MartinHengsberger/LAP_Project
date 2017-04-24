@@ -6,49 +6,24 @@
 
 }
 
-@*<div class="jumbotron" style="margin-top:100px !important; margin-bottom:200px">
-    <h4>Card Collection <span class="borderbutton" style="float:right; margin-top:-20px">@Html.ActionLink("Back", "Index", "User")</span></h4>
-
-    <div class="container" style="font-size:12px; text-align:center; border:2px solid white;">
-        <div class="row">
-            @for (int i = 0; i < Model.coll.Count; i++)
-            {
-                if (i > 0 && i % 6 == 0)
-                {
-                    @:</div><div class="row">
-                }
-
-                <div class="col-md-2" style="margin-top:16px">
-                    count: @Html.DisplayFor(c => Model.coll[i].Number)
-                    @{
-                        var base64 = Convert.ToBase64String(Model.coll[i].pic);
-                        var imgSrc = String.Format("data:image/png;base64,{0}", base64);
-                    }
-                    <img class="galleryImg img-responsive" src="@imgSrc" />
-                </div>
-                        }
-        </div>
-    </div>
-</div>*@
-
-
-<div class="jumbotron" style="margin-top:100px !important; margin-bottom:200px">
+<div class="jumbotron jumbotron-cc-corr">
     <h4>Card Collection</h4>
 
     <div class="container">
         <nav class="navbar, navbar-default">
             <div class="container-fluid">
-                <div class="navbar-header">
-                    <a href="#" class="navbar-brand">Search</a>
+                <div class="navbar-header navbar-header-corr">
+                    <a href="#" class="navbar-brand normal-font">Search</a>
                 </div>
-                <div class="collapse navbar-collapse">
+                <div class="collapse navbar-collapse ">
                     @using (Html.BeginForm("Cardcollection", "User", FormMethod.Get, new {@class="navbar-form navbar-left" }))
                     {
-                        <div class="form-group">
+                        <div class="form-group normal-font" >
                             <input type="text" name="search" value="@ViewBag.search" class="form-control" placeholder="search" />
+                            <input type="submit" name="submit" value="Search" class="btn btn-info btn-info-corr" />
                         </div>
                         <div>
-                            <input type="submit" name="submit" value="Search" class="btn btn-success" />
+                            
                         </div>
                     }
                 </div>
@@ -56,9 +31,16 @@
         </nav>
         <div>
           @grid.Table(
-          tableStyle: "table table-responsive table-bordered",
+          tableStyle: "table table-responsive table-bordered normal-font normal-font-corr",
           columns: grid.Columns(
-          grid.Column(columnName: "pic", header: "Picture"),
+          grid.Column(columnName: "pic", header: " ", format:
+            @<text>
+                 <img src="data:image/jpg;base64,@(Convert.ToBase64String(item.pic))"
+                 width="70px"
+                 height="100px"
+                 class="img-responsive galleryImg-corr grid-img"
+                 alt="@item.cardname" />
+            </text>),
           grid.Column(columnName: "cardname", header: "Cardname"),
           grid.Column(columnName: "mana", header: "Mana"),
           grid.Column(columnName: "life", header: "Life"),
@@ -68,7 +50,7 @@
      )
 
             <div class="row">
-                <div class="col-sm-6">
+                <div class="col-sm-6 normal-font">
                    @grid.PagerList(mode: WebGridPagerModes.All, paginationStyle:"pagination pagination-small pagination-right")
                 </div>              
             </div>

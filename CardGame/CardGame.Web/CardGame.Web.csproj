@@ -171,6 +171,7 @@
     <Compile Include="Models\CardDeck.cs" />
     <Compile Include="Models\Deck.cs" />
     <Compile Include="Models\Pack.cs" />
+    <Compile Include="Models\PackList.cs" />
     <Compile Include="Models\Statistic.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

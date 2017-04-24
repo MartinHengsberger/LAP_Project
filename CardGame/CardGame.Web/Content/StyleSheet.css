@@ -242,6 +242,7 @@ dt, dd {
     line-height:30px;
 }
 
+/*Button Styles*/
 .borderbutton {
     border:3px solid white;
     margin-left:5px;
@@ -260,4 +261,69 @@ dt, dd {
      padding-top:40px;
 }
 
+/*User/CardCollection*/
+
+.jumbotron-cc-corr {
+     margin-top:100px !important; 
+     margin-bottom:200px;
+}
+
+.normal-font {
+    font-family:Arial;
+}
+
+table * {
+    font-size:14px;
+}
+
+.navbar-header-corr {
+    margin-top:-18px;
+}
+
+.btn-info-corr {
+    height:34px;
+    margin-left:20px;
+    padding: 4px 12px !important;   
+}
+
+.galleryImg-corr:hover {
+    position: relative;
+    transform: scale(3.0);
+    transition: ease-in all 0.3s;
+    z-index: 400;
+}
+
+.grid-img {
+    align-items:center;
+    margin-right:-40px;
+    margin-left:10px
+}
+
+/*Shop/Index*/
+
+.headline-corr {
+    margin-top:40px;
+    margin-bottom:-20px;
+}
+
+.pack-container {
+    margin-top:37px; 
+    margin-left:10px; 
+    margin-bottom:15px;
+}
+.pack-style {
+     margin-top:26px; 
+     text-align:center; 
+     margin-left: -5px;
+}
+
+.pack-style-container {
+    font-size:14px; 
+    margin-left:50px;
+}
+
+.pack-row-price {
+     font-size:24px; 
+     margin-top:10px;
+}
 

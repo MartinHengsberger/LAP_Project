@@ -20,6 +20,30 @@ namespace CardGame.DAL.Logic
             return ReturnList;
         }
 
+        public static List<tblpack> GetCardPacks()
+        {
+            List<tblpack> ReturnList = null;
+            using (var db = new ClonestoneFSEntities())
+            {
+                ReturnList = (from p in db.tblpack
+                              where p.cardquantity > 0
+                              select p).ToList();
+            }
+            return ReturnList;
+        }
+
+        public static List<tblpack> GetGoldPacks()
+        {
+            List<tblpack> ReturnList = null;
+            using (var db = new ClonestoneFSEntities())
+            {
+                ReturnList = (from p in db.tblpack
+                              where p.goldquantity > 0
+                              select p).ToList();
+            }
+            return ReturnList;
+        }
+
         public static void ExecuteOrder(int personID, int packID)
         {          
             using (var db = new ClonestoneFSEntities())

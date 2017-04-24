@@ -13,13 +13,36 @@ namespace CardGame.Web.Controllers
     public class ShopController : Controller
     {
         // GET: Shop
+        //[HttpGet]
+        //[Authorize(Roles = "user,admin")]
+        //public ActionResult Index()
+        //{
+        //    List<Pack> PackList = new List<Pack>();
+        //    var dbPacklist = ShopManager.GetAllPacks();
+
+        //    foreach (var p in dbPacklist)
+        //    {
+        //        Pack pack = new Pack();
+        //        pack.IdPack = p.idpack;
+        //        pack.Packname = p.packname;
+        //        pack.Packprice = (double)p.packprice;
+        //        pack.Cardquantity = (int)p.cardquantity;
+        //        pack.Goldquantity = p.goldquantity;
+        //        pack.Url = pack.Url + p.picturename;
+
+        //        PackList.Add(pack);
+        //    }
+
+        //    return View(PackList);
+        //}
+
         [HttpGet]
         [Authorize(Roles = "user,admin")]
         public ActionResult Index()
         {
-            List<Pack> PackList = new List<Pack>();
-            var dbPacklist = ShopManager.GetAllPacks();
+            PackList PackList = new PackList();
 
+            var dbPacklist = ShopManager.GetAllPacks();
             foreach (var p in dbPacklist)
             {
                 Pack pack = new Pack();
@@ -29,8 +52,33 @@ namespace CardGame.Web.Controllers
                 pack.Cardquantity = (int)p.cardquantity;
                 pack.Goldquantity = p.goldquantity;
                 pack.Url = pack.Url + p.picturename;
+                PackList.AllPack.Add(pack);
+            }
 
-                PackList.Add(pack);
+            var dbCardPacklist = ShopManager.GetCardPacks();
+            foreach (var p in dbCardPacklist)
+            {
+                Pack pack = new Pack();
+                pack.IdPack = p.idpack;
+                pack.Packname = p.packname;
+                pack.Packprice = (double)p.packprice;
+                pack.Cardquantity = (int)p.cardquantity;
+                pack.Goldquantity = p.goldquantity;
+                pack.Url = pack.Url + p.picturename;
+                PackList.CardPack.Add(pack);
+            }
+
+            var dbGoldPacklist = ShopManager.GetGoldPacks();
+            foreach (var p in dbGoldPacklist)
+            {
+                Pack pack = new Pack();
+                pack.IdPack = p.idpack;
+                pack.Packname = p.packname;
+                pack.Packprice = (double)p.packprice;
+                pack.Cardquantity = (int)p.cardquantity;
+                pack.Goldquantity = p.goldquantity;
+                pack.Url = pack.Url + p.picturename;
+                PackList.GoldPack.Add(pack);
             }
 
             return View(PackList);
@@ -56,9 +104,7 @@ namespace CardGame.Web.Controllers
                 TempData["orderAbort"] = "not enough currency!";
                 return RedirectToAction("Index");
             }
-            
-
-            
+                       
         }
     }
 }

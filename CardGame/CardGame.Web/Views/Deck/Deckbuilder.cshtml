@@ -2,7 +2,7 @@
 @{
     ViewBag.Title = "Deckbuilder";
 }
-<!-------------------------------------------------------------------------------------------------------------------------->
+@*<!-------------------------------------------------------------------------------------------------------------------------->
 <!-------------------------------------------------------- COLLECTION ------------------------------------------------------>
 <!-------------------------------------------------------------------------------------------------------------------------->
 <div class="jumbotron" style="margin-top:80px !important;margin-right:10px; margin-left:20px;margin-bottom:5px; padding-left:20px; padding-right:20px; padding-top:10px; padding-bottom:10px">
@@ -23,20 +23,20 @@
                 {
                     if (i > 0 && i % 6 == 0)
                     {
-                    @:</div><div class="row">
+                        @:</div><div class="row">
                     }
-                <div class="col-md-2" style="margin-top:16px;margin-bottom:15px;">
-                    count: @Html.DisplayFor(c => Model.coll[i].Number)
-                    @{
-                        var base64 = Convert.ToBase64String(Model.coll[i].pic);
-                        var imgSrc = String.Format("data:image/png;base64,{0}", base64);
-                    }
-                    <img class="galleryImg img-responsive" src="@imgSrc" />
-                    <input type="hidden" name="idcard" value="@Model.coll[i].IdCard" />
-                    <input type="submit" name="addCard" value="Add" />
-                </div>
-                            }
+                    <div class="col-md-2" style="margin-top:16px;margin-bottom:15px;">
+                        count: @Html.DisplayFor(c => Model.coll[i].Number)
+                        @{
+                            var base64 = Convert.ToBase64String(Model.coll[i].pic);
+                            var imgSrc = String.Format("data:image/png;base64,{0}", base64);
                         }
+                        <img class="galleryImg img-responsive" src="@imgSrc" />
+                        <input type="hidden" name="idcard" value="@Model.coll[i].IdCard" />
+                        <input type="submit" name="addCard" value="Add" />
+                    </div>
+                                }
+                            }
         </div>
     </div>
 </div>
@@ -51,7 +51,7 @@
         <h4>@Model.DeckName<span style="margin-left:380px">@ViewBag.Deckcount / 30 max Cards</span><input style="float:right; margin-top:-12px; color:black;padding-top:10px" type="submit" name="saveToDb" value="Save Deck" /> </h4>
     }
 
-    <div class="container" style="font-size:12px; text-align:center; border:2px solid white; height:350px; overflow-y: scroll;overflow-x:hidden; padding-right:30px; padding-left:35px"">
+    <div class="container" style="font-size:12px; text-align:center; border:2px solid white; height:350px; overflow-y: scroll;overflow-x:hidden; padding-right:30px; padding-left:35px">
         <div class="row">
             @for (int i = 0; i < Model.deck.Count; i++)
             {
@@ -59,7 +59,7 @@
                 {
                     if (i > 0 && i % 6 == 0)
                     {
-                    @:</div><div class="row">
+                        @:</div><div class="row">
                     }
                     <div class="col-md-2" style="margin-top:40px">
                         @{
@@ -72,10 +72,82 @@
                     </div>
                                 }
                             }
+        </div>
+    </div>
+</div>*@
+
+
+<div class="jumbotron" style="margin-top:80px !important; margin-bottom:0px; width:1500px; margin-left:-200px">
+    <h3 style="font-size:32px">Deckbuilder <span class="borderbutton" style="float:right; margin-top:-20px; font-size:12px">@Html.ActionLink("Back", "Index", "User")</span> </h3> 
+    <div class="row">
+
+        <!--Links / Collection-->
+        <div class="col-md-6">
+            <h4>Card Collection</h4>
+
+            <h5 style="color: red">
+                @if (TempData["notEnoughCards"] != null)
+                {
+                    @TempData["notEnoughCards"];
+                }
+            </h5>
+            <div class="container" style="border:2px solid white; height:600px; overflow-y: scroll;overflow-x:hidden; text-align:center">
+                <div class="row">
+                    @for (int i = 0; i < Model.coll.Count; i++)
+            {
+                using (Html.BeginForm("AddCardToDeck", "Deck", FormMethod.Post))
+                {
+                    if (i > 0 && i % 4 == 0)
+                    {
+                                @:</div><div class="row">
+                    }
+                            <div class="col-md-3" style="margin-top:16px;margin-bottom:15px;">
+                                count: @Html.DisplayFor(c => Model.coll[i].Number)
+                                @{
+                                    var base64 = Convert.ToBase64String(Model.coll[i].pic);
+                                    var imgSrc = String.Format("data:image/png;base64,{0}", base64);
+                                }
+                                <img class="galleryImg img-responsive" src="@imgSrc" />
+                                <input type="hidden" name="idcard" value="@Model.coll[i].IdCard" />
+                                <input type="submit" name="addCard" value="Add" />
+                            </div>
+                                        }
+                                    }
                 </div>
             </div>
         </div>
 
-
+        <!--Rechts / Deck-->
+        <div class="col-md-6">
+            @using (Html.BeginForm("SaveDeckToDb", "Deck"))
+            {
+                <h4>@Model.DeckName<span style="margin-left:150px">@ViewBag.Deckcount / 30 max Cards</span><input style="float:right; margin-top:-12px; color:black;padding-top:10px" type="submit" name="saveToDb" value="Save Deck" /> </h4>
+            }
+            <div class="container" style="border:2px solid white; height:600px; overflow-y: scroll;overflow-x:hidden; text-align:center">
+                <div class="row">
+                    @for (int i = 0; i < Model.deck.Count; i++)
+            {
+                using (Html.BeginForm("RemoveCardFromDeck", "Deck", FormMethod.Post))
+                {
+                    if (i > 0 && i % 4 == 0)
+                    {
+                                @:</div><div class="row">
+                    }
+                            <div class="col-md-3" style="margin-top:40px">
+                                @{
+                                    var base64 = Convert.ToBase64String(Model.deck[i].pic);
+                                    var imgSrc = String.Format("data:image/png;base64,{0}", base64);
+                                }
+                                <img class="galleryImg img-responsive" src="@imgSrc" />
+                                <input type="hidden" name="idcard" value="@Model.deck[i].IdCard" />
+                                <input type="submit" name="removeCard" value="Remove" />
+                            </div>
+                                        }
+                                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 

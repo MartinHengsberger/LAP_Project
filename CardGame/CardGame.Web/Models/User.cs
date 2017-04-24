@@ -29,7 +29,7 @@ namespace CardGame.Web.Models
 
         [Required(ErrorMessage = "required!", AllowEmptyStrings = false)]
         [DataType(DataType.EmailAddress, ErrorMessage = "invalid ermailadress")]
-        [System.ComponentModel.DataAnnotations.Compare("Email", ErrorMessage = "email not identical!")]
+        [Compare("Email", ErrorMessage = "email not identical!")]
         [DisplayName("confirmEmail")]
         public string EmailValidation { get; set; }
 
@@ -40,7 +40,7 @@ namespace CardGame.Web.Models
 
         [Required(ErrorMessage = "required!", AllowEmptyStrings = false)]
         [DataType(DataType.Password)]
-        [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "passwords not identical!")]
+        [Compare("Password", ErrorMessage = "passwords not identical!")]
         [DisplayName("confirmPassword")]
         public string PasswordValidation { get; set; }
 

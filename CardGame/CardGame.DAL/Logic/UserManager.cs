@@ -62,5 +62,25 @@ namespace CardGame.DAL.Logic
             return dbUser;
         }
 
+        public static List<vSoldPacks> GetAllSoldPacks()
+        {
+            List<vSoldPacks> SoldPacks = new List<vSoldPacks>();
+            using (var db = new ClonestoneFSEntities())
+            {
+                SoldPacks = db.vSoldPacks.ToList();
+            }
+            return (SoldPacks);
+        }
+
+        public static List<vSoldPacks> GetAllSoldPacksFromUserId(int userId)
+        {
+            List<vSoldPacks> SoldPacks = new List<vSoldPacks>();
+            using (var db = new ClonestoneFSEntities())
+            {
+                SoldPacks = db.vSoldPacks.Where(p => p.fkperson == userId).ToList();
+            }
+            return (SoldPacks);
+        }
+
     }
 }

@@ -113,5 +113,21 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <FunctionImportMapping FunctionImportName="pClearDeckByID" FunctionName="itin21_ClonestoneFSModel.Store.pClearDeckByID" />
+    <EntitySetMapping Name="vSoldPacks">
+      <EntityTypeMapping TypeName="itin21_ClonestoneFSModel.vSoldPacks">
+        <MappingFragment StoreEntitySet="vSoldPacks">
+          <ScalarProperty Name="goldquantity" ColumnName="goldquantity" />
+          <ScalarProperty Name="picturename" ColumnName="picturename" />
+          <ScalarProperty Name="cardquantity" ColumnName="cardquantity" />
+          <ScalarProperty Name="packprice" ColumnName="packprice" />
+          <ScalarProperty Name="packname" ColumnName="packname" />
+          <ScalarProperty Name="idpack" ColumnName="idpack" />
+          <ScalarProperty Name="fkpack" ColumnName="fkpack" />
+          <ScalarProperty Name="fkperson" ColumnName="fkperson" />
+          <ScalarProperty Name="orderdate" ColumnName="orderdate" />
+          <ScalarProperty Name="idorder" ColumnName="idorder" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

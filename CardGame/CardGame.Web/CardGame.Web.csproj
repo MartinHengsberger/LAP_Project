@@ -172,6 +172,7 @@
     <Compile Include="Models\Deck.cs" />
     <Compile Include="Models\Pack.cs" />
     <Compile Include="Models\PackList.cs" />
+    <Compile Include="Models\SoldPack.cs" />
     <Compile Include="Models\Statistic.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -257,6 +258,7 @@
     <Content Include="Views\User\Profile.cshtml" />
     <Content Include="Views\Shared\_Cardcollection.cshtml" />
     <Content Include="Views\User\Cardcollection.cshtml" />
+    <Content Include="Views\User\Statistic.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

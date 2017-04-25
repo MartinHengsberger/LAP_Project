@@ -114,5 +114,14 @@ namespace CardGame.Web.Controllers
 
         }
 
+        public ActionResult Statistic()
+        {
+            
+            //Code für Statistik
+
+
+        return View();
+        }
+
     }
 }

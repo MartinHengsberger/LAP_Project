@@ -93,8 +93,8 @@
           <Property Name="idtype" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="typename" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'itin21_ClonestoneFS.dbo.vCollectionCards' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Während der Generierung sind Fehler aufgetreten:
+Warnung 6002: Für Tabelle/Sicht 'itin21_ClonestoneFS.dbo.vCollectionCards' ist kein Primärschlüssel definiert. Der Schlüssel wurde abgeleitet, und die Definition wurde als schreibgeschützte Tabelle/Sicht erstellt.-->
         <EntityType Name="vCollectionCards">
           <Key>
             <PropertyRef Name="idcard" />
@@ -115,6 +115,26 @@ warning 6002: The table/view 'itin21_ClonestoneFS.dbo.vCollectionCards' does not
           <Property Name="fkorder" Type="int" Nullable="false" />
           <Property Name="idcollectioncard" Type="int" Nullable="false" />
           <Property Name="pic" Type="varbinary(max)" />
+        </EntityType>
+        <!--Während der Generierung sind Fehler aufgetreten:
+Warnung 6002: Für Tabelle/Sicht 'itin21_ClonestoneFS.dbo.vSoldPacks' ist kein Primärschlüssel definiert. Der Schlüssel wurde abgeleitet, und die Definition wurde als schreibgeschützte Tabelle/Sicht erstellt.-->
+        <EntityType Name="vSoldPacks">
+          <Key>
+            <PropertyRef Name="idorder" />
+            <PropertyRef Name="idpack" />
+            <PropertyRef Name="cardquantity" />
+            <PropertyRef Name="goldquantity" />
+          </Key>
+          <Property Name="idorder" Type="int" Nullable="false" />
+          <Property Name="orderdate" Type="datetime" />
+          <Property Name="fkperson" Type="int" />
+          <Property Name="fkpack" Type="int" />
+          <Property Name="idpack" Type="int" Nullable="false" />
+          <Property Name="packname" Type="varchar" MaxLength="50" />
+          <Property Name="packprice" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="cardquantity" Type="int" Nullable="false" />
+          <Property Name="picturename" Type="varchar" MaxLength="50" />
+          <Property Name="goldquantity" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK__deckcolle__fkcol__2EDAF651">
           <End Role="tblcollection" Type="Self.tblcollection" Multiplicity="1" />
@@ -261,6 +281,20 @@ warning 6002: The table/view 'itin21_ClonestoneFS.dbo.vCollectionCards' does not
     [vCollectionCards].[idcollectioncard] AS [idcollectioncard], 
     [vCollectionCards].[pic] AS [pic]
     FROM [dbo].[vCollectionCards] AS [vCollectionCards]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vSoldPacks" EntityType="Self.vSoldPacks" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vSoldPacks].[idorder] AS [idorder], 
+    [vSoldPacks].[orderdate] AS [orderdate], 
+    [vSoldPacks].[fkperson] AS [fkperson], 
+    [vSoldPacks].[fkpack] AS [fkpack], 
+    [vSoldPacks].[idpack] AS [idpack], 
+    [vSoldPacks].[packname] AS [packname], 
+    [vSoldPacks].[packprice] AS [packprice], 
+    [vSoldPacks].[cardquantity] AS [cardquantity], 
+    [vSoldPacks].[picturename] AS [picturename], 
+    [vSoldPacks].[goldquantity] AS [goldquantity]
+    FROM [dbo].[vSoldPacks] AS [vSoldPacks]</DefiningQuery>
           </EntitySet>
           <AssociationSet Name="FK__deckcolle__fkcol__2EDAF651" Association="Self.FK__deckcolle__fkcol__2EDAF651">
             <End Role="tblcollection" EntitySet="tblcollection" />
@@ -552,8 +586,9 @@ warning 6002: The table/view 'itin21_ClonestoneFS.dbo.vCollectionCards' does not
           </AssociationSet>
           <EntitySet Name="vCollectionCards" EntityType="itin21_ClonestoneFSModel.vCollectionCards" />
           <FunctionImport Name="pClearDeckByID">
-            <Parameter Name="DeckId" Mode="In" Type="Int32" />
+          <Parameter Name="DeckId" Mode="In" Type="Int32" />
           </FunctionImport>
+          <EntitySet Name="vSoldPacks" EntityType="itin21_ClonestoneFSModel.vSoldPacks" />
         </EntityContainer>
         <EntityType Name="vCollectionCards">
           <Key>
@@ -575,6 +610,24 @@ warning 6002: The table/view 'itin21_ClonestoneFS.dbo.vCollectionCards' does not
           <Property Name="fkorder" Type="Int32" Nullable="false" />
           <Property Name="idcollectioncard" Type="Int32" Nullable="false" />
           <Property Name="pic" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="vSoldPacks">
+          <Key>
+            <PropertyRef Name="idorder" />
+            <PropertyRef Name="idpack" />
+            <PropertyRef Name="cardquantity" />
+            <PropertyRef Name="goldquantity" />
+          </Key>
+          <Property Name="idorder" Type="Int32" Nullable="false" />
+          <Property Name="orderdate" Type="DateTime" Precision="3" />
+          <Property Name="fkperson" Type="Int32" />
+          <Property Name="fkpack" Type="Int32" />
+          <Property Name="idpack" Type="Int32" Nullable="false" />
+          <Property Name="packname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="packprice" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="cardquantity" Type="Int32" Nullable="false" />
+          <Property Name="picturename" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="goldquantity" Type="Int32" Nullable="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -694,6 +747,22 @@ warning 6002: The table/view 'itin21_ClonestoneFS.dbo.vCollectionCards' does not
             </EntityTypeMapping>
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="pClearDeckByID" FunctionName="itin21_ClonestoneFSModel.Store.pClearDeckByID" />
+          <EntitySetMapping Name="vSoldPacks">
+            <EntityTypeMapping TypeName="itin21_ClonestoneFSModel.vSoldPacks">
+              <MappingFragment StoreEntitySet="vSoldPacks">
+                <ScalarProperty Name="goldquantity" ColumnName="goldquantity" />
+                <ScalarProperty Name="picturename" ColumnName="picturename" />
+                <ScalarProperty Name="cardquantity" ColumnName="cardquantity" />
+                <ScalarProperty Name="packprice" ColumnName="packprice" />
+                <ScalarProperty Name="packname" ColumnName="packname" />
+                <ScalarProperty Name="idpack" ColumnName="idpack" />
+                <ScalarProperty Name="fkpack" ColumnName="fkpack" />
+                <ScalarProperty Name="fkperson" ColumnName="fkperson" />
+                <ScalarProperty Name="orderdate" ColumnName="orderdate" />
+                <ScalarProperty Name="idorder" ColumnName="idorder" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

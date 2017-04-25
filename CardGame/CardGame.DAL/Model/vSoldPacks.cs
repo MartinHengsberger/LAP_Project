@@ -12,18 +12,17 @@ namespace CardGame.DAL.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class tblclass
+    public partial class vSoldPacks
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public tblclass()
-        {
-            this.tblcard = new HashSet<tblcard>();
-        }
-    
-        public int idclass { get; set; }
-        public string @class { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblcard> tblcard { get; set; }
+        public int idorder { get; set; }
+        public Nullable<System.DateTime> orderdate { get; set; }
+        public Nullable<int> fkperson { get; set; }
+        public Nullable<int> fkpack { get; set; }
+        public int idpack { get; set; }
+        public string packname { get; set; }
+        public Nullable<decimal> packprice { get; set; }
+        public int cardquantity { get; set; }
+        public string picturename { get; set; }
+        public int goldquantity { get; set; }
     }
 }

@@ -9,5 +9,6 @@ namespace CardGame.Web.Models
     {
         public string Packname { get; set; }
         public int Count { get; set; }
+        public DateTime DateOfPurchase { get; set; }
     }
 }

@@ -11,13 +11,15 @@ using System.Net;
 using System.Drawing;
 using System.IO;
 using System.Text;
+using System.Web.Helpers;
+using System.Collections;
 
 namespace CardGame.Web.Controllers
 {
     public class UserController : Controller
     {
         // GET: User
-        [Authorize(Roles ="user")]
+        [Authorize(Roles = "user")]
         public ActionResult Index()
         {
             var dbuser = UserManager.GetUserByUserEmail(User.Identity.Name);
@@ -39,7 +41,7 @@ namespace CardGame.Web.Controllers
             user.Firstname = dbuser.firstname;
             user.Lastname = dbuser.lastname;
             user.Gamertag = dbuser.gamertag;
-            
+
             //TODO - Daten für Email und Passwort Änderungen 
 
 
@@ -50,22 +52,22 @@ namespace CardGame.Web.Controllers
         [Authorize(Roles = "user")]
         public ActionResult Profile(User user)
         {
-           
-                if (user.Password != null)
-                {
-                    //Passwort ändern
 
-                    TempData["pchange"] = "Password changed!";
-                    return RedirectToAction("Profile", user.ID);
-                }
+            if (user.Password != null)
+            {
+                //Passwort ändern
 
-                if (user.Email != null)
-                {
-                    //Email ändern
+                TempData["pchange"] = "Password changed!";
+                return RedirectToAction("Profile", user.ID);
+            }
 
-                    TempData["echange"] = "Email changed!";
-                    return RedirectToAction("Profile", user.ID);
-                }
+            if (user.Email != null)
+            {
+                //Email ändern
+
+                TempData["echange"] = "Email changed!";
+                return RedirectToAction("Profile", user.ID);
+            }
             else
             {
                 return RedirectToAction("Profile", user.ID);
@@ -116,12 +118,57 @@ namespace CardGame.Web.Controllers
 
         public ActionResult Statistic()
         {
-            
-            //Code für Statistik
 
+            List<SoldPack> spl = new List<SoldPack>();
+            var dbsoldpacks = ShopManager.GetAllSoldPacksFromUserId(UserManager.GetUserByUserEmail(User.Identity.Name).idperson);
 
-        return View();
+            foreach (var item in dbsoldpacks)
+            {
+                SoldPack sp = new SoldPack();
+                sp.Packname = item.packname;
+                sp.DateOfPurchase = (DateTime)item.orderdate;
+
+            }
+
+            return View(spl);
         }
 
+        public ActionResult CharterColumn()
+
+        {
+            List<SoldPack> spl = new List<SoldPack>();
+            var dbsoldpacks = ShopManager.GetAllSoldPacksFromUserId(UserManager.GetUserByUserEmail(User.Identity.Name).idperson);
+
+            foreach (var item in dbsoldpacks)
+            {
+                int index = spl.FindIndex(i => i.Packname == item.packname);
+
+                if (index >= 0)
+                { spl[index].Count += 1; }
+                else
+                {
+                    SoldPack sp = new SoldPack();
+                    sp.Packname = item.packname;
+                    sp.Count = 1;
+                    spl.Add(sp);
+                }
+            }
+
+            ArrayList xPackName = new ArrayList();
+            ArrayList yCount = new ArrayList();
+            var results = (from c in spl select c);
+            results.ToList().ForEach(rs => xPackName.Add(rs.Packname));
+            results.ToList().ForEach(rs => yCount.Add(rs.Count));
+
+            
+
+            new Chart(width: 600, height: 400, theme: ChartTheme.Blue)
+            .AddTitle("purchased packages")
+            .AddSeries("Default", chartType: "column", xValue: xPackName, yValues: yCount)
+            .Write("bmp");
+
+            return null;
+
+        }
     }
 }

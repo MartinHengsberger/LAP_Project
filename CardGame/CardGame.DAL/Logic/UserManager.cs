@@ -62,7 +62,26 @@ namespace CardGame.DAL.Logic
             return dbUser;
         }
 
-       
+        public static string GetMyCustomTheme3()
+        {
+            return @"
+<Chart BackColor=""Transparent"" BackGradientStyle=""TopBottom"" BorderColor=""0, 0, 0"" 
+   BorderWidth=""2"" BorderlineDashStyle=""Solid"" Palette=""BrightPastel"" 
+   AntiAliasing=""All"">
+              
+   <ChartAreas>
+      <ChartArea Name=""Default"" _Template_=""All""
+         BackColor=""Transparent"" BackSecondaryColor=""Transparent"" 
+         BorderColor=""64, 64, 64, 64"" BorderDashStyle=""Solid"" 
+         ShadowColor=""Transparent"">
+      </ChartArea>
+   </ChartAreas>
+   <Legends>        
+        <Legend _Template_=""All"" BackColor=""Transparent"" Font=""Trebuchet MS, 16pt, style=Bold"" IsTextAutoFit=""False""/>
+   </Legends>
+</Chart>";
+        }
+
 
     }
 }

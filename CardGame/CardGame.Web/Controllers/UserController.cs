@@ -18,6 +18,8 @@ namespace CardGame.Web.Controllers
 {
     public class UserController : Controller
     {
+
+
         // GET: User
         [Authorize(Roles = "user")]
         public ActionResult Index()
@@ -136,7 +138,8 @@ namespace CardGame.Web.Controllers
         public ActionResult CharterColumn()
 
         {
-            List<SoldPack> spl = new List<SoldPack>();
+
+        List<SoldPack> spl = new List<SoldPack>();
             var dbsoldpacks = ShopManager.GetAllSoldPacksFromUserId(UserManager.GetUserByUserEmail(User.Identity.Name).idperson);
 
             foreach (var item in dbsoldpacks)
@@ -160,12 +163,12 @@ namespace CardGame.Web.Controllers
             results.ToList().ForEach(rs => xPackName.Add(rs.Packname));
             results.ToList().ForEach(rs => yCount.Add(rs.Count));
 
-            
-
-            new Chart(width: 600, height: 400, theme: ChartTheme.Blue)
+            new Chart(width: 800, height: 400, theme: UserManager.GetMyCustomTheme3())
             .AddTitle("purchased packages")
             .AddSeries("Default", chartType: "column", xValue: xPackName, yValues: yCount)
-            .Write("bmp");
+            .Write("png");
+
+            
 
             return null;
 

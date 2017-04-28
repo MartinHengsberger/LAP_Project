@@ -327,3 +327,10 @@ table * {
      margin-top:10px;
 }
 
+/*TEST Class*/
+
+.thumbnail {
+    background-color: transparent;
+    border: 0px solid white;
+}
+

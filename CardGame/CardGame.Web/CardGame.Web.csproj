@@ -202,6 +202,9 @@
     <Content Include="img\gold_small.png" />
     <Content Include="img\Head.png" />
     <Content Include="img\paper_background.png" />
+    <Content Include="img\Slider1.png" />
+    <Content Include="img\Slider2.png" />
+    <Content Include="img\Slider3.png" />
     <Content Include="img\th.png" />
     <Content Include="Scripts\ai.0.22.19-build00125.js" />
     <Content Include="Scripts\ai.0.22.19-build00125.min.js" />

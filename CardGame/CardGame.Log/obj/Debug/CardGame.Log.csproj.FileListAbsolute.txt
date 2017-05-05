@@ -15,3 +15,7 @@ C:\Users\Omega Ultima\Documents\GitHub\LAP_Project\CardGame\CardGame.Log\bin\Deb
 C:\Users\Omega Ultima\Documents\GitHub\LAP_Project\CardGame\CardGame.Log\bin\Debug\CardGame.Log.pdb
 C:\Users\Omega Ultima\Documents\GitHub\LAP_Project\CardGame\CardGame.Log\obj\Debug\CardGame.Log.dll
 C:\Users\Omega Ultima\Documents\GitHub\LAP_Project\CardGame\CardGame.Log\obj\Debug\CardGame.Log.pdb
+C:\Users\hengmart\Documents\GitHub\LAP_Project\CardGame\CardGame.Log\bin\Debug\CardGame.Log.dll
+C:\Users\hengmart\Documents\GitHub\LAP_Project\CardGame\CardGame.Log\bin\Debug\CardGame.Log.pdb
+C:\Users\hengmart\Documents\GitHub\LAP_Project\CardGame\CardGame.Log\obj\Debug\CardGame.Log.dll
+C:\Users\hengmart\Documents\GitHub\LAP_Project\CardGame\CardGame.Log\obj\Debug\CardGame.Log.pdb

@@ -55,6 +55,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Logic\AdministrationManager.cs" />
     <Compile Include="Logic\AuthManager.cs" />
     <Compile Include="Logic\CardManager.cs" />
     <Compile Include="Logic\DBInfoManager.cs" />

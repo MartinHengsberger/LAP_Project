@@ -1,0 +1,40 @@
+﻿@model IEnumerable<CardGame.Web.Models.User>
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="jumbotron">
+    <h1>User - Administration</h1>
+
+    <div class="container">
+        @foreach (var item in Model)
+        {               
+                <hr />
+                <div class="row">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => item.ID)
+
+                    <div class="col-md-3">
+                        @Html.DisplayFor(model => item.Firstname)
+                    </div>
+
+                    <div class="col-md-3">
+                        @Html.DisplayFor(model => item.Lastname)
+                    </div>
+
+                    <div class="col-md-3">
+                        @Html.DisplayFor(model => item.Email)
+                    </div>
+
+                    <div class="col-md-2">
+                        @Html.DisplayFor(model => item.Role)
+                    </div>
+
+                    <div class="col-md-1">
+                        @Html.ActionLink("Details", "UserEdit", new { id = item.ID })
+                    </div>
+                </div>
+        }
+    </div>
+
+</div>

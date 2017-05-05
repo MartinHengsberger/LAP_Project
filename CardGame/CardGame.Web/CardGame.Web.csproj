@@ -157,6 +157,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdministrationController.cs" />
     <Compile Include="Controllers\CardController.cs" />
     <Compile Include="Controllers\DeckController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -168,7 +169,6 @@
     <Compile Include="Models\Card.cs" />
     <Compile Include="Models\CardCollection.cs" />
     <Compile Include="Models\CardCollections.cs" />
-    <Compile Include="Models\CardDeck.cs" />
     <Compile Include="Models\Deck.cs" />
     <Compile Include="Models\Pack.cs" />
     <Compile Include="Models\PackList.cs" />
@@ -262,10 +262,12 @@
     <Content Include="Views\Shared\_Cardcollection.cshtml" />
     <Content Include="Views\User\Cardcollection.cshtml" />
     <Content Include="Views\User\Statistic.cshtml" />
+    <Content Include="Views\Administration\Index.cshtml" />
+    <Content Include="Views\Administration\View.cshtml" />
+    <Content Include="Views\Administration\UserEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Administration\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

@@ -77,7 +77,7 @@ namespace CardGame.DAL.Logic
       </ChartArea>
    </ChartAreas>
    <Legends>        
-        <Legend _Template_=""All"" BackColor=""Transparent"" Font=""Trebuchet MS, 16pt, style=Bold"" IsTextAutoFit=""False""/>
+        <Legend _Template_=""All"" BackColor=""Transparent"" Font=""Trebuchet MS, 16pt, style=Bold""  IsTextAutoFit=""False""/>
    </Legends>
 </Chart>";
         }

@@ -122,6 +122,7 @@ namespace CardGame.Web.Controllers
         {
 
             List<SoldPack> spl = new List<SoldPack>();
+            List<SoldPack> splc = new List<SoldPack>();
             var dbsoldpacks = ShopManager.GetAllSoldPacksFromUserId(UserManager.GetUserByUserEmail(User.Identity.Name).idperson);
 
             foreach (var item in dbsoldpacks)
@@ -167,8 +168,6 @@ namespace CardGame.Web.Controllers
             .AddTitle("purchased packages")
             .AddSeries("Default", chartType: "column", xValue: xPackName, yValues: yCount)
             .Write("png");
-
-            
 
             return null;
 

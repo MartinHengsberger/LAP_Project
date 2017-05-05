@@ -97,7 +97,7 @@ namespace CardGame.Web.Controllers
 
                 AuthManager.Register(dbUser);
 
-
+                //TODO - Email Bestätigung einfügen
                 TempData["confRegister"] = "Registration complete!";
                 return RedirectToAction("Login");
             }

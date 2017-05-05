@@ -91,7 +91,6 @@ namespace CardGame.DAL.Logic
                     else
                     {
                         throw new Exception("Wrong pass");
-                        //return false;
                     }
 
                 }

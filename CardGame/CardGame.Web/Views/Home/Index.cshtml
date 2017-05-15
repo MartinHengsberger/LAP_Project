@@ -22,7 +22,12 @@
             <div class="carousel-inner" style="height:230px">
                 @if (User.Identity.Name == "")
                 {
-                    <div class="item active"><a href='@Url.Action("Login", "Account")'><img src='@Url.Content("~/img/Slider1.png")' alt="Slide1" style="width:100%"/></a></div>
+                    <div class="item active">
+                        <a href='@Url.Action("Login", "Account")'>
+                            <img src='@Url.Content("~/img/Slider1.png")' alt="Slide1" style="width:100%"/>
+                        </a>
+                    </div>
+
                     <div class="item"><a href='@Url.Action("Login", "Account")'><img src='@Url.Content("~/img/Slider2.png")' alt="Slide2" style="width:100%"/></a></div>
                     <div class="item"><a href='@Url.Action("Register", "Account")'><img src='@Url.Content("~/img/Slider3.png")' alt="Slide3" style="width:100%"/></a></div>
                 }

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CardGame.DAL.Model;
 using CardGame.Log;
+using WindowsApplication1;
 
 namespace CardGame.DAL.Logic
 {
@@ -44,7 +45,7 @@ namespace CardGame.DAL.Logic
             return ReturnList;
         }
 
-        public static void ExecuteOrder(int personID, int packID)
+        public static void ExecuteOrder(int personID, int packID, string creditCardNumber)
         {          
             using (var db = new ClonestoneFSEntities())
             {
@@ -119,20 +120,28 @@ namespace CardGame.DAL.Logic
                 #region Goldpacks
                 else
                 {
-                    tblperson person = new tblperson();
-                    var updatePerson = (from p in db.tblperson
-                                        where p.idperson == personID
-                                        select p);
-
-                    var goldValue = (from g in db.tblpack
-                                     where g.idpack == packID
-                                     select g.goldquantity).FirstOrDefault();
-
-                    foreach (var value in updatePerson)
+                    if (true)
                     {
-                        value.currencybalance += (int)goldValue;
+                        tblperson person = new tblperson();
+                        var updatePerson = (from p in db.tblperson
+                                            where p.idperson == personID
+                                            select p);
+
+                        var goldValue = (from g in db.tblpack
+                                         where g.idpack == packID
+                                         select g.goldquantity).FirstOrDefault();
+
+                        foreach (var value in updatePerson)
+                        {
+                            value.currencybalance += (int)goldValue;
+                        }
+                        db.SaveChanges();
                     }
-                    db.SaveChanges();
+                    else
+                    {
+                        //was auch immer 
+                    }
+                    
                 }
                 #endregion
             }

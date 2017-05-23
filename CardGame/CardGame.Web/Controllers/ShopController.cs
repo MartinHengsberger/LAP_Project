@@ -7,6 +7,7 @@ using CardGame.DAL.Logic;
 using CardGame.DAL.Model;
 using CardGame.Log;
 using CardGame.Web.Models;
+using WindowsApplication1;
 
 namespace CardGame.Web.Controllers
 {
@@ -86,18 +87,42 @@ namespace CardGame.Web.Controllers
 
         [HttpPost]
         [Authorize(Roles = "user,admin")]
-        public ActionResult Index(Pack pack)
+        public ActionResult Index(Pack pack, string creditCardNumber = "")
         {
             int currencyDifference = UserManager.GetUserByUserEmail(User.Identity.Name).currencybalance - (int)pack.Packprice;
 
             if (currencyDifference >= 0)
             {
-                int userID = UserManager.GetUserByUserEmail(User.Identity.Name).idperson;
-                var pid = pack.IdPack;
-                ShopManager.ExecuteOrder(userID, pid);
+                if (creditCardNumber == "")
+                {
+                    int userID = UserManager.GetUserByUserEmail(User.Identity.Name).idperson;
+                    var pid = pack.IdPack;
+                    ShopManager.ExecuteOrder(userID, pid, creditCardNumber);
 
-                TempData["orderComplete"] = "purchase complete!";
-                return RedirectToAction("Index");
+                    TempData["orderComplete"] = "purchase complete!";
+                    return RedirectToAction("Index");
+                }
+
+                else
+                {
+                    if (CreditCardVerification.IsValidCardNumber(creditCardNumber))
+                    {
+                        int userID = UserManager.GetUserByUserEmail(User.Identity.Name).idperson;
+                        var pid = pack.IdPack;
+                        ShopManager.ExecuteOrder(userID, pid, creditCardNumber);
+
+                        TempData["orderComplete"] = "purchase complete!";
+                        return RedirectToAction("Index");
+                    }
+
+                    else
+                    {
+                        TempData["orderAbort"] = "Creditcard data wrong!";
+                        return RedirectToAction("Index");
+                    }
+                    
+                }
+                
             }
             else
             {

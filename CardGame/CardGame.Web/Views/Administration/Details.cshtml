@@ -1,0 +1,76 @@
+﻿@model CardGame.DAL.Model.tblperson
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="jumbotron" style="margin-bottom:200px">
+    <h2>Details</h2>
+
+    <div>
+        <h4>User ID: @Model.idperson</h4>
+        <hr />
+        <dl class="dl-horizontal" style="font-size:16px">
+            <dt>
+                @Html.DisplayNameFor(model => model.firstname)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.firstname)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.lastname)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.lastname)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.gamertag)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.gamertag)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.currencybalance)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.currencybalance)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.isactive)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.isactive)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.email)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.email)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.userrole)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.userrole)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.idperson }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</div>

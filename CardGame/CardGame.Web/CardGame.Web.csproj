@@ -262,9 +262,10 @@
     <Content Include="Views\Shared\_Cardcollection.cshtml" />
     <Content Include="Views\User\Cardcollection.cshtml" />
     <Content Include="Views\User\Statistic.cshtml" />
+    <Content Include="Views\Administration\Create.cshtml" />
+    <Content Include="Views\Administration\Details.cshtml" />
+    <Content Include="Views\Administration\Edit.cshtml" />
     <Content Include="Views\Administration\Index.cshtml" />
-    <Content Include="Views\Administration\View.cshtml" />
-    <Content Include="Views\Administration\UserEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

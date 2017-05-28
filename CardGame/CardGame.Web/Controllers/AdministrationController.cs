@@ -1,59 +1,89 @@
-﻿using CardGame.DAL.Logic;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using CardGame.Web.Models;
+using CardGame.DAL.Model;
 
 namespace CardGame.Web.Controllers
 {
     public class AdministrationController : Controller
     {
+        private ClonestoneFSEntities db = new ClonestoneFSEntities();
+
+        [Authorize(Roles = "admin")]
         public ActionResult Index()
         {
-            var dbUserlist = AdministrationManager.GetAllUserAdmin();
-            List<User> userlist = new List<User>();
-
-            foreach (var item in dbUserlist)
-            {
-                User us = new User();
-                us.ID = item.idperson;
-                us.Firstname = item.firstname;
-                us.Lastname = item.lastname;
-                us.Gamertag = item.gamertag;
-                us.Email = item.email;
-                us.Role = item.userrole;
-
-                userlist.Add(us);
-            }
-
-            return View(userlist);
+            return View(db.tblperson.ToList());
         }
 
-
-        // GET: Administration
-        public ActionResult UserEdit(int id)
+        [Authorize(Roles = "admin")]
+        public ActionResult Details(int? id)
         {
-            var dbUser = AdministrationManager.GetUserByIdAdmin(id);
-            User us = new User();
-            us.ID = dbUser.idperson;
-            us.Firstname = dbUser.firstname;
-            us.Lastname = dbUser.lastname;
-            us.Gamertag = dbUser.gamertag;
-            us.Email = dbUser.email;
-            us.Role = dbUser.userrole;
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            tblperson tblperson = db.tblperson.Find(id);
+            if (tblperson == null)
+            {
+                return HttpNotFound();
+            }
+            return View(tblperson);
+        }
 
-            return View(us);
+        [Authorize(Roles = "admin")]
+        public ActionResult Create()
+        {
+            return View();
         }
 
         [HttpPost]
-        public ActionResult UserEdit()
+        [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin")]
+        public ActionResult Create([Bind(Include = "idperson,firstname,lastname,gamertag,currencybalance,isactive,email,password,salt,userrole")] tblperson tblperson)
         {
+            if (ModelState.IsValid)
+            {
+                db.tblperson.Add(tblperson);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
 
-
-
-            return RedirectToAction("Index");
+            return View(tblperson);
         }
+
+        [Authorize(Roles = "admin")]
+        public ActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            tblperson tblperson = db.tblperson.Find(id);
+            if (tblperson == null)
+            {
+                return HttpNotFound();
+            }
+            return View(tblperson);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin")]
+        public ActionResult Edit([Bind(Include = "idperson,firstname,lastname,gamertag,currencybalance,isactive,email,password,salt,userrole")] tblperson tblperson)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(tblperson).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(tblperson);
+        }
+
     }
 }

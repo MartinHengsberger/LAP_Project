@@ -48,9 +48,9 @@
                     @if (User.IsInRole("admin"))
                     {
                         <li>@Html.ActionLink("Logout", "Logout", "Account")</li>
-                        <li>@Html.ActionLink("Users", "Index", "User")</li>
-                        <li>@Html.ActionLink("Statistic", "Statistics", "Home")</li>
-                        <li>@Html.ActionLink("Cards", "Overview", "Card")</li>
+                        <li>@Html.ActionLink("UserAdministration", "Index", "Administration")</li>
+                        @*<li>@Html.ActionLink("Statistic", "Statistics", "Home")</li>
+                        <li>@Html.ActionLink("Cards", "Overview", "Card")</li>*@
                     }                    
                 </ul>
             </div>
@@ -88,7 +88,7 @@
                         <div class="cardhand_text"style="padding-top:5px">
                             @{  if (User.IsInRole("admin"))
                                 {
-                                    @Html.ActionLink("Users", "Index", "User", null, new { @class = "handbutton" })
+                                    @Html.ActionLink("Users", "Index", "Administration", null, new { @class = "handbutton" })
                                 }
                                 if (User.IsInRole("user"))
                                 {

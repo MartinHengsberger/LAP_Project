@@ -5,20 +5,42 @@
 }
 
 
-<div class="jumbotron" style="margin-top:100px !important">
+<div class="jumbotron" style="margin-top:100px !important; margin-bottom:200px">
 
     <div>
+        <h3>Statistics of purchased packages</h3>
 
-
-        <div class="container" style="font-size:24px; margin-top:50px">
+        <div class="container" style="font-size:24px; margin-top:50px; margin-bottom:50px; align-items:center">
             <img src="@Url.Action("CharterColumn")" alt="Chart" style="background-color:transparent" />
         </div>
 
 
-        <div class="container" style="font-size:24px; margin-top:50px">
-            <div id="chart_div"></div>
-
+        <div class="container" style="margin-bottom:10px">
+            <div class="row" style="border:1px solid white; font-size:20px; padding-top:10px">
+                <div class="col-md-6">
+                    @Html.DisplayNameFor(c => c.Packname)
+                    @*@Html.Label("Packname", htmlAttributes: new { @class = "col-md-6" })*@
+                </div>
+                <div class="col-md-6">
+                    @Html.DisplayNameFor(c => c.DateOfPurchase)
+                    @*@Html.Label("Date of Purchase", htmlAttributes: new { @class = "col-md-6" })*@
+                </div>
+            </div>
         </div>
+
+        @foreach (var item in Model)
+        {
+            <div class="container">
+                <div class="row" style="border:1px solid white; height:25px; padding-top:5px; font-size:16px">
+                    <div class="col-md-6">
+                        @Html.DisplayFor(p => item.Packname)
+                    </div>
+                    <div class="col-md-6">
+                        @Html.DisplayFor(p => item.DateOfPurchase)
+                    </div>
+                </div>
+            </div>
+        }
 
 
     </div>
@@ -33,30 +55,6 @@
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
 
-      google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(drawChart);
-    function drawChart() {
 
-        // Create the data table.
-        var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Name of Pack');
-        data.addColumn('number', 'Count');
-        data.addRows([
-          ['Test', 3],
-          ['Onions', 1],
-          ['Olives', 1],
-          ['Zucchini', 1],
-          ['Pepperoni', 2]
-        ]);
-
-        // Set chart options
-        var options = {'title':'How Much Pizza I Ate Last Night',
-                       'width':600,
-                       'height':300};
-
-        // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
-        chart.draw(data, options);
-      }
 </script>
 

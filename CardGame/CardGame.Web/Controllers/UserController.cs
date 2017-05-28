@@ -130,7 +130,7 @@ namespace CardGame.Web.Controllers
                 SoldPack sp = new SoldPack();
                 sp.Packname = item.packname;
                 sp.DateOfPurchase = (DateTime)item.orderdate;
-
+                spl.Add(sp);
             }
 
             return View(spl);
@@ -164,7 +164,7 @@ namespace CardGame.Web.Controllers
             results.ToList().ForEach(rs => xPackName.Add(rs.Packname));
             results.ToList().ForEach(rs => yCount.Add(rs.Count));
 
-            new Chart(width: 800, height: 400, theme: UserManager.GetMyCustomTheme3())
+            new Chart(width: 980, height: 400, theme: UserManager.GetMyCustomTheme3())
             .AddTitle("purchased packages")
             .AddSeries("Default", chartType: "column", xValue: xPackName, yValues: yCount)
             .Write("png");

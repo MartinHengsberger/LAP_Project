@@ -9,16 +9,28 @@
 <div class="jumbotron" style="margin-top:100px !important">
 
     <h1> Profile - @Model.Gamertag </h1>
-    
+
     <h2 style="margin-top:50px">Hello! @Model.Firstname @Model.Lastname</h2>
     <div>
         <div class="container" style="font-size:24px; margin-top:50px">
-            <span class="borderbutton"> @Html.ActionLink("Profile changing", "Profile", "User")</span> - 
-            <span class="borderbutton"> @Html.ActionLink("Decks", "Decks", "Deck")</span>
+            <div class="row">
+                <div class="col-md-6">
+                    <span class="borderbutton" > @Html.ActionLink("Profile changing", "Profile", "User")</span>
+                </div>
+                <div class="col-md-6">
+                    <span class="borderbutton"> @Html.ActionLink("Decks", "Decks", "Deck")</span>
+                </div>
+            </div>
         </div>
         <div class="container" style="font-size:24px; margin-top:50px">
-            <span class="borderbutton"> @Html.ActionLink("Cardcollection", "Cardcollection", "User")</span> -
-            <span class="borderbutton"> @Html.ActionLink("Statistic", "Statistic", "User")</span>
+            <div class="row">
+                <div class="col-md-6">
+                    <span class="borderbutton" style="min-width:300px"> @Html.ActionLink("Cardcollection", "Cardcollection", "User")</span>
+                </div>
+                <div class="col-md-6">
+                    <span class="borderbutton"> @Html.ActionLink("Statistic", "Statistic", "User")</span>
+                </div>
+            </div>
         </div>
     </div>
 

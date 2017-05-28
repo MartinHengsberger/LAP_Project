@@ -56,9 +56,18 @@ namespace CardGame.Web.Controllers
             {
                 //Toastr Test
                 //TempData["ErrorMessage"] = "FEHLER!";
+                if (login.isActive == true)
+                {
+                    TempData["confLogin"] = "Username or Password wrong!";
+                    return RedirectToAction("Login", "Account");
+                }
 
-                TempData["confLogin"] = "Username or Password wrong!";
-                return RedirectToAction("Login", "Account");
+                else
+                {
+                    TempData["confLogin"] = "User is not Active, please contact the support!";
+                    return RedirectToAction("Login", "Account");
+                }
+                
             }
            
         }

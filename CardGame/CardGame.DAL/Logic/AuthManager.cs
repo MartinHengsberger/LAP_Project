@@ -84,13 +84,19 @@ namespace CardGame.DAL.Logic
 
                     Log.Writer.LogInfo("HashPass = " + password);
 
-                    if (dbUserPassword == password)
+                    if (dbUserPassword != password)
+                    {
+                        throw new Exception("Wrong pass");
+                    }
+
+                    if (dbUser.isactive == true)
                     {
                         return true;
                     }
+
                     else
                     {
-                        throw new Exception("Wrong pass");
+                        throw new Exception("User is not Active");
                     }
 
                 }

@@ -47,5 +47,7 @@ namespace CardGame.Web.Models
         public string Salt { get; set; }
 
         public string Role { get; set; }
+
+        public bool isActive { get; set; }
     }
 }

@@ -69,9 +69,9 @@
                                 <!--Hidden Field zur Übergabe der PackID + Preis -->
                                 <input type="hidden" name="IdPack" value="@Model.GoldPack.ToList()[i].IdPack" />
                                 <input type="hidden" name="Packprice" value="@Model.GoldPack.ToList()[i].Packprice" />
-                                <input type="button" value="Buy" style="padding-top:10px; width:160px; color:black; font-weight:bold" data-toggle="modal" data-target="#myModal" />
+                                <input type="button" value="Buy" style="padding-top:10px; width:160px; color:black; font-weight:bold" data-toggle="modal" data-target="#@Model.GoldPack.ToList()[i].IdPack" />
 
-                                <div id="myModal" class="modal fade" role="dialog">
+                                <div id="@Model.GoldPack.ToList()[i].IdPack" class="modal fade" role="dialog">
                                     <div class="modal-dialog">
 
                                         <!-- Modal content-->
@@ -82,8 +82,7 @@
                                             </div>
                                             <div class="modal-body" >
                                                 <p>please insert your data, data will be send via https!</p>
-                                                @using (Html.BeginForm())
-                                                {
+                                               
                                                     <div class="form-horizontal">
 
                                                         <div class="form-group">
@@ -99,14 +98,18 @@
                                                             <div class="col-md-8">
                                                                 <input type="text" name="Lastname" value="" class="form-control" pattern="[A-Za-z].{1,}" required 
                                                                        title="Only upper and lower case allowed" style="font-family:Arial" />
+                                                                
                                                             </div>
                                                         </div>
 
                                                         <div class="form-group">
                                                             <label class="control-label col-md-4">Creditcardnumber</label>
                                                             <div class="col-md-8">
+                                                                @*<input type="hidden" name="IdPack" value="@Model.GoldPack.ToList()[i].IdPack" />
+                                                                <input type="hidden" name="Packprice" value="@Model.GoldPack.ToList()[i].Packprice" />*@
                                                                 <input type="text" name="creditCardNumber" value="" class="form-control" pattern="[0-9].{12,20}" required 
                                                                        title="The number must be between 13 and 19 digits long!" style="font-family:Arial" />
+ 
                                                             </div>
                                                         </div>
 
@@ -134,9 +137,6 @@
 
                                                     <input type="submit" name="cgc" value="Complete Gold Charge" style="color:black; padding:10px 5px 0px 5px"  />
                                                     
-
-                                                }
-
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

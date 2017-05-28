@@ -19,3 +19,4 @@ C:\Users\hengmart\Documents\GitHub\LAP_Project\CardGame\CardGame.Log\bin\Debug\C
 C:\Users\hengmart\Documents\GitHub\LAP_Project\CardGame\CardGame.Log\bin\Debug\CardGame.Log.pdb
 C:\Users\hengmart\Documents\GitHub\LAP_Project\CardGame\CardGame.Log\obj\Debug\CardGame.Log.dll
 C:\Users\hengmart\Documents\GitHub\LAP_Project\CardGame\CardGame.Log\obj\Debug\CardGame.Log.pdb
+C:\Users\Omega Ultima\Documents\GitHub\LAP_Project\CardGame\CardGame.Log\obj\Debug\CardGame.Log.csprojResolveAssemblyReference.cache

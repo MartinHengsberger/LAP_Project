@@ -11,6 +11,10 @@ namespace CardGame.DAL.Logic
 {
     public class ShopManager
     {
+        /// <summary>
+        /// Get all Packs
+        /// </summary>
+        /// <returns></returns>
         public static List<tblpack> GetAllPacks()
         {
             List<tblpack> ReturnList = null;
@@ -21,6 +25,10 @@ namespace CardGame.DAL.Logic
             return ReturnList;
         }
 
+        /// <summary>
+        /// Get only Cardpacks
+        /// </summary>
+        /// <returns></returns>
         public static List<tblpack> GetCardPacks()
         {
             List<tblpack> ReturnList = null;
@@ -33,6 +41,10 @@ namespace CardGame.DAL.Logic
             return ReturnList;
         }
 
+        /// <summary>
+        /// Get only Goldpacks
+        /// </summary>
+        /// <returns></returns>
         public static List<tblpack> GetGoldPacks()
         {
             List<tblpack> ReturnList = null;
@@ -45,6 +57,14 @@ namespace CardGame.DAL.Logic
             return ReturnList;
         }
 
+        /// <summary>
+        /// Used to execute and confirm orders (card- and goldorders)
+        /// Cardorder: checks if user has enough currency then generates the amount of cards based on cardquantity
+        /// Goldorder: creditcard payment, creditcardnumber get checkt via luhn algorithm and data will be send via HTTPS to the Credit Card company 
+        /// </summary>
+        /// <param name="personID"></param>
+        /// <param name="packID"></param>
+        /// <param name="creditCardNumber"></param>
         public static void ExecuteOrder(int personID, int packID, string creditCardNumber)
         {          
             using (var db = new ClonestoneFSEntities())
@@ -120,6 +140,7 @@ namespace CardGame.DAL.Logic
                 #region Goldpacks
                 else
                 {
+                    //TODO - ausbessern
                     if (true)
                     {
                         tblperson person = new tblperson();
@@ -147,6 +168,10 @@ namespace CardGame.DAL.Logic
             }
         }
 
+        /// <summary>
+        /// Get all sold Packs
+        /// </summary>
+        /// <returns></returns>
         public static List<vSoldPacks> GetAllSoldPacks()
         {
             List<vSoldPacks> SoldPacks = new List<vSoldPacks>();
@@ -157,6 +182,11 @@ namespace CardGame.DAL.Logic
             return (SoldPacks);
         }
 
+        /// <summary>
+        /// Get all sold Packs based on UserID
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
         public static List<vSoldPacks> GetAllSoldPacksFromUserId(int userId)
         {
             List<vSoldPacks> SoldPacks = new List<vSoldPacks>();

@@ -107,6 +107,7 @@ namespace CardGame.Web.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "user")]
         public ActionResult AddCardToDeck(int idcard)
         {
             CardCollections cc = new CardCollections();
@@ -138,6 +139,7 @@ namespace CardGame.Web.Controllers
         /// <param name="idcard"></param>
         /// <returns></returns>
         [HttpPost]
+        [Authorize(Roles = "user")]
         public ActionResult RemoveCardFromDeck(int idcard)
         {
             CardCollections cc = new CardCollections();
@@ -159,6 +161,7 @@ namespace CardGame.Web.Controllers
         /// Gewählte Karten des Users im zugehöhrigen Deck Speichern
         /// </summary>
         /// <returns></returns>
+        [Authorize(Roles = "user")]
         public ActionResult SaveDeckToDb()
         {
             CardCollections cc = new CardCollections();

@@ -9,7 +9,11 @@ namespace CardGame.DAL.Logic
 {
     public class Helper
     {
-
+        /// <summary>
+        /// Generates SHA512 Hash for password
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
         public static string GenerateHash(string s)
         {
             var bytes = System.Text.Encoding.UTF8.GetBytes(s);
@@ -20,6 +24,10 @@ namespace CardGame.DAL.Logic
             }        
         }
 
+        /// <summary>
+        /// Generates Salt for password
+        /// </summary>
+        /// <returns></returns>
         public static string GenerateSalt()
         {
             var salt = new byte[64];
@@ -29,6 +37,11 @@ namespace CardGame.DAL.Logic
             return GetHexNotation(salt);
         }
 
+        /// <summary>
+        /// Get Hexnotation
+        /// </summary>
+        /// <param name="bytes"></param>
+        /// <returns></returns>
         private static string GetHexNotation(byte[] bytes)
         {
             var hashStringBuilder = new StringBuilder(128);

@@ -13,6 +13,10 @@ namespace CardGame.DAL.Logic
 {
     public class DeckManager
     {
+        /// <summary>
+        /// Get all Decks
+        /// </summary>
+        /// <returns></returns>
         public static List<tbldeck> GetAllDecks()
         {
             List<tbldeck> ReturnDeckList = null;
@@ -23,6 +27,11 @@ namespace CardGame.DAL.Logic
             return ReturnDeckList;
         }
 
+        /// <summary>
+        /// Get Decks based on UserID
+        /// </summary>
+        /// <param name="UserID"></param>
+        /// <returns></returns>
         public static List<tbldeck> GetAllDecksFromUser(int UserID)
         {
             List<tbldeck> ReturnDeckList = null;
@@ -35,6 +44,17 @@ namespace CardGame.DAL.Logic
             return ReturnDeckList;
         }
 
+        /// <summary>
+        /// Get Cardcollection based on UserID and setup Search and Filter parameters for the UserProfile
+        /// </summary>
+        /// <param name="UserID"></param>
+        /// <param name="search"></param>
+        /// <param name="sort"></param>
+        /// <param name="sortdir"></param>
+        /// <param name="skip"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="totalRecords"></param>
+        /// <returns></returns>
         public static List<vCollectionCards> GetAllCollectionCardsProfile(int UserID, string search, string sort, string sortdir, int skip, int pageSize, out int totalRecords)
         {
             using (ClonestoneFSEntities db = new ClonestoneFSEntities())
@@ -59,6 +79,11 @@ namespace CardGame.DAL.Logic
             }
         }
 
+        /// <summary>
+        /// Get Cardcollection based on UserID, used for the Deckbuilder
+        /// </summary>
+        /// <param name="UserID"></param>
+        /// <returns></returns>
         public static List<vCollectionCards> GetAllCollectionCards(int UserID)
         {
            List<vCollectionCards> ReturnCollectionCards = null;
@@ -72,6 +97,11 @@ namespace CardGame.DAL.Logic
             return ReturnCollectionCards;
         }
 
+        /// <summary>
+        /// Get Deckcards based on UserID and DeckID
+        /// </summary>
+        /// <param name="DeckID"></param>
+        /// <returns></returns>
         public static List<tblcollection> GetAllDeckCards(int DeckID)
         {
             List<tblcollection> ReturnDeckCards = null;
@@ -82,6 +112,11 @@ namespace CardGame.DAL.Logic
             return ReturnDeckCards;
         }
 
+        /// <summary>
+        /// Get Deck name based on DeckID, used for the Deckbuilder
+        /// </summary>
+        /// <param name="DeckID"></param>
+        /// <returns></returns>
         public static string GetDecknameById(int DeckID)
         {
             using (var db = new ClonestoneFSEntities())
@@ -94,6 +129,10 @@ namespace CardGame.DAL.Logic
             }
         }
 
+        /// <summary>
+        /// Drop current Deck based on DeckID to save it anew, used for the Deckbuilder
+        /// </summary>
+        /// <param name="deckId"></param>
         public static void DropDeck(int deckId)
         {
 
@@ -104,6 +143,11 @@ namespace CardGame.DAL.Logic
             }
         }
 
+        /// <summary>
+        /// Save current Deck to Database, used for the Deckbuilder
+        /// </summary>
+        /// <param name="deckcardId"></param>
+        /// <param name="deckId"></param>
         public static void SaveDeckToDatabase(int deckcardId, int deckId)
         {
             tblcollection coll = new tblcollection();

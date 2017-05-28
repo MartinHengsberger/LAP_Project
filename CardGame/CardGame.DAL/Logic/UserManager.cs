@@ -11,18 +11,25 @@ namespace CardGame.DAL.Logic
 {
     public class UserManager
     {
+        /// <summary>
+        /// Get all Users
+        /// </summary>
+        /// <returns></returns>
         public static List<tblperson> GetAllUser()
         {
             List<tblperson> ReturnList = null;
             using (var db = new ClonestoneFSEntities())
             {
-                // TODO - Include
-                // .Include(t => t.tabelle) um einen Join zu machen !
                 ReturnList = db.tblperson.ToList();
             }
             return ReturnList;
         }
 
+        /// <summary>
+        /// Get User role based on email adress
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns></returns>
         public static string GetRoleByUserEmail(string email)
         {
 
@@ -39,6 +46,11 @@ namespace CardGame.DAL.Logic
             return role;
         }
 
+        /// <summary>
+        /// get User basedon email adress
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns></returns>
         public static tblperson GetUserByUserEmail(string email)
         {
 
@@ -62,6 +74,10 @@ namespace CardGame.DAL.Logic
             return dbUser;
         }
 
+        /// <summary>
+        /// Theme for Charthelper
+        /// </summary>
+        /// <returns></returns>
         public static string GetMyCustomTheme3()
         {
             return @"

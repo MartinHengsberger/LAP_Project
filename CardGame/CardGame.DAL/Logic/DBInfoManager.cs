@@ -10,6 +10,10 @@ namespace CardGame.DAL.Logic
 {
     public class DBInfoManager
     {
+        /// <summary>
+        /// Get number of Users
+        /// </summary>
+        /// <returns></returns>
         public static int GetNumUsers()
         {
             int numUsers = -1;
@@ -23,6 +27,10 @@ namespace CardGame.DAL.Logic
             return numUsers;
         }
 
+        /// <summary>
+        /// Get number of Cards
+        /// </summary>
+        /// <returns></returns>
         public static int GetNumCards()
         {
             int numCards = -1;
@@ -36,6 +44,10 @@ namespace CardGame.DAL.Logic
             return numCards;
         }
 
+        /// <summary>
+        /// Get Number od Decks
+        /// </summary>
+        /// <returns></returns>
         public static int GetNumDecks()
         {
             int numDecks = -1;

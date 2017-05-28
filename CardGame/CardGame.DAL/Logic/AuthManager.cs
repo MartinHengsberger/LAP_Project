@@ -5,11 +5,21 @@ using System.Text;
 using System.Threading.Tasks;
 using CardGame.DAL.Model;
 using CardGame.Log;
+using System.Net;
+using System.Net.Mail;
+using System.Diagnostics;
 
 namespace CardGame.DAL.Logic
 {
     public class AuthManager
     {
+        /// <summary>
+        /// Whole logic for register,
+        /// Generates Hashed Pass and Salt, generates 3 decks for the User, sends a confirmation Mail to the User
+        /// and saves everything to the Database
+        /// </summary>
+        /// <param name="regUser"></param>
+        /// <returns>bool named register</returns>
         public static bool Register(tblperson regUser)
         {
             try
@@ -49,6 +59,28 @@ namespace CardGame.DAL.Logic
                     db.tbldeck.Add(deck2);
 
                     db.SaveChanges();
+
+                    //TODO - Email Einstellungen korregieren!!!
+                    //try
+                    //{
+                    //    SmtpClient client = new SmtpClient("mail.gmx.net");
+                    //    client.Credentials = new NetworkCredential("clone.stone@gmx.at", "123user!");
+                    //    client.Port = 465;
+                    //    client.EnableSsl = true;
+
+                    //    MailMessage mess = new MailMessage();
+                    //    mess.From = new MailAddress("clone.stone@gmx.at");
+                    //    mess.To.Add($"{regUser.email}");
+                    //    mess.Subject = "Registration confirmation!";
+                    //    mess.Body = "Welcome to Clonestone, thank you for your registration. As gift you got 1000 Gold from us to start. Have fun!";
+
+                    //    client.Send(mess);
+                    //}
+                    //catch (Exception e)
+                    //{
+                    //    Debug.WriteLine(e.Message); 
+                        
+                    //}
                 }
             }
             catch (Exception e)
@@ -60,6 +92,13 @@ namespace CardGame.DAL.Logic
             return true;
         }
 
+        /// <summary>
+        /// Used for the Login to verify if a "User" is qualified.
+        /// It checks Email, password and if the Useraccount is activ.
+        /// </summary>
+        /// <param name="email"></param>
+        /// <param name="password"></param>
+        /// <returns>bool AuthUser</returns>
         public static bool AuthUser(string email, string password)
         {
             try
@@ -107,6 +146,11 @@ namespace CardGame.DAL.Logic
             }
         }
 
+        /// <summary>
+        /// Used for Registration to check if the used Email is allready in use.
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns>bool CheckIfEmailIsUnique</returns>
         public static bool CheckIfEmailIsUnique(string email)
         {
             tblperson pers = new tblperson();

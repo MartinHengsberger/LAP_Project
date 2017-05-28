@@ -11,6 +11,9 @@ namespace CardGame.DAL.Logic
 {
     public class CardManager
     {
+        /// <summary>
+        /// Get All CardTypes
+        /// </summary>
         public static readonly Dictionary<int, string> CardTypes;
 
         static CardManager()
@@ -31,6 +34,10 @@ namespace CardGame.DAL.Logic
             CardTypes.Add(0, "n/a");
         }
 
+        /// <summary>
+        /// Get All Cards
+        /// </summary>
+        /// <returns></returns>
         public static List<tblcard> GetAllCards()
         {
             List<tblcard> ReturnList = null;
@@ -43,7 +50,11 @@ namespace CardGame.DAL.Logic
 
         }
 
-        //Theoretisch überflüssig
+        /// <summary>
+        /// Get Card by ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public static string GetCardTypeById(int? id)
         {
             string TypeName = "n/a";
@@ -55,6 +66,11 @@ namespace CardGame.DAL.Logic
             return TypeName;
         }
 
+        /// <summary>
+        /// Get Card by ID 2.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public static tblcard GetCardById(int id)
         {
             tblcard card = null;

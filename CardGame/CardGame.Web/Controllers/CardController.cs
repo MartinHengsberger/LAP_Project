@@ -13,6 +13,7 @@ namespace CardGame.Web.Controllers
     public class CardController : Controller
     {
         // GET: Card
+        [Authorize(Roles = "admin")]
         public ActionResult Overview()
         {
             List<Card> CardList = new List<Card>();
@@ -37,6 +38,7 @@ namespace CardGame.Web.Controllers
             return View(CardList);
         }
 
+        [Authorize(Roles = "admin")]
         public ActionResult Details(int id)
         {
             tblcard dbcard = null;

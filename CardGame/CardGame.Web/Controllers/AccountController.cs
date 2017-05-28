@@ -13,8 +13,8 @@ namespace CardGame.Web.Controllers
 {
     public class AccountController : Controller
     {
-        // GET: Account
         [HttpGet]
+        [AllowAnonymous]
         public ActionResult Login()
         {
             return View();
@@ -106,7 +106,6 @@ namespace CardGame.Web.Controllers
 
                 AuthManager.Register(dbUser);
 
-                //TODO - Email Bestätigung einfügen
                 TempData["confRegister"] = "Registration complete!";
                 return RedirectToAction("Login");
             }

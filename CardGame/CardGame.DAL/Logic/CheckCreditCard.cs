@@ -11,11 +11,21 @@ namespace WindowsApplication1
 {
     public static class CreditCardVerification
     {
+        /// <summary>
+        /// To make sure the cardNumber comes in the correct format
+        /// </summary>
+        /// <param name="cardNumber"></param>
+        /// <returns></returns>
         public static bool IsValidCardNumber(int cardNumber)
         {
             return IsValidCardNumber(cardNumber.ToString());
         }
 
+        /// <summary>
+        /// Used for the Shop to verify if a Creditcardnumber is valid or not
+        /// </summary>
+        /// <param name="cardNumber"></param>
+        /// <returns>bool IsValidCardNumber</returns>
         public static bool IsValidCardNumber(string cardNumber)
         {
             cardNumber = cardNumber.Replace(" ", "");

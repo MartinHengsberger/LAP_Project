@@ -77,6 +77,7 @@ namespace CardGame.Web.Controllers
 
         }
 
+        [Authorize(Roles = "user")]
         public ActionResult Cardcollection(int page = 1, string sort = "cardname", string sortdir = "asc", string search = "")
         {
             int pageSize = 10;
@@ -118,6 +119,7 @@ namespace CardGame.Web.Controllers
 
         }
 
+        [Authorize(Roles = "user")]
         public ActionResult Statistic()
         {
 
@@ -136,6 +138,7 @@ namespace CardGame.Web.Controllers
             return View(spl);
         }
 
+        [Authorize(Roles = "user")]
         public ActionResult CharterColumn()
 
         {

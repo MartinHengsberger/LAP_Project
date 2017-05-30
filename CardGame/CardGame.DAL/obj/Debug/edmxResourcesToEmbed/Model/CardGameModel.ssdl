@@ -80,6 +80,11 @@
     <Property Name="password" Type="char" MaxLength="128" />
     <Property Name="salt" Type="char" MaxLength="128" />
     <Property Name="userrole" Type="varchar" MaxLength="20" />
+    <Property Name="street" Type="varchar" MaxLength="50" />
+    <Property Name="additions" Type="varchar" MaxLength="20" />
+    <Property Name="zipcode" Type="varchar" MaxLength="10" />
+    <Property Name="city" Type="varchar" MaxLength="50" />
+    <Property Name="country" Type="varchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="tbltype">
     <Key>

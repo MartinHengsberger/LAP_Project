@@ -68,6 +68,11 @@
     <EntitySetMapping Name="tblperson">
       <EntityTypeMapping TypeName="itin21_ClonestoneFSModel.tblperson">
         <MappingFragment StoreEntitySet="tblperson">
+          <ScalarProperty Name="country" ColumnName="country" />
+          <ScalarProperty Name="city" ColumnName="city" />
+          <ScalarProperty Name="zipcode" ColumnName="zipcode" />
+          <ScalarProperty Name="additions" ColumnName="additions" />
+          <ScalarProperty Name="street" ColumnName="street" />
           <ScalarProperty Name="idperson" ColumnName="idperson" />
           <ScalarProperty Name="firstname" ColumnName="firstname" />
           <ScalarProperty Name="lastname" ColumnName="lastname" />

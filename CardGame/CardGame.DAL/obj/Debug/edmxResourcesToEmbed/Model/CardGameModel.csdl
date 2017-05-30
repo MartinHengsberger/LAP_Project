@@ -89,6 +89,11 @@
     <NavigationProperty Name="tblcollection" Relationship="Self.FK__tblcollec__fkper__29221CFB" FromRole="tblperson" ToRole="tblcollection" />
     <NavigationProperty Name="tbldeck" Relationship="Self.FK__tbldeck__fkperso__1DE57479" FromRole="tblperson" ToRole="tbldeck" />
     <NavigationProperty Name="tblorder" Relationship="Self.FK__tblorder__fkpers__0A9D95DB" FromRole="tblperson" ToRole="tblorder" />
+    <Property Name="street" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="additions" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="zipcode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="city" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="tbltype">
     <Key>

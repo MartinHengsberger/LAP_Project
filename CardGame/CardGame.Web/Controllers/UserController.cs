@@ -13,12 +13,13 @@ using System.IO;
 using System.Text;
 using System.Web.Helpers;
 using System.Collections;
+using System.Data.Entity;
 
 namespace CardGame.Web.Controllers
 {
     public class UserController : Controller
     {
-
+        private ClonestoneFSEntities db = new ClonestoneFSEntities();
 
         // GET: User
         [Authorize(Roles = "user")]
@@ -76,6 +77,38 @@ namespace CardGame.Web.Controllers
             }
 
         }
+
+        [Authorize(Roles = "user")]
+        public ActionResult Edit()
+        {
+            int? id = UserManager.GetUserByUserEmail(User.Identity.Name).idperson;
+
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            tblperson tblperson = db.tblperson.Find(id);
+            if (tblperson == null)
+            {
+                return HttpNotFound();
+            }
+            return View(tblperson);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize(Roles = "user")]
+        public ActionResult Edit([Bind(Include = "idperson,firstname,lastname,gamertag,currencybalance,isactive,email,password,salt,userrole,street,additions,zipcode,city,country")] tblperson tblperson)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(tblperson).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(tblperson);
+        }
+
 
         [Authorize(Roles = "user")]
         public ActionResult Cardcollection(int page = 1, string sort = "cardname", string sortdir = "asc", string search = "")

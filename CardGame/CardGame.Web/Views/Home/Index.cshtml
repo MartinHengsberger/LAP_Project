@@ -19,6 +19,9 @@
                 <li data-target="#myCarousel" data-slide-to="2"></li>
             </ol>
             <!-- Wrapper for slides -->
+            @{var exchangeRate = CardGame.DAL.Logic.ShopManager.GetGoldPacks()[1].goldquantity / @CardGame.DAL.Logic.ShopManager.GetGoldPacks()[1].packprice; }
+
+            <h3 style="margin-left:50px; margin-top:-20px; text-shadow:3px 3px 3px gold">Current gold exchange rate: 1 to @exchangeRate ! </h3>
             <div class="carousel-inner" style="height:230px">
                 @if (User.Identity.Name == "")
                 {
@@ -34,9 +37,20 @@
 
                 @if (User.IsInRole("user"))
                 {
-                    <div class="item active"><a href='@Url.Action("Index", "Shop")'><img src='@Url.Content("~/img/Slider1.png")' alt="Slide1" style="width:100%" /></a></div>
+                    
+
+                    <div class="item active">
+                        <a href='@Url.Action("Index", "Shop")'>
+                            <img src='@Url.Content("~/img/Slider1.png")' alt="Slide1" style="width:100%" />
+                            @*<div class="carousel-caption" style="margin-top:50px">
+                                <h6 style="margin-top:200px">Current exchange rate: 1 to @exchangeRate </h6>
+                            </div>*@
+                        </a>
+                    </div>
+                    
                     <div class="item"><a href='@Url.Action("Index", "User")'><img src='@Url.Content("~/img/Slider2.png")' alt="Slide2" style="width:100%" /></a></div>
                     <div class="item"><a href='@Url.Action("Index", "User")'><img src='@Url.Content("~/img/Slider3.png")' alt="Slide3" style="width:100%" /></a></div>
+
                 }
             </div>
         </div>

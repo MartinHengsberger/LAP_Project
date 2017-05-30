@@ -35,6 +35,49 @@
                 </div>
             </div>
 
+            <!--Erweiterung-->
+            <div class="form-group">
+                @Html.LabelFor(u => u.Street, htmlAttributes: new { @class = "control-label col-md-3" })
+                <div class="col-md-7">
+                    @Html.EditorFor(u => u.Street, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(u => u.Street, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(u => u.Additions, htmlAttributes: new { @class = "control-label col-md-3" })
+                <div class="col-md-7">
+                    @Html.EditorFor(u => u.Additions, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(u => u.Additions, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(u => u.Zipcode, htmlAttributes: new { @class = "control-label col-md-3" })
+                <div class="col-md-7">
+                    @Html.EditorFor(u => u.Zipcode, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(u => u.Zipcode, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(u => u.City, htmlAttributes: new { @class = "control-label col-md-3" })
+                <div class="col-md-7">
+                    @Html.EditorFor(u => u.City, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(u => u.City, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(u => u.Country, htmlAttributes: new { @class = "control-label col-md-3" })
+                <div class="col-md-7">
+                    @Html.EditorFor(u => u.Country, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(u => u.Country, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <!--Erweiterung Ende-->
+
             <div class="form-group">
                 @Html.LabelFor(u => u.Gamertag, htmlAttributes: new { @class = "control-label col-md-3" })
                 <div class="col-md-7">

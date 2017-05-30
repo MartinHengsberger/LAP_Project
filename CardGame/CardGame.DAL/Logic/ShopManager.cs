@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 using CardGame.DAL.Model;
 using CardGame.Log;
 using WindowsApplication1;
+using System.Net.Mail;
+using System.Net;
+using System.Diagnostics;
 
 namespace CardGame.DAL.Logic
 {
@@ -66,7 +69,7 @@ namespace CardGame.DAL.Logic
         /// <param name="packID"></param>
         /// <param name="creditCardNumber"></param>
         public static void ExecuteOrder(int personID, int packID, string creditCardNumber)
-        {          
+        {
             using (var db = new ClonestoneFSEntities())
             {
                 tblorder order = new tblorder();
@@ -80,8 +83,8 @@ namespace CardGame.DAL.Logic
                 db.SaveChanges();
 
                 int orderID = (from p in db.tblorder
-                                orderby p.idorder descending
-                                select p.idorder).FirstOrDefault();
+                               orderby p.idorder descending
+                               select p.idorder).FirstOrDefault();
 
                 int cardq = (from q in db.tblpack
                              where q.idpack == packID
@@ -140,32 +143,71 @@ namespace CardGame.DAL.Logic
                 #region Goldpacks
                 else
                 {
-                    //TODO - ausbessern
-                    if (true)
+                    tblperson person = new tblperson();
+                    var updatePerson = (from p in db.tblperson
+                                        where p.idperson == personID
+                                        select p);
+
+                    var goldValue = (from g in db.tblpack
+                                     where g.idpack == packID
+                                     select g.goldquantity).FirstOrDefault();
+
+                    foreach (var value in updatePerson)
                     {
-                        tblperson person = new tblperson();
-                        var updatePerson = (from p in db.tblperson
+                        value.currencybalance += (int)goldValue;
+                    }
+                    db.SaveChanges();
+
+                    //TODO - Email Einstellungen Rechnung!!!
+                    try
+                    {
+
+                        var updatePersonvar = (from p in db.tblperson
                                             where p.idperson == personID
-                                            select p);
+                                            select p).FirstOrDefault();
 
-                        var goldValue = (from g in db.tblpack
-                                         where g.idpack == packID
-                                         select g.goldquantity).FirstOrDefault();
+                        var pack = (from q in db.tblpack
+                                   where q.idpack == packID
+                                   select q).FirstOrDefault();
 
-                        foreach (var value in updatePerson)
-                        {
-                            value.currencybalance += (int)goldValue;
-                        }
-                        db.SaveChanges();
+                        SmtpClient client = new SmtpClient("srv08.itccn.loc");
+                        client.Credentials = new NetworkCredential("martin.hengsberger@qualifizierung.at", "nautilus200982");
+                        client.Port = 25;
+                        client.EnableSsl = false;
+
+                        MailMessage mess = new MailMessage();
+                        mess.IsBodyHtml = true;
+
+
+                        mess.From = new MailAddress("martin.hengsberger@qualifizierung.at");
+                        mess.To.Add(new MailAddress($"{updatePersonvar.email}"));
+                        //mess.To.Add(new MailAddress("martin.hengsberger@qualifizierung.at"));
+
+                        
+                        mess.Subject = "purchase confirmation!";
+                        mess.Body = $"<p style='font-size:20px'>Thank you for your purchase! </br >" + 
+                                    $"<p><b>bill number:</b> {orderID}</p>" +
+                                    $"<p><b>paid:</b> {pack.packprice} € (including 20% ​​tax)</p>" +
+                                    $"<p><b>date of purchase:</b> {order.orderdate}</p> </br >" +
+                                    $"<p><b>purchased package:</b> {pack.packname}</p>" + 
+                                    $"<p><b>goldquantity:</b> {goldValue}</p> </br>" +
+                                    $"<p>We wish you a lot of fun!</p>" +
+                                    "<p><b>MTP-Gmbh.</b><br/ > Simmeringer Hauptstrasse XX<br/>1030 Wien<br/> UID:78946513</p>";
+                                    
+
+                        client.Send(mess);
                     }
-                    else
+                    catch (Exception e)
                     {
-                        //was auch immer 
+                        Debug.WriteLine(e.Message);
+
                     }
-                    
+
                 }
-                #endregion
+
             }
+            #endregion
+
         }
 
         /// <summary>

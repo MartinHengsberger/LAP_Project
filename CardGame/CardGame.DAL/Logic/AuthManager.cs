@@ -78,8 +78,8 @@ namespace CardGame.DAL.Logic
                     //}
                     //catch (Exception e)
                     //{
-                    //    Debug.WriteLine(e.Message); 
-                        
+                    //    Debug.WriteLine(e.Message);
+
                     //}
                 }
             }

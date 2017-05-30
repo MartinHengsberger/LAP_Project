@@ -60,27 +60,28 @@ namespace CardGame.DAL.Logic
 
                     db.SaveChanges();
 
-                    //TODO - Email Einstellungen korregieren!!!
-                    //try
-                    //{
-                    //    SmtpClient client = new SmtpClient("mail.gmx.net");
-                    //    client.Credentials = new NetworkCredential("clone.stone@gmx.at", "123user!");
-                    //    client.Port = 465;
-                    //    client.EnableSsl = true;
+                    try
+                    {
+                        SmtpClient client = new SmtpClient("srv08.itccn.loc");
+                        client.Credentials = new NetworkCredential("martin.hengsberger@qualifizierung.at", "123user!!");
+                        client.Port = 25;
+                        client.EnableSsl = false;
 
-                    //    MailMessage mess = new MailMessage();
-                    //    mess.From = new MailAddress("clone.stone@gmx.at");
-                    //    mess.To.Add($"{regUser.email}");
-                    //    mess.Subject = "Registration confirmation!";
-                    //    mess.Body = "Welcome to Clonestone, thank you for your registration. As gift you got 1000 Gold from us to start. Have fun!";
+                        MailMessage mess = new MailMessage();
+                        mess.IsBodyHtml = true;
 
-                    //    client.Send(mess);
-                    //}
-                    //catch (Exception e)
-                    //{
-                    //    Debug.WriteLine(e.Message);
+                        mess.From = new MailAddress("martin.hengsberger@qualifizierung.at");
+                        mess.To.Add( new MailAddress($"{regUser.email}"));
+                        mess.Subject = "Registration confirmation!";
+                        mess.Body = "Welcome to Clonestone, thank you for your registration. As gift you got 1000 Gold from us to start. Have fun!";
 
-                    //}
+                        client.Send(mess);
+                    }
+                    catch (Exception e)
+                    {
+                        Debug.WriteLine(e.Message);
+
+                    }
                 }
             }
             catch (Exception e)

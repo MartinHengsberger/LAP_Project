@@ -171,7 +171,7 @@ namespace CardGame.DAL.Logic
                                    select q).FirstOrDefault();
 
                         SmtpClient client = new SmtpClient("srv08.itccn.loc");
-                        client.Credentials = new NetworkCredential("martin.hengsberger@qualifizierung.at", "nautilus200982");
+                        client.Credentials = new NetworkCredential("martin.hengsberger@qualifizierung.at", "123user!!");
                         client.Port = 25;
                         client.EnableSsl = false;
 

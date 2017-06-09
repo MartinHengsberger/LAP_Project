@@ -74,7 +74,7 @@ namespace CardGame.Web.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "admin")]
-        public ActionResult Edit([Bind(Include = "idperson,firstname,lastname,gamertag,currencybalance,isactive,email,password,salt,userrole")] tblperson tblperson)
+        public ActionResult Edit([Bind(Include = "idperson,firstname,lastname,gamertag,currencybalance,isactive,email,password,salt,userrole,street,additions,zipcode,city,country")] tblperson tblperson)
         {
             if (ModelState.IsValid)
             {

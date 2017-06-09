@@ -14,6 +14,9 @@ using System.Text;
 using System.Web.Helpers;
 using System.Collections;
 using System.Data.Entity;
+using iTextSharp.text.pdf;
+using iTextSharp.text;
+
 
 namespace CardGame.Web.Controllers
 {
@@ -107,6 +110,38 @@ namespace CardGame.Web.Controllers
                 return RedirectToAction("Index");
             }
             return View(tblperson);
+        }
+
+        public ActionResult EditPassword()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize(Roles = "user")]
+        public ActionResult EditPassword(string password)
+        {
+            tblperson changePW = new tblperson();
+            int idUser = UserManager.GetUserByUserEmail(User.Identity.Name).idperson;
+
+            changePW = (from a in db.tblperson
+                        where a.idperson == idUser
+                        select a).FirstOrDefault();
+
+
+            //Salt erzeugen
+            string salt = Helper.GenerateSalt();
+
+            //Passwort Hashen
+            string hashedAndSaltedPassword = Helper.GenerateHash(password + salt);
+
+            changePW.password = hashedAndSaltedPassword;
+            changePW.salt = salt;
+
+            db.SaveChanges();
+
+            return RedirectToAction("Index");
         }
 
 
@@ -208,5 +243,123 @@ namespace CardGame.Web.Controllers
             return null;
 
         }
+
+        public FileStreamResult pdf2()
+        {
+            Document document = new Document();
+            MemoryStream stream = new MemoryStream();
+
+            try
+            {
+                PdfWriter pdfWriter = PdfWriter.GetInstance(document, stream);
+                pdfWriter.CloseStream = false;
+
+                //ANFANG PDF BAU
+
+                Chunk c1 = new Chunk("Ich bin das 1. chunk");
+                Chunk c2 = new Chunk("Ich bin das 2. chunk");
+
+                Paragraph para = new Paragraph();
+                para.Add(c1);
+                para.Add(c2);
+
+
+                document.Open();
+                document.Add(new Paragraph("Hello World"));
+                document.Add(para);
+
+
+                //ENDE PDF BAU
+            }
+            catch (DocumentException de)
+            {
+                Console.Error.WriteLine(de.Message);
+            }
+            catch (IOException ioe)
+            {
+                Console.Error.WriteLine(ioe.Message);
+            }
+
+            document.Close();
+
+            stream.Flush(); //Always catches me out
+            stream.Position = 0; //Not sure if this is required
+
+            return File(stream, "application/pdf", "DownloadName.pdf");
+        }
+
+        public FileStreamResult pdf3()
+        {
+            //TODO - PDF DESIGNEN!!!
+
+            Document document = new Document();
+            PdfPTable table = new PdfPTable(4);
+
+            iTextSharp.text.Image logo = iTextSharp.text.Image.GetInstance("C:/Users/hengmart/Documents/GitHub/LAP_Project/CardGame/CardGame.Web/img/CS_Logo.png");
+            logo.WidthPercentage = 30;
+            
+
+            MemoryStream stream = new MemoryStream();
+            var usercards = DeckManager.GetAllCollectionCards(UserManager.GetUserByUserEmail(User.Identity.Name).idperson);
+
+            //Sortieren einer vorhandenen Liste nach Namen ( in diesem Fall -> "cardname" ) 
+            usercards.Sort(delegate (vCollectionCards x, vCollectionCards y)
+            {
+                if (x.cardname == null && y.cardname == null) return 0;
+                else if (x.cardname == null) return -1;
+                else if (y.cardname == null) return 1;
+                else return x.cardname.CompareTo(y.cardname);
+            });
+
+            try
+            {
+                PdfWriter pdfWriter = PdfWriter.GetInstance(document, stream);
+                pdfWriter.CloseStream = false;
+
+                //ANFANG PDF BAU
+
+                document.Open();
+
+                document.Add(logo);
+
+                foreach (var item in usercards)
+                {
+                    document.Add(new Paragraph($"Cardname: {item.cardname}\t\t Attack: {item.attack}\t Life:{item.life}\t Mana: {item.mana}"));
+                }
+
+                table.AddCell($"CARDNAME");
+                table.AddCell($"ATTACK");
+                table.AddCell($"LIFE");
+                table.AddCell($"MANA");
+
+                foreach (var item in usercards)
+                {
+                    table.AddCell($"{item.cardname}");
+                    table.AddCell($"{item.attack}");
+                    table.AddCell($"{item.life}");
+                    table.AddCell($"{item.mana}");
+                }
+
+                document.Add(table);
+
+                //ENDE PDF BAU
+            }
+            catch (DocumentException de)
+            {
+                Console.Error.WriteLine(de.Message);
+            }
+            catch (IOException ioe)
+            {
+                Console.Error.WriteLine(ioe.Message);
+            }
+
+            document.Close();
+
+            stream.Flush(); //Always catches me out
+            stream.Position = 0; //Not sure if this is required
+
+            return File(stream, "application/pdf", "DownloadName.pdf");
+        }
+
     }
 }

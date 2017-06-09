@@ -366,3 +366,5 @@ C:\Users\hengmart\Documents\GitHub\LAP_Project\CardGame\CardGame.Web\obj\Debug\C
 C:\Users\hengmart\Documents\GitHub\LAP_Project\CardGame\CardGame.Web\obj\Debug\CardGame.Web.pdb
 C:\Users\Omega Ultima\Documents\GitHub\LAP_Project\CardGame\CardGame.Web\bin\System.Linq.Dynamic.dll
 C:\Users\hengmart\Documents\GitHub\LAP_Project\CardGame\CardGame.Web\bin\System.Linq.Dynamic.dll
+C:\Users\hengmart\Documents\GitHub\LAP_Project\CardGame\CardGame.Web\bin\itextsharp.dll
+C:\Users\hengmart\Documents\GitHub\LAP_Project\CardGame\CardGame.Web\bin\itextsharp.xml

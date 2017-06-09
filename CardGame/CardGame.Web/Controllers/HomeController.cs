@@ -13,12 +13,12 @@ namespace CardGame.Web.Controllers
         [AllowAnonymous]
         public ActionResult Index()
         {
-            if (User.Identity.Name != "")
-            {
-                ViewBag.Firstname = UserManager.GetUserByUserEmail(User.Identity.Name).firstname;
-                ViewBag.Lastname = UserManager.GetUserByUserEmail(User.Identity.Name).lastname;
-                ViewBag.Gamertag = UserManager.GetUserByUserEmail(User.Identity.Name).gamertag;
-            }
+            //if (User.Identity.Name != "")
+            //{
+            //    ViewBag.Firstname = UserManager.GetUserByUserEmail(User.Identity.Name).firstname;
+            //    ViewBag.Lastname = UserManager.GetUserByUserEmail(User.Identity.Name).lastname;
+            //    ViewBag.Gamertag = UserManager.GetUserByUserEmail(User.Identity.Name).gamertag;
+            //}
 
             //Eigentlich von DAL auf Viewmodel mappen und View das Viewmodel mitgeben
 

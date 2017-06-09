@@ -5,7 +5,7 @@
 }
 
 <div class="jumbotron" style="margin-bottom:200px">
-    <h2>Edit</h2>
+    <h2>Edit Profile</h2>
 
     @using (Html.BeginForm())
     {
@@ -142,9 +142,12 @@
         </div>
     }
 
-    <div>
+    <div style="margin-top:50px">
         @*@Html.ActionLink("Back", "Index")*@
-        <h4> <span class="borderbutton" style="text-align:left">@Html.ActionLink("Back", "Index")</span></h4>
+        <h4> 
+            <span class="borderbutton" style="text-align:left">@Html.ActionLink("Back", "Index")</span>
+            <span class="borderbutton" style="text-align:left">@Html.ActionLink("Change Password", "EditPassword")</span>
+        </h4>
     </div>
 
 </div>

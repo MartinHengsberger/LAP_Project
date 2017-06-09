@@ -62,11 +62,11 @@ namespace CardGame.Web.Models
         public string Zipcode { get; set; }
 
         [Required(ErrorMessage = "required!", AllowEmptyStrings = false)]
-        [RegularExpression(@"^[a-zA-Z--]+$", ErrorMessage = "only upper and lowercase letters allowed")]
+        [RegularExpression(@"^[a-zA-Z --]+$", ErrorMessage = "only upper and lowercase letters allowed")]
         public string City { get; set; }
 
         [Required(ErrorMessage = "required!", AllowEmptyStrings = false)]
-        [RegularExpression(@"^[a-zA-Z_äÄöÖüÜß]+$", ErrorMessage = "only upper and lowercase letters allowed")]
+        [RegularExpression(@"^[a-zA-Z_äÄöÖüÜß --]+$", ErrorMessage = "only upper and lowercase letters allowed")]
         public string Country { get; set; }
     }
 }

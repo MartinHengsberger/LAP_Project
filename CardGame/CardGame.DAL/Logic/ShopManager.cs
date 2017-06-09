@@ -158,50 +158,50 @@ namespace CardGame.DAL.Logic
                     }
                     db.SaveChanges();
 
-                    //TODO - Email Einstellungen Rechnung!!!
-                    try
-                    {
+                    //TODO - COMMENT IN - Email Einstellungen Rechnung!!!
+                    //try
+                    //{
 
-                        var updatePersonvar = (from p in db.tblperson
-                                            where p.idperson == personID
-                                            select p).FirstOrDefault();
+                    //    var updatePersonvar = (from p in db.tblperson
+                    //                        where p.idperson == personID
+                    //                        select p).FirstOrDefault();
 
-                        var pack = (from q in db.tblpack
-                                   where q.idpack == packID
-                                   select q).FirstOrDefault();
+                    //    var pack = (from q in db.tblpack
+                    //               where q.idpack == packID
+                    //               select q).FirstOrDefault();
 
-                        SmtpClient client = new SmtpClient("srv08.itccn.loc");
-                        client.Credentials = new NetworkCredential("martin.hengsberger@qualifizierung.at", "123user!!");
-                        client.Port = 25;
-                        client.EnableSsl = false;
+                    //    SmtpClient client = new SmtpClient("srv08.itccn.loc");
+                    //    client.Credentials = new NetworkCredential("martin.hengsberger@qualifizierung.at", "123user!!");
+                    //    client.Port = 25;
+                    //    client.EnableSsl = false;
 
-                        MailMessage mess = new MailMessage();
-                        mess.IsBodyHtml = true;
+                    //    MailMessage mess = new MailMessage();
+                    //    mess.IsBodyHtml = true;
 
 
-                        mess.From = new MailAddress("martin.hengsberger@qualifizierung.at");
-                        mess.To.Add(new MailAddress($"{updatePersonvar.email}"));
-                        //mess.To.Add(new MailAddress("martin.hengsberger@qualifizierung.at"));
+                    //    mess.From = new MailAddress("martin.hengsberger@qualifizierung.at");
+                    //    mess.To.Add(new MailAddress($"{updatePersonvar.email}"));
+                    //    //mess.To.Add(new MailAddress("martin.hengsberger@qualifizierung.at"));
 
                         
-                        mess.Subject = "purchase confirmation!";
-                        mess.Body = $"<p style='font-size:20px'>Thank you for your purchase! </br >" + 
-                                    $"<p><b>bill number:</b> {orderID}</p>" +
-                                    $"<p><b>paid:</b> {pack.packprice} € (including 20% ​​tax)</p>" +
-                                    $"<p><b>date of purchase:</b> {order.orderdate}</p> </br >" +
-                                    $"<p><b>purchased package:</b> {pack.packname}</p>" + 
-                                    $"<p><b>goldquantity:</b> {goldValue}</p> </br>" +
-                                    $"<p>We wish you a lot of fun!</p>" +
-                                    "<p><b>MTP-Gmbh.</b><br/ > Simmeringer Hauptstrasse XX<br/>1030 Wien<br/> UID:78946513</p>";
+                    //    mess.Subject = "purchase confirmation!";
+                    //    mess.Body = $"<p style='font-size:20px'>Thank you for your purchase! </br >" + 
+                    //                $"<p><b>bill number:</b> {orderID}</p>" +
+                    //                $"<p><b>paid:</b> {pack.packprice} € (including 20% ​​tax)</p>" +
+                    //                $"<p><b>date of purchase:</b> {order.orderdate}</p> </br >" +
+                    //                $"<p><b>purchased package:</b> {pack.packname}</p>" + 
+                    //                $"<p><b>goldquantity:</b> {goldValue}</p> </br>" +
+                    //                $"<p>We wish you a lot of fun!</p>" +
+                    //                "<p><b>MTP-Gmbh.</b><br/ > Simmeringer Hauptstrasse XX<br/>1030 Wien<br/> UID:78946513</p>";
                                     
 
-                        client.Send(mess);
-                    }
-                    catch (Exception e)
-                    {
-                        Debug.WriteLine(e.Message);
+                    //    client.Send(mess);
+                    //}
+                    //catch (Exception e)
+                    //{
+                    //    Debug.WriteLine(e.Message);
 
-                    }
+                    //}
 
                 }
 

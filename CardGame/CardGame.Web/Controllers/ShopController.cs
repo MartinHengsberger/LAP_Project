@@ -8,6 +8,9 @@ using CardGame.DAL.Model;
 using CardGame.Log;
 using CardGame.Web.Models;
 using WindowsApplication1;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
+using System.IO;
 
 namespace CardGame.Web.Controllers
 {
@@ -131,5 +134,6 @@ namespace CardGame.Web.Controllers
             }
                        
         }
+
     }
 }

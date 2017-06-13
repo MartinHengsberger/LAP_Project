@@ -208,7 +208,6 @@ namespace CardGame.Web.Controllers
 
         [Authorize(Roles = "user")]
         public ActionResult CharterColumn()
-
         {
 
         List<SoldPack> spl = new List<SoldPack>();
@@ -241,68 +240,27 @@ namespace CardGame.Web.Controllers
             .Write("png");
 
             return null;
-
         }
 
-        public FileStreamResult pdf2()
-        {
-            Document document = new Document();
-            MemoryStream stream = new MemoryStream();
 
-            try
-            {
-                PdfWriter pdfWriter = PdfWriter.GetInstance(document, stream);
-                pdfWriter.CloseStream = false;
-
-                //ANFANG PDF BAU
-
-                Chunk c1 = new Chunk("Ich bin das 1. chunk");
-                Chunk c2 = new Chunk("Ich bin das 2. chunk");
-
-                Paragraph para = new Paragraph();
-                para.Add(c1);
-                para.Add(c2);
-
-
-                document.Open();
-                document.Add(new Paragraph("Hello World"));
-                document.Add(para);
-
-
-                //ENDE PDF BAU
-            }
-            catch (DocumentException de)
-            {
-                Console.Error.WriteLine(de.Message);
-            }
-            catch (IOException ioe)
-            {
-                Console.Error.WriteLine(ioe.Message);
-            }
-
-            document.Close();
-
-            stream.Flush(); //Always catches me out
-            stream.Position = 0; //Not sure if this is required
-
-            return File(stream, "application/pdf", "DownloadName.pdf");
-        }
-
-        public FileStreamResult pdf3()
+        public FileStreamResult pdfCardcollection()
         {
             //TODO - PDF DESIGNEN!!!
 
             Document document = new Document();
-            PdfPTable table = new PdfPTable(4);
+            PdfPTable table = new PdfPTable(5);
+            float[] tblwidth = new float[] { 100.0f, 40.0f, 40.0f, 40.0f, 30.0f };
+
+            table.SetWidths(tblwidth);
 
             iTextSharp.text.Image logo = iTextSharp.text.Image.GetInstance("C:/Users/hengmart/Documents/GitHub/LAP_Project/CardGame/CardGame.Web/img/CS_Logo.png");
-            logo.WidthPercentage = 30;
+            logo.ScalePercent(40);
+            logo.Alignment = iTextSharp.text.Image.ALIGN_CENTER;
             
-
             MemoryStream stream = new MemoryStream();
             var usercards = DeckManager.GetAllCollectionCards(UserManager.GetUserByUserEmail(User.Identity.Name).idperson);
 
-            //Sortieren einer vorhandenen Liste nach Namen ( in diesem Fall -> "cardname" ) 
+            //Sort List after Name ( in this case -> "cardname" ) 
             usercards.Sort(delegate (vCollectionCards x, vCollectionCards y)
             {
                 if (x.cardname == null && y.cardname == null) return 0;
@@ -316,33 +274,40 @@ namespace CardGame.Web.Controllers
                 PdfWriter pdfWriter = PdfWriter.GetInstance(document, stream);
                 pdfWriter.CloseStream = false;
 
-                //ANFANG PDF BAU
-
+                //START PDF CREATION
                 document.Open();
 
+                //Add Logo 
                 document.Add(logo);
 
-                foreach (var item in usercards)
-                {
-                    document.Add(new Paragraph($"Cardname: {item.cardname}\t\t Attack: {item.attack}\t Life:{item.life}\t Mana: {item.mana}"));
-                }
+                //Add some Text
+                var user = UserManager.GetUserByUserEmail(User.Identity.Name);
+                Paragraph userdata = new Paragraph($"Cardcollection: {user.firstname} {user.lastname} \nGamertag: {user.gamertag}\n\n");
+                userdata.Alignment = 1;
+                document.Add(userdata);
 
+                //Add Table with carddata
                 table.AddCell($"CARDNAME");
                 table.AddCell($"ATTACK");
                 table.AddCell($"LIFE");
                 table.AddCell($"MANA");
+                table.AddCell($"PIC");
 
                 foreach (var item in usercards)
                 {
+                    var smallpic = iTextSharp.text.Image.GetInstance(item.pic);
+                    
+
                     table.AddCell($"{item.cardname}");
                     table.AddCell($"{item.attack}");
                     table.AddCell($"{item.life}");
                     table.AddCell($"{item.mana}");
+                    table.AddCell(smallpic);
                 }
 
                 document.Add(table);
 
-                //ENDE PDF BAU
+                //END PDF CREATION
             }
             catch (DocumentException de)
             {
@@ -358,7 +323,7 @@ namespace CardGame.Web.Controllers
             stream.Flush(); //Always catches me out
             stream.Position = 0; //Not sure if this is required
 
-            return File(stream, "application/pdf", "DownloadName.pdf");
+            return File(stream, "application/pdf", "Cardlist_Clonestone.pdf");
         }
 
     }

@@ -85,5 +85,16 @@ namespace CardGame.Web.Controllers
             return View(tblperson);
         }
 
+
+        [Authorize(Roles = "admin")]
+        public ActionResult Statistic()
+        {
+
+            //TODO - Verkaufte Packs holen
+
+            return View();
+        }
+
+
     }
 }

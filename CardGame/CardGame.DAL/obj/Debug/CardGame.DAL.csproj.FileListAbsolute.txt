@@ -72,3 +72,5 @@ C:\Users\hengmart\Documents\GitHub\LAP_Project\CardGame\CardGame.DAL\obj\Debug\C
 C:\Users\hengmart\Documents\GitHub\LAP_Project\CardGame\CardGame.DAL\obj\Debug\CardGame.DAL.pdb
 C:\Users\Omega Ultima\Documents\GitHub\LAP_Project\CardGame\CardGame.DAL\bin\Debug\System.Linq.Dynamic.dll
 C:\Users\hengmart\Documents\GitHub\LAP_Project\CardGame\CardGame.DAL\bin\Debug\System.Linq.Dynamic.dll
+C:\Users\hengmart\Documents\GitHub\LAP_Project\CardGame\CardGame.DAL\bin\Debug\itextsharp.dll
+C:\Users\hengmart\Documents\GitHub\LAP_Project\CardGame\CardGame.DAL\bin\Debug\itextsharp.xml

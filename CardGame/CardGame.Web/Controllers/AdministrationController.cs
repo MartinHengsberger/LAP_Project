@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using CardGame.DAL.Model;
+using System.Data.SqlClient;
 
 namespace CardGame.Web.Controllers
 {
@@ -85,14 +86,34 @@ namespace CardGame.Web.Controllers
             return View(tblperson);
         }
 
-
-        [Authorize(Roles = "admin")]
-        public ActionResult Statistic()
+        public JsonResult Statistic()
         {
 
-            //TODO - Verkaufte Packs holen
+            string select = "select packname, count(packname) as amount from tblpack join tblorder on idpack = fkpack group by packname order by amount desc";
+            string connection = "Data Source=localhost;Initial Catalog=itin21_ClonestoneFS;User id=sa;Password=123user!";
+            List<object> chartinformation = new List<object>();
+            chartinformation.Add(new object[] { "packname", "amount" });
 
-            return View();
+            using (SqlConnection dbCon = new SqlConnection(connection))
+            {
+                using (SqlCommand cmd = new SqlCommand(select))
+                {
+                    cmd.CommandType = CommandType.Text;
+                    cmd.Connection = dbCon;
+                    dbCon.Open();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            chartinformation.Add(new object[] { reader["packname"], reader["amount"] });
+                        }
+                    }
+
+                    dbCon.Close();
+                }
+            }
+
+            return Json(chartinformation);
         }
 
 

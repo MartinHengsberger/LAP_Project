@@ -334,3 +334,17 @@ table * {
     border: 0px solid white;
 }
 
+.google-visualization-tooltip { 
+
+            width: 200px !important;
+            border-radius: 21px !important;
+            position: absolute !important;
+            box-shadow: 7px 7px 5px 0px rgba(50, 50, 50, 0.75) !important;
+            font-family: Arial !important;
+            font-size:  12px !important;
+
+          }
+
+div.google-visualization-tooltip > ul > li > span {
+    font-family: Arial !important;
+}
